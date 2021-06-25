@@ -1,15 +1,11 @@
 Package: howler
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Howler.js
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
+Authors@R: person("Ashley", "Baldry", email = "arbaldry91@gmail.com", role = c("aut", "cre"))
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+License: MIT
 Encoding: UTF-8
-LazyData: true
-Suggests: 
-    testthat (>= 3.0.0)
-Config/testthat/edition: 3
+Suggests: testthat (>= 3.0.0)
 RoxygenNote: 7.1.1
