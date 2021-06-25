@@ -5,7 +5,8 @@ Version: 0.1.0
 Authors@R: person("Ashley", "Baldry", email = "arbaldry91@gmail.com", role = c("aut", "cre"))
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
-License: MIT
+License: MIT + file LICENSE
 Encoding: UTF-8
+Imports: shiny, jsonlite
 Suggests: testthat (>= 3.0.0)
 RoxygenNote: 7.1.1

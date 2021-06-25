@@ -1,4 +1,4 @@
 library(testthat)
-library(soundjs)
+library(howler)
 
-test_check("soundjs")
+test_check("howler")

@@ -6,6 +6,9 @@
 \usage{
 useHowlerJS(spatial = FALSE)
 }
+\arguments{
+\item{spatial}{Logical, whether or not the spatial aspects of \code{howler.js} are required. Default is set to \code{FALSE}.}
+}
 \value{
 A script tag that enables \code{howler} to work within a shiny app.
 }
