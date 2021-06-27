@@ -2,6 +2,8 @@ var Howler = function(el) {
     var self = this;
     this.id = el.id;
     this.index = 0;
+
+    this.volume = el.dataset.volume;
     this.playlist = JSON.parse(el.dataset.audioFiles);
     this.autoContinue = el.dataset.autocontinue === "TRUE";
     this.autoLoop = el.dataset.autoloop === "TRUE";
@@ -10,9 +12,9 @@ var Howler = function(el) {
 
     this.play = function() {
         return new Howl({
-            src: this.playlist[self.index],
+            src: self.playlist[self.index],
             html5: true,
-            volume: 0.7,
+            volume: self.volume,
 
             onload: function() {
                 Shiny.setInputValue(`${self.id}_track`, self.playlist[self.index]);
