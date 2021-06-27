@@ -1,10 +1,12 @@
-var ShinyHowler = function(el) {
+var Howler = function(el) {
     var self = this;
     this.id = el.id;
     this.index = 0;
     this.playlist = JSON.parse(el.dataset.audioFiles);
-    this.autoplay = el.dataset.autoplayNextTrack === "TRUE";
-    this.autoloop = el.dataset.autoloop === "TRUE";
+    this.autoContinue = el.dataset.autocontinue === "TRUE";
+    this.autoLoop = el.dataset.autoloop === "TRUE";
+    this.autoPlayNext = true;
+    this.autoPlayPrevious = true;
 
     this.play = function() {
         return new Howl({
@@ -15,11 +17,18 @@ var ShinyHowler = function(el) {
             onload: function() {
                 Shiny.setInputValue(`${self.id}_track`, self.playlist[self.index]);
                 Shiny.setInputValue(`${self.id}_duration`, self.player.duration());
+                Shiny.setInputValue(`${self.id}_seek`, self.player.seek());
             },
 
             onplay: function() {
-                self.player.seek();
                 Shiny.setInputValue(`${self.id}_playing`, true);
+                setInterval(
+                    () => {
+                        var trackSeek = self.player.seek();
+                        Shiny.setInputValue(`${self.id}_seek`, Math.round(trackSeek * 100) / 100);
+                    },
+                    1000
+                )
             },
 
             onpause: function() {
@@ -27,41 +36,58 @@ var ShinyHowler = function(el) {
             },
 
             onend: function() {
-                if (self.autoplay && !(!self.autoloop && self.index === (self.playlist.length - 1))) {
-                    self.playNextTrack();
+                if (self.autoContinue && !(!self.autoLoop && self.index === (self.playlist.length - 1))) {
+                    self.changeNextTrack();
                 } else {
                     Shiny.setInputValue(`${self.id}_playing`, false);
                     self.setPlayPauseButton('play');
                 }
+            },
+
+            onseek: function() {
+                Shiny.setInputValue(`${self.id}_seek`, self.player.seek());
             }
         });
     };
 
-    this.playNextTrack = function() {
+    this.changeNextTrack = function(playTrack = true) {
         if (self.index === (self.playlist.length - 1)) {
             self.index = 0;
         } else {
             self.index++;
         }
 
-        self.changeTrack();
-        self.setPlayPauseButton('pause');
+        self.changeTrack(playTrack);
     };
 
-    this.changeTrack = function() {
+    this.changePreviousTrack = function(playTrack = true) {
+        if (self.index === 0) {
+            self.index = self.playlist.length - 1;
+        } else {
+            self.index--;
+        }
+
+        self.changeTrack(playTrack);
+    }
+
+    this.changeTrack = function(playTrack = true) {
         self.player.stop();
         self.player = self.play();
-        self.player.play();
+
+        if (playTrack) {
+            self.player.play();
+            self.setPlayPauseButton('pause');
+        }
     };
 
     this.setPlayPauseButton = function(icon = 'play') {
-      var iconElement = document.getElementById(self.id + '_play_pause').firstElementChild;
+        var iconElement = document.getElementById(self.id + '_play_pause').firstElementChild;
 
-      if (iconElement) {
-          var addIcon = icon === 'play' ? 'fa-play' : 'fa-pause';
-          var removeIcon = icon === 'play' ? 'fa-pause' : 'fa-play';
-          $(iconElement).removeClass(removeIcon).addClass(addIcon);
-      }
+        if (iconElement) {
+            var addIcon = icon === 'play' ? 'fa-play' : 'fa-pause';
+            var removeIcon = icon === 'play' ? 'fa-pause' : 'fa-play';
+            $(iconElement).removeClass(removeIcon).addClass(addIcon);
+        }
     };
 
     this.player = this.play();
@@ -91,17 +117,11 @@ var ShinyHowler = function(el) {
     });
 
     $(`#${this.id}_next`).on("click", function(e) {
-        self.playNextTrack();
+        self.changeNextTrack(self.autoPlayNext);
     });
 
     $(`#${this.id}_previous`).on("click", function(e) {
-        if (self.index === 0) {
-            self.index = self.playlist.length - 1;
-        } else {
-            self.index--;
-        }
-
-        self.changeTrack(self.id + '_play_pause');
+        self.changePreviousTrack(self.autoPlayPrevious);
     });
 
     $(`#${this.id}_volumeup`).on("click", function(e) {
@@ -115,12 +135,12 @@ var ShinyHowler = function(el) {
     });
 }
 
-var shinyHowlers = [];
+var howlerPlayers = [];
 
 $(document).on('shiny:connected', () => {
     var howlers = document.getElementsByClassName('howler-player');
 
     for (i = 0; i < howlers.length; i++) {
-        shinyHowlers.push(new ShinyHowler(howlers[i]));
+        howlerPlayers.push(new Howler(howlers[i]));
     }
 });
