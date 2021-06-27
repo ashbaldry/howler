@@ -27,7 +27,7 @@ var Howler = function(el) {
                         var trackSeek = self.player.seek();
                         Shiny.setInputValue(`${self.id}_seek`, Math.round(trackSeek * 100) / 100);
                     },
-                    1000
+                    100
                 )
             },
 

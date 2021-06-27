@@ -4,24 +4,16 @@ library(howler)
 ui <- fluidPage(
   useHowlerJS(),
 
-  howlerPlayer("sound", file.path("audio", list.files("www/audio", ".mp3$"))[2]),
+  tags$br(),
+  howlerPlayer("sound", file.path("audio", list.files("www/audio", ".mp3$"))),
+  howlerButton("sound", "previous", shiny::icon("step-backward")),
   howlerButton("sound", "play_pause", shiny::icon("play")),
+  howlerButton("sound", "next", shiny::icon("step-forward")),
   tags$br(),
   tags$br(),
-  tags$p("Sound 1 playing:", textOutput("sound_playing", inline = TRUE)),
-  tags$p("Sound 1 track:", textOutput("sound_track", inline = TRUE)),
-  tags$p("Sound 1 duration:", textOutput("sound_seek", inline = TRUE), "/", textOutput("sound_duration", inline = TRUE)),
-  tags$br(),
-  tags$br(),
-  howlerPlayer("sound2", file.path("audio", list.files("www/audio", ".mp3$"))),
-  howlerButton("sound2", "previous", shiny::icon("step-backward")),
-  howlerButton("sound2", "play_pause", shiny::icon("play")),
-  howlerButton("sound2", "next", shiny::icon("step-forward")),
-  tags$br(),
-  tags$br(),
-  tags$p("Sound 2 playing:", textOutput("sound2_playing", inline = TRUE)),
-  tags$p("Sound 2 track:", textOutput("sound2_track", inline = TRUE)),
-  tags$p("Sound 2 duration:", textOutput("sound2_seek", inline = TRUE), "/", textOutput("sound2_duration", inline = TRUE)),
+  tags$p("Track Name:", textOutput("sound_track", container = tags$strong, inline = TRUE)),
+  tags$p("Currently playing:", textOutput("sound_playing", inline = TRUE)),
+  tags$p("Duration:", textOutput("sound_seek", inline = TRUE), "/", textOutput("sound_duration", inline = TRUE)),
 )
 
 server <- function(input, output, session) {
@@ -29,11 +21,6 @@ server <- function(input, output, session) {
   output$sound_track <- renderText(input$sound_track)
   output$sound_duration <- renderText(sprintf("%02d:%02.0f", input$sound_duration %/% 60, input$sound_duration %% 60))
   output$sound_seek <- renderText(sprintf("%02d:%02.0f", input$sound_seek %/% 60, input$sound_seek %% 60))
-
-  output$sound2_playing <- renderText(isTRUE(input$sound2_playing))
-  output$sound2_track <- renderText(input$sound2_track)
-  output$sound2_duration <- renderText(sprintf("%02d:%02.0f", input$sound2_duration %/% 60, input$sound2_duration %% 60))
-  output$sound2_seek <- renderText(sprintf("%02d:%02.0f", input$sound2_seek %/% 60, input$sound2_seek %% 60))
 }
 
 shinyApp(ui, server)
