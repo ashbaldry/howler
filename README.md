@@ -7,3 +7,6 @@ Using [howler.js](https://github.com/goldfire/howler.js) to create an audio tool
 ```r
 devtools::install_github("ashbaldry/howler")
 ```
+
+## Usage
+

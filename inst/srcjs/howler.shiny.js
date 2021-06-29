@@ -4,6 +4,7 @@ var Howler = function(el) {
     this.index = 0;
 
     this.volume = el.dataset.volume;
+    this.seekRate = el.dataset.seekRate;
     this.playlist = JSON.parse(el.dataset.audioFiles);
     this.autoContinue = el.dataset.autocontinue === "TRUE";
     this.autoLoop = el.dataset.autoloop === "TRUE";
@@ -19,18 +20,23 @@ var Howler = function(el) {
             onload: function() {
                 Shiny.setInputValue(`${self.id}_track`, self.playlist[self.index]);
                 Shiny.setInputValue(`${self.id}_duration`, self.player.duration());
-                Shiny.setInputValue(`${self.id}_seek`, self.player.seek());
+                if (self.seekRate > 0) {
+                    Shiny.setInputValue(`${self.id}_seek`, self.player.seek());
+                }
             },
 
             onplay: function() {
                 Shiny.setInputValue(`${self.id}_playing`, true);
-                setInterval(
-                    () => {
-                        var trackSeek = self.player.seek();
-                        Shiny.setInputValue(`${self.id}_seek`, Math.round(trackSeek * 100) / 100);
-                    },
-                    100
-                )
+
+                if (self.seekRate > 0) {
+                    setInterval(
+                        () => {
+                            var trackSeek = self.player.seek();
+                            Shiny.setInputValue(`${self.id}_seek`, Math.round(trackSeek * 100) / 100);
+                        },
+                        self.seekRate
+                    )
+                }
             },
 
             onpause: function() {
@@ -127,13 +133,13 @@ var Howler = function(el) {
     });
 
     $(`#${this.id}_volumeup`).on("click", function(e) {
-        var vol = Math.min(1, this.player.volume() + 0.1);
-        this.player.volume(vol);
+        var vol = Math.min(1, Number(self.player.volume()) + Number(this.dataset.volumeChange));
+        self.player.volume(vol);
     });
 
     $(`#${this.id}_volumedown`).on("click", function(e) {
-        var vol = Math.max(0, this.player.volume() - 0.1);
-        this.player.volume(vol);
+        var vol = Math.max(0, Number(self.player.volume()) - Number(this.dataset.volumeChange));
+        self.player.volume(vol);
     });
 }
 

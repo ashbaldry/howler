@@ -1,4 +1,9 @@
 #' @export
+changeHowlTrack <- function(session, file) {
+  TRUE
+}
+
+#' @export
 playHowl <- function(session, id) {
   TRUE
 }
