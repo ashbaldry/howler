@@ -134,11 +134,13 @@ var Howler = function(el) {
 
     $(`#${this.id}_volumeup`).on("click", function(e) {
         var vol = Math.min(1, Number(self.player.volume()) + Number(this.dataset.volumeChange));
+        self.volume = vol;
         self.player.volume(vol);
     });
 
     $(`#${this.id}_volumedown`).on("click", function(e) {
         var vol = Math.max(0, Number(self.player.volume()) - Number(this.dataset.volumeChange));
+        self.volume = vol;
         self.player.volume(vol);
     });
 }
