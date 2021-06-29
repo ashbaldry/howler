@@ -14,7 +14,7 @@
 #' @details
 #' The following \code{button_type} are available to create:
 #' \describe{
-#' \item{\code{play_pause} (default)}
+#' \item{\code{play_pause} (default)}{}
 #' }
 #'
 #' When using a \code{play_pause} button, the icon will toggle between the play and pause button

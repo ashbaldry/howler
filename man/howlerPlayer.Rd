@@ -16,7 +16,8 @@ howlerPlayer(
 \arguments{
 \item{id}{HTML id tag to be given to the player element}
 
-\item{files}{Files that will be used in the player}
+\item{files}{Files that will be used in the player. This can either be a single vector, or a list where different
+formats of the same file are kept in each element of the list.}
 
 \item{volume}{How loud the player should start off at. Defaults to 70\%}
 
