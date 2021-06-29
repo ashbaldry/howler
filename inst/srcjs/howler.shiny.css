@@ -1,0 +1,5 @@
+input[type=range].howler-volume-slider {
+  display: inline;
+  width: 75px;
+  height: 15px;
+}

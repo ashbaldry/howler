@@ -33,6 +33,7 @@ useHowlerJS <- function(spatial = FALSE) {
   shiny::tags$head(
     shiny::tags$script(src = "howlerjs/howler.core.min.js"),
     if (spatial) shiny::tags$script(src = "howlerjs/howler.spatial.min.js"),
-    shiny::tags$script(src = "howlerjs/howler.shiny.js")
+    shiny::tags$script(src = "howlerjs/howler.shiny.js"),
+    shiny::tags$link(href = "howlerjs/howler.shiny.css", rel = "stylesheet")
   )
 }

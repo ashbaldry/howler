@@ -6,15 +6,16 @@
 #' @param id ID given to the button. For it to work with the \code{\link{howlerPlayer}}, the ID
 #' must match that of
 #' @param button_type Type of button to create. Available buttons are in the details, default set to \code{play_pause}
-#' @param ...
+#' @param ... Attributes added to the button
 #'
 #' @return
 #' An HTML object containing the button.
 #'
 #' @details
 #' The following \code{button_type} are available to create:
+#'
 #' \describe{
-#' \item{\code{play_pause} (default)}{}
+#' \item{\code{play_pause}}{(default) Button that switches}
 #' }
 #'
 #' When using a \code{play_pause} button, the icon will toggle between the play and pause button
@@ -61,7 +62,7 @@ nextButton <- function(id) {
   howlerButton(id, "next", shiny::icon("step-forward"))
 }
 
-#' @param volume_change How much to change the volume by. Default is 10%.
+#' @param volume_change How much to change the volume by. Default is 10\%.
 #'
 #' @rdname howlerButton
 #' @export

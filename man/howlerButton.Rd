@@ -33,9 +33,9 @@ must match that of}
 
 \item{button_type}{Type of button to create. Available buttons are in the details, default set to \code{play_pause}}
 
-\item{...}{}
+\item{...}{Attributes added to the button}
 
-\item{volume_change}{How much to change the volume by. Default is 10%.}
+\item{volume_change}{How much to change the volume by. Default is 10\%.}
 }
 \value{
 An HTML object containing the button.
@@ -45,8 +45,9 @@ Buttons that can be used to change the audio of
 }
 \details{
 The following \code{button_type} are available to create:
+
 \describe{
-\item{\code{play_pause} (default)}
+\item{\code{play_pause}}{(default) Button that switches}
 }
 
 When using a \code{play_pause} button, the icon will toggle between the play and pause button

@@ -12,6 +12,7 @@ ui <- fluidPage(
   nextButton("sound"),
   volumeDownButton("sound"),
   volumeUpButton("sound"),
+  volumeSlider("sound"),
   tags$br(),
   tags$br(),
   tags$p("Track Name:", textOutput("sound_track", container = tags$strong, inline = TRUE)),

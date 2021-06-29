@@ -38,7 +38,7 @@
 #' ui <- fluidPage(
 #'   useHowlerJS(),
 #'   howlerPlayer("howler", "audio/sound.mp3"),
-#'   howlerButton("howler", "play_pause")
+#'   playPauseButton("howler")
 #' )
 #'
 #' server <- function(input, output) {

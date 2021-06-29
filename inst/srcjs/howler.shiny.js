@@ -143,6 +143,12 @@ var Howler = function(el) {
     self.volume = vol;
     self.player.volume(vol);
   });
+
+  $(`#${this.id}_volume_slider`).on("change", function(e) {
+    var vol = this.value;
+    self.volume = vol;
+    self.player.volume(vol);
+  });
 }
 
 var howlerPlayers = [];
