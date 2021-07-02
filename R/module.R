@@ -37,14 +37,20 @@ howlerModuleUI <- function(id, files, ...) {
 
   div(
     class = "howler-module",
-    howlerPlayer(howler_id, ...),
-    if (length(files) > 1) previousButton(howler_id),
-    playPauseButton(howler_id),
-    if (length(files) > 1) nextButton(howler_id),
-    textOutput(ns("howler_seek"), inline = TRUE),
-    "/",
-    textOutput(ns("howler_duration"), inline = TRUE),
-    volumeSlider(howler_id)
+    howlerPlayer(howler_id, files, ...),
+    div(
+      class = "howler-module-settings",
+      if (length(files) > 1) previousButton(howler_id),
+      playPauseButton(howler_id),
+      if (length(files) > 1) nextButton(howler_id),
+      span(
+        class = "howler-module-duration",
+        textOutput(ns("howler_seek"), inline = TRUE),
+        "/",
+        textOutput(ns("howler_duration"), inline = TRUE)
+      ),
+      volumeSlider(howler_id)
+    )
   )
 }
 

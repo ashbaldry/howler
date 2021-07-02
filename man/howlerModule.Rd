@@ -5,14 +5,17 @@
 \alias{howlerModuleServer}
 \title{Howler.js Module}
 \usage{
-howlerModuleUI(id, ...)
+howlerModuleUI(id, files, ...)
 
 howlerModuleServer(input, output, session)
 }
 \arguments{
 \item{id}{ID to give to the namespace of the module. The howler player will have the ID \code{{id}-howler}.}
 
-\item{...}{Arguments sent to \code{\link{howlerPlayer}}}
+\item{files}{Files that will be used in the player. This can either be a single vector, or a list where different
+formats of the same file are kept in each element of the list.}
+
+\item{...}{Other arguments sent to \code{\link{howlerPlayer}}}
 
 \item{input, output, session}{Standard \code{shiny} input, output and session}
 }

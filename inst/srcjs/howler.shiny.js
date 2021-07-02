@@ -95,6 +95,14 @@ var Howler = function(el) {
     }
   };
 
+  this.moveVolumeSlider = function() {
+    var sliderElement = document.getElementById(self.id + '_volume_slider');
+
+    if (sliderElement) {
+      sliderElement.value = self.volume;
+    }
+  };
+
   this.player = this.play();
 
   this.player.once('play', function() {
@@ -143,12 +151,14 @@ var Howler = function(el) {
     var vol = Math.min(1, Number(self.player.volume()) + Number(this.dataset.volumeChange));
     self.volume = vol;
     self.player.volume(vol);
+    self.moveVolumeSlider();
   });
 
   $(`#${this.id}_volumedown`).on("click", function(e) {
     var vol = Math.max(0, Number(self.player.volume()) - Number(this.dataset.volumeChange));
     self.volume = vol;
     self.player.volume(vol);
+    self.moveVolumeSlider();
   });
 
   $(`#${this.id}_volume_slider`).on("change", function(e) {

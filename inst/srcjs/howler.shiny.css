@@ -3,20 +3,29 @@ input[type=range].howler-volume-slider {
   width: 75px;
   height: 15px;
   vertical-align: text-bottom;
+  place-self: center;
 }
 
-.howler-module {
-    border: black solid 1px;
-    border-radius: 5px;
-    padding: 10px;
-    width: max-content;
-    background-color: #b3b3b320;
+.howler-module-settings {
+  border: black solid 1px;
+  border-radius: 5px;
+  padding: 10px;
+  width: max-content;
+  background-color: #b3b3b320;
+  display: flex;
 }
 
-.howler-module > * {
-    padding: 0 4px;
+.howler-module-settings > * {
+  padding: 0 4px;
 }
 
-.howler-module i.fa {
+.howler-module-settings i.fa {
 
+}
+
+.howler-module-duration {
+  flex-direction: row;
+  display: flex;
+  place-content: space-evenly;
+  min-width: 100px;
 }
