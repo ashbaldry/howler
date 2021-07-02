@@ -6,6 +6,31 @@
 \usage{
 volumeSlider(id, volume = 0.7)
 }
+\arguments{
+\item{id}{ID given to the volume slider. For it to work with the \code{\link{howlerPlayer}}, the ID
+must match that of the \code{howlerPlayer}.}
+
+\item{volume}{Initial volume to set the player at. Defaults at 70\%}
+}
 \description{
-Volume Slider
+Temporary description
+}
+\examples{
+if (interactive()) {
+  library(shiny)
+
+  ui <- fluidPage(
+    title = "Initial Title",
+    useHowlerJS(),
+    howlerPlayer("sound"),
+    playPauseButton("sound"),
+    volumeSlider("sound")
+  )
+
+  server <- function(input, output, session) {
+  }
+
+  shinyApp(ui, server)
+}
+
 }
