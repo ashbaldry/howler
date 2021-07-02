@@ -160,3 +160,25 @@ $(document).on('shiny:connected', () => {
     howlerPlayers.push(new Howler(howlers[i]));
   }
 });
+
+Shiny.addCustomMessageHandler('changeHowlerTrack', function(message) {
+  var howl = howlerPlayers.filter(x => x.id === message.id)[0];
+  var playlist = howl.playlist.map(x => { return x.split('/').pop(); })
+  howl.index = playlist.indexOf(message.file);
+
+  howl.changeTrack()
+});
+
+Shiny.addCustomMessageHandler('playHowler', function(message) {
+  var howl = howlerPlayers.filter(x => x.id === message)[0];
+  howl.player.play();
+})
+
+Shiny.addCustomMessageHandler('pauseHowler', function(message) {
+  var howl = howlerPlayers.filter(x => x.id === message)[0];
+  howl.player.pause();
+})
+
+Shiny.addCustomMessageHandler('stopHowler', function(message) {
+  var howl = howlerPlayers.filter(x => x.id === message)[0];
+  howl.player.stop();
