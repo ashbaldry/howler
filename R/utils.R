@@ -1,11 +1,12 @@
 #' Enable \code{HowlerJS}
 #'
 #' @description
-#' Add this function to the UI of a shiny application in order for you to be able to use HowlerJS
+#' Add \code{useHowlerJS} to the UI of a shiny application so that the necessary resources can be added to the application.
 #'
 #' @param spatial Logical, whether or not the spatial aspects of \code{howler.js} are required. Default is set to \code{FALSE}.
+#' (Unless writing custom functionality, this is not required).
 #'
-#' @return A script tag that enables \code{howler} to work within a shiny app.
+#' @return HTML tags that link to relevant JavaScript and CSS files used to display and run \code{howler.js}.
 #'
 #' @examples
 #' if (interactive()) {
@@ -14,11 +15,12 @@
 #'   ui <- fluidPage(
 #'     title = "Initial Title",
 #'     useHowlerJS(),
-#'     actionButton("button", "Play Sound"),
+#'     howlerPlayer("sound"),
+#'     playPauseButton("sound"),
+#'     volumeSlider("sound")
 #'   )
 #'
 #'   server <- function(input, output, session) {
-#'     observeEvent(input$button, playSound(session))
 #'   }
 #'
 #'   shinyApp(ui, server)
