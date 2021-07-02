@@ -16,6 +16,31 @@ howlerModuleServer(input, output, session)
 
 \item{input, output, session}{Standard \code{shiny} input, output and session}
 }
+\value{
+The server-side module will return a list of reactive objects:
+\describe{
+\item{playing}{Logical value whether or not the player is currently playing}
+\item{track}{Name of the track currently loaded}
+\item{duration}{Duration (in seconds) of the track currently loaded}
+\item{seek}{Current position (in seconds) of the track currently loaded}
+}
+}
 \description{
 Howler.js Module
+}
+\details{
+The player will have the ID \code{{id}-howler}.
+}
+\examples{
+if (interactive()) {
+  ui <- fluidPage(
+    useHowlerJS(),
+    howlerModuleUI("howl")
+  )
+
+  server <- function(input, output, session) {
+    moduleServer("howl", howlerModuleServer)
+  }
+}
+
 }
