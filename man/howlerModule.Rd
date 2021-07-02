@@ -5,14 +5,14 @@
 \alias{howlerModuleServer}
 \title{Howler.js Module}
 \usage{
-howlerModuleUI(id, files)
+howlerModuleUI(id, ...)
 
 howlerModuleServer(input, output, session)
 }
 \arguments{
-\item{id}{ID}
+\item{id}{ID to give to the namespace of the module. The howler player will have the ID \code{{id}-howler}.}
 
-\item{files}{Vector of files}
+\item{...}{Arguments sent to \code{\link{howlerPlayer}}}
 
 \item{input, output, session}{Standard \code{shiny} input, output and session}
 }
@@ -28,9 +28,6 @@ The server-side module will return a list of reactive objects:
 \description{
 Howler.js Module
 }
-\details{
-The player will have the ID \code{{id}-howler}.
-}
 \examples{
 if (interactive()) {
   ui <- fluidPage(
@@ -41,6 +38,8 @@ if (interactive()) {
   server <- function(input, output, session) {
     moduleServer("howl", howlerModuleServer)
   }
+
+  shinyApp(ui, server)
 }
 
 }

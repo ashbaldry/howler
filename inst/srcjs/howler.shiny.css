@@ -4,3 +4,19 @@ input[type=range].howler-volume-slider {
   height: 15px;
   vertical-align: text-bottom;
 }
+
+.howler-module {
+    border: black solid 1px;
+    border-radius: 5px;
+    padding: 10px;
+    width: max-content;
+    background-color: #b3b3b320;
+}
+
+.howler-module > * {
+    padding: 0 4px;
+}
+
+.howler-module i.fa {
+
+}
