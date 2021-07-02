@@ -4,7 +4,7 @@
 #' Buttons that can be used to change the audio of
 #'
 #' @param id ID given to the button. For it to work with the \code{\link{howlerPlayer}}, the ID
-#' must match that of
+#' must match that of the \code{howlerPlayer}.
 #' @param button_type Type of button to create. Available buttons are in the details, default set to \code{play_pause}
 #' @param ... Attributes added to the button
 #'
@@ -30,7 +30,7 @@ howlerButton <- function(id, button_type = HOWLER_BUTTON_TYPES, ...) {
   tags$a(id = button_id, class = paste0("action-button howler-", button_type), ...)
 }
 
-HOWLER_BUTTON_TYPES <- c("play_pause", "play", "pause", "previous", "next", "volumeup", "volumedown")
+HOWLER_BUTTON_TYPES <- c("play_pause", "play", "pause", "stop", "previous", "next", "volumeup", "volumedown")
 
 #' @rdname howlerButton
 #' @export
@@ -48,6 +48,12 @@ pauseButton <- function(id) {
 #' @export
 playPauseButton <- function(id) {
   howlerButton(id, "play_pause", shiny::icon("play"))
+}
+
+#' @rdname howlerButton
+#' @export
+stopButton <- function(id) {
+  howlerButton(id, "stop", shiny::icon("stop"))
 }
 
 #' @rdname howlerButton

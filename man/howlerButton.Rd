@@ -5,6 +5,7 @@
 \alias{playButton}
 \alias{pauseButton}
 \alias{playPauseButton}
+\alias{stopButton}
 \alias{previousButton}
 \alias{nextButton}
 \alias{volumeUpButton}
@@ -19,6 +20,8 @@ pauseButton(id)
 
 playPauseButton(id)
 
+stopButton(id)
+
 previousButton(id)
 
 nextButton(id)
@@ -29,7 +32,7 @@ volumeDownButton(id, volume_change = 0.1)
 }
 \arguments{
 \item{id}{ID given to the button. For it to work with the \code{\link{howlerPlayer}}, the ID
-must match that of}
+must match that of the \code{howlerPlayer}.}
 
 \item{button_type}{Type of button to create. Available buttons are in the details, default set to \code{play_pause}}
 
