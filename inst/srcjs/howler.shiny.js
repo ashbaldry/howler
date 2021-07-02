@@ -27,20 +27,17 @@ var Howler = function(el) {
 
       onplay: function() {
         Shiny.setInputValue(`${self.id}_playing`, true);
-
-        if (self.seekRate > 0) {
-          setInterval(
-            () => {
-              var trackSeek = self.player.seek();
-              Shiny.setInputValue(`${self.id}_seek`, Math.round(trackSeek * 100) / 100);
-            },
-            self.seekRate
-          )
-        }
+        self.setPlayPauseButton('pause');
       },
 
       onpause: function() {
         Shiny.setInputValue(`${self.id}_playing`, false);
+        self.setPlayPauseButton('play');
+      },
+
+      onstop: function() {
+        Shiny.setInputValue(`${self.id}_playing`, false);
+        self.setPlayPauseButton('play');
       },
 
       onend: function() {
@@ -100,6 +97,18 @@ var Howler = function(el) {
 
   this.player = this.play();
 
+  this.player.once('play', function() {
+    if (self.seekRate > 0) {
+      setInterval(
+        () => {
+          var trackSeek = self.player.seek();
+          Shiny.setInputValue(`${self.id}_seek`, Math.round(trackSeek * 100) / 100);
+        },
+        self.seekRate
+      )
+    }
+  })
+
   $(`#${this.id}_play`).on("click", function(e) {
     self.player.play();
   });
@@ -111,8 +120,6 @@ var Howler = function(el) {
       self.player.play();
     }
 
-    var icon = document.getElementById(this.id).firstElementChild;
-    $(icon).toggleClass('fa-play').toggleClass('fa-pause');
   });
 
   $(`#${this.id}_pause`).on("click", function(e) {
@@ -182,3 +189,4 @@ Shiny.addCustomMessageHandler('pauseHowler', function(message) {
 Shiny.addCustomMessageHandler('stopHowler', function(message) {
   var howl = howlerPlayers.filter(x => x.id === message)[0];
   howl.player.stop();
+})
