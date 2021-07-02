@@ -62,3 +62,27 @@ server <- function(input, output, session) { }
 
 shinyApp(ui, server)
 ```
+
+### Module
+
+```r
+library(shiny)
+library(howler)
+
+howler_example_dir <- system.file("examples/www/audio", package = "howler")
+addResourcePath("audio_files", howler_example_dir)
+
+howler_example_file <- list.files(howler_example_dir, ".mp3$")
+
+ui <- fluidPage(
+  h3("Basic howler.js Player"),
+  useHowlerJS(),
+  howlerModuleUI("sound", file.path("audio_files", howler_example_file))
+)
+
+server <- function(input, output, session) { 
+  moduleServer("sound", howlerModuleServer)
+}
+
+shinyApp(ui, server)
+```
