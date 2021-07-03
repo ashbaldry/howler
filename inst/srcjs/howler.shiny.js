@@ -19,7 +19,6 @@ var Howler = function(el) {
   this.play = function() {
     return new Howl({
       src: self.playlist[self.index],
-      html5: true,
       volume: self.volume,
 
       onload: function() {
