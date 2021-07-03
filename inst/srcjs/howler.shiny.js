@@ -229,7 +229,9 @@ Shiny.addCustomMessageHandler('changeHowlerTrack', function(message) {
 
 Shiny.addCustomMessageHandler('playHowler', function(message) {
   var howl = howlerPlayers.filter(x => x.id === message)[0];
-  howl.player.play();
+  if (!howl.player.playing()) {
+    howl.player.play();
+  }
 });
 
 Shiny.addCustomMessageHandler('pauseHowler', function(message) {
