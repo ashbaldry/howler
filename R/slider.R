@@ -1,20 +1,28 @@
 #' Volume Slider
 #'
 #' @description
-#' Temporary description
+#' A more user friendly way to adjust the volume of the \code{howlerPlayer} than by using buttons. There are
+#' still volume up/down buttons, but a slider can be moved up/down as required.
 #'
 #' @param id ID given to the volume slider. For it to work with the \code{\link{howlerPlayer}}, the ID
 #' must match that of the \code{howlerPlayer}.
 #' @param volume Initial volume to set the player at. Defaults at 70\%
+#'
+#' @return
+#' A volume slider with a \code{\link{volumeDownButton}} and a \code{\link{volumeUpButton}} either side.
+#'
+#' @details
+#' If using \code{volumeSlider}, avoid using the volume buttons, as this will cause duplicate IDs to appear in the
+#' shiny application and prevents the slider from working properly.
 #'
 #' @examples
 #' if (interactive()) {
 #'   library(shiny)
 #'
 #'   ui <- fluidPage(
-#'     title = "Initial Title",
+#'     title = "howler.js Player",
 #'     useHowlerJS(),
-#'     howlerPlayer("sound"),
+#'     howlerPlayer("sound", "audio/sound.mp3"),
 #'     playPauseButton("sound"),
 #'     volumeSlider("sound")
 #'   )
@@ -28,16 +36,27 @@
 #' @export
 volumeSlider <- function(id, volume = 0.7) {
   tagList(
-    tags$a(shiny::icon("volume-down")),
+    volumeDownButton(id),
     tags$input(
       class = "howler-volume-slider",
       id = paste0(id, "_volume_slider"),
       type = "range",
-      min = "0",
-      max = "1",
-      step = "0.01",
+      min = 0,
+      max = 1,
+      step = 0.01,
       value = volume
     ),
-    tags$a(shiny::icon("volume-up"))
+    volumeUpButton(id)
+  )
+}
+
+seekSlider <- function(id) {
+  tags$input(
+    class = "howler-volume-slider",
+    id = paste0(id, "_volume_slider"),
+    type = "range",
+    min = "0",
+    max = "100",
+    value = "0"
   )
 }

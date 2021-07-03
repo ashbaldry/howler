@@ -4,7 +4,7 @@
 #' Add \code{useHowlerJS} to the UI of a shiny application so that the necessary resources can be added to the application.
 #'
 #' @param spatial Logical, whether or not the spatial aspects of \code{howler.js} are required. Default is set to \code{FALSE}.
-#' (Unless writing custom functionality, this is not required).
+#' (Unless writing custom functionality, this is not used).
 #'
 #' @return HTML tags that link to relevant JavaScript and CSS files used to display and run \code{howler.js}.
 #'
@@ -13,9 +13,9 @@
 #'   library(shiny)
 #'
 #'   ui <- fluidPage(
-#'     title = "Initial Title",
+#'     title = "howler.js Player Title",
 #'     useHowlerJS(),
-#'     howlerPlayer("sound"),
+#'     howlerPlayer("sound", "audio/track1.mp3"),
 #'     playPauseButton("sound"),
 #'     volumeSlider("sound")
 #'   )

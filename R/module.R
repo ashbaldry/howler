@@ -1,12 +1,19 @@
 #' Howler.js Module
 #'
+#' @description
+#' A simple module containing a howler player and a default set of howler buttons. The module also contains the
+#' current position of the track being played and the duration of the track.
+#'
 #' @param id ID to give to the namespace of the module. The howler player will have the ID \code{{id}-howler}.
 #' @param files Files that will be used in the player. This can either be a single vector, or a list where different
 #' formats of the same file are kept in each element of the list.
-#' @param ... Other arguments sent to \code{\link{howlerPlayer}}
+#' @param ... Further arguments to send to \code{\link{howlerPlayer}}
 #' @param input,output,session Standard \code{shiny} input, output and session
 #'
 #' @return
+#' The UI will provide a player with a play/pause button, previous and next buttons, duration information
+#' and a volume slider.
+#'
 #' The server-side module will return a list of reactive objects:
 #' \describe{
 #' \item{playing}{Logical value whether or not the player is currently playing}
@@ -18,8 +25,9 @@
 #' @examples
 #' if (interactive()) {
 #'   ui <- fluidPage(
+#'     title = "howler.js Module",
 #'     useHowlerJS(),
-#'     howlerModuleUI("howl")
+#'     howlerModuleUI("howl", c("audio/track1.mp3", "audio/track2.mp3"))
 #'   )
 #'
 #'   server <- function(input, output, session) {

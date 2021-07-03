@@ -6,7 +6,7 @@ Authors@R: c(
     person("Ashley", "Baldry", email = "arbaldry91@gmail.com", role = c("aut", "cre")),
     person("James", "Simpson", role = "aut", comment = "Creator of howler.js")
     )
-Description: Audio interactivity within shiny applications using 'howler.js'
+Description: Audio interactivity within shiny applications using 'howler.js'.
 License: MIT + file LICENSE
 URL: https://github.com/ashbaldry/howler, https://github.com/goldfire/howler.js
 BugReport: https://github.com/ashbaldry/howler/issues

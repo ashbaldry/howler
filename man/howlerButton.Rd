@@ -6,6 +6,8 @@
 \alias{pauseButton}
 \alias{playPauseButton}
 \alias{stopButton}
+\alias{backButton}
+\alias{forwardButton}
 \alias{previousButton}
 \alias{nextButton}
 \alias{volumeUpButton}
@@ -22,6 +24,10 @@ playPauseButton(id)
 
 stopButton(id)
 
+backButton(id)
+
+forwardButton(id)
+
 previousButton(id)
 
 nextButton(id)
@@ -31,28 +37,67 @@ volumeUpButton(id, volume_change = 0.1)
 volumeDownButton(id, volume_change = 0.1)
 }
 \arguments{
-\item{id}{ID given to the button. For it to work with the \code{\link{howlerPlayer}}, the ID
+\item{id}{ID given to the button. For it to work with \code{\link{howlerPlayer}}, the ID
 must match that of the \code{howlerPlayer}.}
 
-\item{button_type}{Type of button to create. Available buttons are in the details, default set to \code{play_pause}}
+\item{button_type}{Type of button to create. Available buttons are in the details, default set to \code{play_pause}.}
 
-\item{...}{Attributes added to the button}
+\item{...}{Attributes/Inner tags added to the button}
 
 \item{volume_change}{How much to change the volume by. Default is 10\%.}
 }
 \value{
-An HTML object containing the button.
+An HTML tag containing the audio button.
+
+An additional input will be available in the server side in the form \code{\{id\}_\{button_type\}}. For example
+\code{backButton("howler")} will create an input element of \code{input$howler_back}. All of these will work in
+the same way as \code{\link[shiny]{actionButton}}
 }
 \description{
-Buttons that can be used to change the audio of
+Buttons that can be used to interact with the \code{\link{howlerPlayer}}.
+
+\code{playButton}, \code{pauseButton} and \code{stopButton} will all be applied to the current track.
+
+\code{howlerButton} is a customisable version of any of the above individual button.
 }
 \details{
 The following \code{button_type} are available to create:
 
 \describe{
-\item{\code{play_pause}}{(default) Button that switches}
+\item{\code{play_pause}}{(default) Switch between playing and pausing the track}
+\item{\code{play}}{Resumes the current track}
+\item{\code{pause}}{Pauses the current track}
+\item{\code{stop}}{Stops current track, when played will start from beginning}
+\item{\code{previous},\code{next}}{Switches to the previous/following track}
+\item{\code{volumedown},\code{volumeup}}{Decreases/Increases the volume by 10\%
+(If using \code{howlerButton} include the attribute \code{`data-volume-change`})}
+\item{\code{back},\code{forward}}{Seek forward/backwards 10s}
 }
 
 When using a \code{play_pause} button, the icon will toggle between the play and pause button
 depending on whether or not the track is playing.
+}
+\examples{
+if (interactive()) {
+  library(shiny)
+
+  ui <- fluidPage(
+    tile = "howler.js Player",
+    useHowlerJS(),
+    howlerPlayer("howler", "audio/sound.mp3"),
+    previousButton("howler"),
+    backButton("howler"),
+    playPauseButton("howler"),
+    forwardButton("howler"),
+    nextButton("howler"),
+    volumeDownButton("howler"),
+    volumeUpButton("howler")
+  )
+
+  server <- function(input, output) {
+  }
+
+  shinyApp(ui, server)
+}
+
 }

@@ -1,32 +1,62 @@
-#' Server-Side Howler
+#' Update howler.js Server-Side
 #'
 #' @description
-#' This is a series of functions that can be used in the server
+#' Change the state of the howler player from the server.
+#'
+#' \code{playHowler}, \code{pauseHowler} and \code{stopHowler} will all be applied to the current track.
+#'
+#' \code{changeHowlerTrack} will update the track to the file specified. This file must be included when the player
+#' is initialised, otherwise it won't change the track.
 #'
 #' @param session Shiny session
 #' @param id ID of the \code{howlerPlayer} to update
-#' @param file File to change to
+#' @param file Base name of the file to change to. If the file is not included in the player nothing will happen.
 #'
+#' @examples
+#' if (interactive()) {
+#'   library(shiny)
+#'
+#'   tracks <- c("audio/track1.mp3", "audio/track2.mp3")
+#'
+#'   ui <- fluidPage(
+#'     title = "howler.js Player",
+#'     useHowlerJS(),
+#'     selectInput("track", "Select Track", basename(tracks)),
+#'     howlerPlayer("howler", tracks),
+#'     playPauseButton("howler")
+#'   )
+#'
+#'   server <- function(input, output) {
+#'     observeEvent(input$track, changeHowlerTrack("howler", input$track))
+#'   }
+#'
+#'   runShiny(ui, server)
+#' }
+#'
+#' @return
+#' Updates the the state of the specified \code{howlerPlayer} in the shiny application.
+#'
+#' @name howlerServer
 #' @rdname howlerServer
 #' @export
-changeHowlTrack <- function(session, id, file) {
+changeHowlerTrack <- function(session, id, file) {
   session$sendCustomMessage("changeHowlerTrack", list(id = id, file = file))
 }
 
 #' @rdname howlerServer
 #' @export
-playHowl <- function(session, id) {
+playHowler <- function(session, id) {
   session$sendCustomMessage("playHowler", id)
 }
 
 #' @rdname howlerServer
 #' @export
-pauseHowl <- function(session, id) {
+pauseHowler <- function(session, id) {
   session$sendCustomMessage("pauseHowler", id)
 }
 
 #' @rdname howlerServer
 #' @export
-stopHowl <- function(session, id) {
+stopHowler <- function(session, id) {
   session$sendCustomMessage("stopHowler", id)
 }

@@ -12,17 +12,25 @@ must match that of the \code{howlerPlayer}.}
 
 \item{volume}{Initial volume to set the player at. Defaults at 70\%}
 }
+\value{
+A volume slider with a \code{\link{volumeDownButton}} and a \code{\link{volumeUpButton}} either side.
+}
 \description{
-Temporary description
+A more user friendly way to adjust the volume of the \code{howlerPlayer} than by using buttons. There are
+still volume up/down buttons, but a slider can be moved up/down as required.
+}
+\details{
+If using \code{volumeSlider}, avoid using the volume buttons, as this will cause duplicate IDs to appear in the
+shiny application and prevents the slider from working properly.
 }
 \examples{
 if (interactive()) {
   library(shiny)
 
   ui <- fluidPage(
-    title = "Initial Title",
+    title = "howler.js Player",
     useHowlerJS(),
-    howlerPlayer("sound"),
+    howlerPlayer("sound", "audio/sound.mp3"),
     playPauseButton("sound"),
     volumeSlider("sound")
   )
