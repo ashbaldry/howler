@@ -210,6 +210,10 @@ $(document).on('shiny:connected', () => {
   }
 });
 
+$(document).on('shiny:disconnected', () => {
+  howlerPlayers.forEach(x => { x.player.stop(); })
+});
+
 Shiny.addCustomMessageHandler('changeHowlerTrack', function(message) {
   var howl = howlerPlayers.filter(x => x.id === message.id)[0];
   var playlist = howl.playlist.map(x => {
