@@ -1,12 +1,15 @@
 library(shiny)
 library(howler)
 
+addResourcePath("audio", "../_audio")
+
+
 ui <- fluidPage(
-  title = "Howler Example",
+  title = "howler.js Example",
   useHowlerJS(),
 
   tags$br(),
-  howlerPlayer("sound", file.path("audio", list.files("www/audio", ".mp3$"))),
+  howlerPlayer("sound", file.path("audio", list.files("../_audio", ".mp3$"))),
   previousButton("sound"),
   playPauseButton("sound"),
   nextButton("sound"),
