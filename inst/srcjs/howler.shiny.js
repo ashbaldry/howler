@@ -120,7 +120,7 @@ var Howler = function(el) {
   };
 
   this.seekTrack = function(time) {
-    this.player.seek(time)
+    self.player.seek(time)
   };
 
   this.player = this.createHowl();
@@ -168,12 +168,12 @@ var Howler = function(el) {
   });
 
   $(`#${this.id}_forward`).on("click", function(e) {
-    var time = Math.min(this.player.duration(), this.player.seek() + 10);
+    var time = Math.min(self.player.duration(), self.player.seek() + 10);
     self.seekTrack(time);
   });
 
   $(`#${this.id}_back`).on("click", function(e) {
-    var time = Math.max(0, this.player.seek() - 10);
+    var time = Math.max(0, self.player.seek() - 10);
     self.seekTrack(time);
   });
 
