@@ -3,7 +3,12 @@ var Howler = function(el) {
   this.id = el.id;
   this.index = 0;
 
-  this.volume = el.dataset.volume;
+  if (document.getElementById(`$(el.id}_volume_slider`)) {
+    this.volume = document.getElementById(`$(el.id}_volume_slider`).dataset.volume;
+  } else {
+    this.volume = el.dataset.volume;
+  }
+
   this.seekRate = el.dataset.seekRate;
   this.playlist = JSON.parse(el.dataset.audioFiles);
   this.autoContinue = el.dataset.autocontinue === "TRUE";
@@ -148,16 +153,18 @@ var Howler = function(el) {
   });
 
   $(`#${this.id}_volumeup`).on("click", function(e) {
-    var vol = Math.min(1, Number(self.player.volume()) + Number(this.dataset.volumeChange));
-    self.volume = vol;
-    self.player.volume(vol);
+    var volumeChange = this.dataset.volumeChange ? Number(this.dataset.volumeChange) : 0.1;
+
+    self.volume = Math.min(1, Number(self.player.volume()) + volumeChange);
+    self.player.volume(self.volume);
     self.moveVolumeSlider();
   });
 
   $(`#${this.id}_volumedown`).on("click", function(e) {
-    var vol = Math.max(0, Number(self.player.volume()) - Number(this.dataset.volumeChange));
-    self.volume = vol;
-    self.player.volume(vol);
+    var volumeChange = this.dataset.volumeChange ? Number(this.dataset.volumeChange) : 0.1;
+
+    self.volume = Math.max(0, Number(self.player.volume()) - volumeChange);
+    self.player.volume(self.volume);
     self.moveVolumeSlider();
   });
 
@@ -180,10 +187,19 @@ $(document).on('shiny:connected', () => {
 
 Shiny.addCustomMessageHandler('changeHowlerTrack', function(message) {
   var howl = howlerPlayers.filter(x => x.id === message.id)[0];
-  var playlist = howl.playlist.map(x => { return x.split('/').pop(); })
-  howl.index = playlist.indexOf(message.file);
+  var playlist = howl.playlist.map(x => {
+    if (typeof(x) === '') {
+      return x.split('/').pop();
+    } else {
+      return x.map(y => { return y.split('/').pop(); });
+    }
+  })
 
-  howl.changeTrack()
+  var newIndex = playlist.findIndex(x => { return x.includes(message.file); });
+  if (newIndex > -1) {
+    howl.index = newIndex;
+    howl.changeTrack()
+  }
 });
 
 Shiny.addCustomMessageHandler('playHowler', function(message) {
