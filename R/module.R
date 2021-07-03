@@ -64,21 +64,26 @@ howlerModuleUI <- function(id, files, ...) {
 
 #' @rdname howlerModule
 #' @export
-howlerModuleServer <- function(input, output, session) {
-  output$howler_seek <- renderText({
-    sprintf("%02d:%02.0f", input$howler_seek %/% 60, input$howler_seek %% 60)
-  })
+howlerModuleServer <- function(id) {
+  moduleServer(
+    id,
+    function(input, output, session) {
+      output$howler_seek <- renderText({
+        sprintf("%02d:%02.0f", input$howler_seek %/% 60, input$howler_seek %% 60)
+      })
 
-  output$howler_duration <- renderText({
-    sprintf("%02d:%02.0f", input$howler_duration %/% 60, input$howler_duration %% 60)
-  })
+      output$howler_duration <- renderText({
+        sprintf("%02d:%02.0f", input$howler_duration %/% 60, input$howler_duration %% 60)
+      })
 
-  return(
-    list(
-      playing = reactive(input$howler_playing),
-      track = reactive(input$howler_track),
-      duration = reactive(input$howler_duration),
-      seek = reactive(input$howler_seek)
-    )
+      return(
+        list(
+          playing = reactive(input$howler_playing),
+          track = reactive(input$howler_track),
+          duration = reactive(input$howler_duration),
+          seek = reactive(input$howler_seek)
+        )
+      )
+    }
   )
 }

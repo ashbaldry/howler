@@ -7,7 +7,7 @@
 \usage{
 howlerModuleUI(id, files, ...)
 
-howlerModuleServer(input, output, session)
+howlerModuleServer(id)
 }
 \arguments{
 \item{id}{ID to give to the namespace of the module. The howler player will have the ID \code{{id}-howler}.}

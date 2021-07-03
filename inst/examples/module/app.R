@@ -14,7 +14,7 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-  track_info <- moduleServer("sound", howlerModuleServer)
+  track_info <- howlerModuleServer("sound")
 
   output$track <- renderText({
     req(track_info$track())
