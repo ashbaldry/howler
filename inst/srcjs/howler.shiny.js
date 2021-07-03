@@ -217,7 +217,7 @@ $(document).on('shiny:disconnected', () => {
 Shiny.addCustomMessageHandler('changeHowlerTrack', function(message) {
   var howl = howlerPlayers.filter(x => x.id === message.id)[0];
   var playlist = howl.playlist.map(x => {
-    if (typeof(x) === '') {
+    if (typeof(x) === 'string') {
       return x.split('/').pop();
     } else {
       return x.map(y => { return y.split('/').pop(); });

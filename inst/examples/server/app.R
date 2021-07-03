@@ -5,10 +5,11 @@ addResourcePath("audio", "../_audio")
 
 
 ui <- fluidPage(
-  title = "howler.js Example",
+  title = "howler Example",
   useHowlerJS(),
 
-  tags$br(),
+  h3("howler Server-Side Example"),
+  p("After 10 seconds, the sound will automatically pause. After 20 seconds, it will play the second track"),
   howlerPlayer("sound", file.path("audio", list.files("../_audio", ".mp3$"))),
   previousButton("sound"),
   playPauseButton("sound"),
@@ -35,9 +36,14 @@ server <- function(input, output, session) {
     sub("\\.\\w+$", "", basename(input$sound_track))
   })
 
-  observe(print(input$sound_seek))
-  observeEvent(input$sound_volumedown, pauseHowler(session, "sound"))
-  observeEvent(input$sound_volumeup, playHowler(session, "sound"))
+  observe({
+    req(input$sound_seek)
+    if (round(input$sound_seek) == 10) {
+      pauseHowler(session, "sound")
+    } else if (round(input$sound_seek) == 20) {
+      changeHowlerTrack(session, "sound", list.files("../_audio", ".mp3$")[2])
+    }
+  })
 }
 
 shinyApp(ui, server)
