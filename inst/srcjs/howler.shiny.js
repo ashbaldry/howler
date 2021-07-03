@@ -77,11 +77,11 @@ var Howler = function(el) {
     }
 
     self.changeTrack(playTrack);
-  }
+  };
 
   this.changeTrack = function(playTrack = true) {
     self.player.stop();
-    self.player = self.play();
+    self.player = self.createHowl();
 
     if (playTrack) {
       self.player.play();
@@ -107,7 +107,11 @@ var Howler = function(el) {
     }
   };
 
-  this.player = this.play();
+  this.seekTrack = function(time) {
+    this.player.seek(time)
+  };
+
+  this.player = this.createHowl();
 
   this.player.once('play', function() {
     if (self.seekRate > 0) {
@@ -149,6 +153,16 @@ var Howler = function(el) {
 
   $(`#${this.id}_previous`).on("click", function(e) {
     self.changePreviousTrack(self.autoPlayPrevious);
+  });
+
+  $(`#${this.id}_forward`).on("click", function(e) {
+    var time = Math.min(this.player.duration(), this.player.seek() + 10);
+    self.seekTrack(time);
+  });
+
+  $(`#${this.id}_back`).on("click", function(e) {
+    var time = Math.max(0, this.player.seek() - 10);
+    self.seekTrack(time);
   });
 
   $(`#${this.id}_volumeup`).on("click", function(e) {
@@ -204,14 +218,18 @@ Shiny.addCustomMessageHandler('changeHowlerTrack', function(message) {
 Shiny.addCustomMessageHandler('playHowler', function(message) {
   var howl = howlerPlayers.filter(x => x.id === message)[0];
   howl.player.play();
-})
+});
 
 Shiny.addCustomMessageHandler('pauseHowler', function(message) {
   var howl = howlerPlayers.filter(x => x.id === message)[0];
   howl.player.pause();
-})
+});
 
 Shiny.addCustomMessageHandler('stopHowler', function(message) {
   var howl = howlerPlayers.filter(x => x.id === message)[0];
   howl.player.stop();
-})
+});
+
+Shiny.addCustomMessageHandler('seekHowler', function(message) {
+  var howl = howlerPlayers.filter(x => x.id === message.id)[0];
+  howl.player.seek(message.seek);

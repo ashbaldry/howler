@@ -10,8 +10,6 @@ ui <- fluidPage(
   previousButton("sound"),
   playPauseButton("sound"),
   nextButton("sound"),
-  volumeDownButton("sound"),
-  volumeUpButton("sound"),
   volumeSlider("sound"),
   tags$br(),
   tags$br(),
@@ -33,6 +31,10 @@ server <- function(input, output, session) {
     req(input$sound_track)
     sub("\\.\\w+$", "", basename(input$sound_track))
   })
+
+  observe(print(input$sound_seek))
+  observeEvent(input$sound_volumedown, pauseHowler(session, "sound"))
+  observeEvent(input$sound_volumeup, playHowler(session, "sound"))
 }
 
 shinyApp(ui, server)

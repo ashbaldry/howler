@@ -60,3 +60,10 @@ pauseHowler <- function(session, id) {
 stopHowler <- function(session, id) {
   session$sendCustomMessage("stopHowler", id)
 }
+
+#' @param seek Time (in seconds) to set the position of the track
+#' @rdname howlerServer
+#' @export
+seekHowler <- function(session, id, seek) {
+  session$sendCustomMessage("seekHowler", list(id = id, time = as.numeric(seek)))
+}

@@ -6,6 +6,7 @@
 \alias{playHowler}
 \alias{pauseHowler}
 \alias{stopHowler}
+\alias{seekHowler}
 \title{Update howler.js Server-Side}
 \usage{
 changeHowlerTrack(session, id, file)
@@ -15,6 +16,8 @@ playHowler(session, id)
 pauseHowler(session, id)
 
 stopHowler(session, id)
+
+seekHowler(session, id, seek)
 }
 \arguments{
 \item{session}{Shiny session}
@@ -22,6 +25,8 @@ stopHowler(session, id)
 \item{id}{ID of the \code{howlerPlayer} to update}
 
 \item{file}{Base name of the file to change to. If the file is not included in the player nothing will happen.}
+
+\item{seek}{Time (in seconds) to set the position of the track}
 }
 \value{
 Updates the the state of the specified \code{howlerPlayer} in the shiny application.
