@@ -50,13 +50,15 @@ howlerVolumeSlider <- function(id, volume = 0.7) {
   )
 }
 
-seekSlider <- function(id) {
+#' @export
+howlerSeekSlider <- function(id) {
   tags$input(
-    class = "howler-volume-slider",
-    id = paste0(id, "_volume_slider"),
+    class = "howler-seek-slider",
+    id = paste0(id, "_seek_slider"),
     type = "range",
-    min = "0",
-    max = "100",
-    value = "0"
+    min = 0,
+    max = 1,
+    step = 0.01,
+    value = 0
   )
 }

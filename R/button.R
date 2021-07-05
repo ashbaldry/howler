@@ -36,7 +36,8 @@
 #' \item{\code{previous},\code{next}}{Switches to the previous/following track}
 #' \item{\code{volumedown},\code{volumeup}}{Decreases/Increases the volume by 10\%
 #' (If using \code{howlerButton} include the attribute \code{`data-volume-change`})}
-#' \item{\code{back},\code{forward}}{Seek forward/backwards 10s}
+#' \item{\code{back},\code{forward}}{Seek forward/backwards 10s
+#' (If using \code{howlerButton} include the attribute \code{`data-seek-change`} with negative values to go backwards)}
 #' }
 #'
 #' When using a \code{play_pause} button, the icon will toggle between the play and pause button
@@ -104,16 +105,18 @@ howlerStopButton <- function(id) {
   howlerButton(id, "stop", shiny::icon("stop"))
 }
 
+#' @param seek_change Time (in seconds) to move forward/backward the track when clicked. Default is 10 seconds
+#'
 #' @rdname howlerButton
 #' @export
-howlerBackButton <- function(id) {
-  howlerButton(id, "back", shiny::icon("backward"))
+howlerBackButton <- function(id, seek_change = 10) {
+  howlerButton(id, "back", shiny::icon("backward"), `data-seek-change` = -abs(seek_change))
 }
 
 #' @rdname howlerButton
 #' @export
-howlerForwardButton <- function(id) {
-  howlerButton(id, "forward", shiny::icon("forward"))
+howlerForwardButton <- function(id, seek_change = 10) {
+  howlerButton(id, "forward", shiny::icon("forward"), `data-seek-change` = seek_change)
 }
 
 #' @rdname howlerButton

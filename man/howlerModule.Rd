@@ -6,7 +6,7 @@
 \alias{howlerModuleServer}
 \title{Howler.js Module}
 \usage{
-howlerModuleUI(id, files, ...)
+howlerModuleUI(id, files, ..., width = "400px")
 
 howlerModuleServer(id)
 }
@@ -17,6 +17,8 @@ howlerModuleServer(id)
 formats of the same file are kept in each element of the list.}
 
 \item{...}{Further arguments to send to \code{\link{howlerPlayer}}}
+
+\item{width}{Width (in pixels) of the player. Defaults to 400px.}
 }
 \value{
 The UI will provide a player with a play/pause button, previous and next buttons, duration information
@@ -24,6 +26,7 @@ and a volume slider.
 
 The server-side module will return a list of reactive objects:
 \describe{
+\item{previous_track, play_pause,next_track}{Values tracking the pressing of the module buttons}
 \item{playing}{Logical value whether or not the player is currently playing}
 \item{track}{Name of the track currently loaded}
 \item{duration}{Duration (in seconds) of the track currently loaded}

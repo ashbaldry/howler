@@ -24,9 +24,9 @@ howlerPlayPauseButton(id)
 
 howlerStopButton(id)
 
-howlerBackButton(id)
+howlerBackButton(id, seek_change = 10)
 
-howlerForwardButton(id)
+howlerForwardButton(id, seek_change = 10)
 
 howlerPreviousButton(id)
 
@@ -43,6 +43,8 @@ must match that of the \code{howlerPlayer}.}
 \item{button_type}{Type of button to create. Available buttons are in the details, default set to \code{play_pause}.}
 
 \item{...}{Attributes/Inner tags added to the button}
+
+\item{seek_change}{Time (in seconds) to move forward/backward the track when clicked. Default is 10 seconds}
 
 \item{volume_change}{How much to change the volume by. Default is 10\%.}
 }
@@ -77,7 +79,8 @@ The following \code{button_type} are available to create:
 \item{\code{previous},\code{next}}{Switches to the previous/following track}
 \item{\code{volumedown},\code{volumeup}}{Decreases/Increases the volume by 10\%
 (If using \code{howlerButton} include the attribute \code{`data-volume-change`})}
-\item{\code{back},\code{forward}}{Seek forward/backwards 10s}
+\item{\code{back},\code{forward}}{Seek forward/backwards 10s
+(If using \code{howlerButton} include the attribute \code{`data-seek-change`} with negative values to go backwards)}
 }
 
 When using a \code{play_pause} button, the icon will toggle between the play and pause button

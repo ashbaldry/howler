@@ -2,6 +2,7 @@ var Howler = function(el) {
   var self = this;
   this.id = el.id;
   this.index = 0;
+  this.mouseDown = false;
 
   if (document.getElementById(`$(el.id}_volume_slider`)) {
     this.volume = document.getElementById(`$(el.id}_volume_slider`).dataset.volume;
@@ -30,6 +31,7 @@ var Howler = function(el) {
         if (self.seekRate > 0) {
           Shiny.setInputValue(`${self.id}_seek`, self.player.seek());
         }
+        self.updateSeekSlider(new_track = true);
       },
 
       onplay: function() {
@@ -48,7 +50,7 @@ var Howler = function(el) {
       },
 
       onend: function() {
-        if (self.autoContinue && !(!self.autoLoop && self.index === (self.playlist.length - 1))) {
+        if (self.autoContinue && !(!self.autoLoop && self.index === (self.playlist.length - 1)) && !self.mouseDown) {
           self.changeNextTrack();
         } else {
           Shiny.setInputValue(`${self.id}_playing`, false);
@@ -70,6 +72,17 @@ var Howler = function(el) {
       return track.map(self.getTrackFormat);
     }
   };
+
+  this.updateSeekSlider = function(new_track = false) {
+    var sliderElement = document.getElementById(self.id + '_seek_slider');
+
+    if (sliderElement) {
+      sliderElement.value = self.player.seek();
+      if (new_track) {
+        sliderElement.max = self.player.duration();
+      }
+    }
+  }
 
   this.changeNextTrack = function(playTrack = true) {
     if (self.index === (self.playlist.length - 1)) {
@@ -125,6 +138,17 @@ var Howler = function(el) {
 
   this.player = this.createHowl();
 
+  this.player.on('play', function() {
+    var seekSlider = document.getElementById(self.id + '_seek_slider');
+    if (seekSlider) {
+      setInterval(() => {
+        if (!self.mouseDown) {
+          seekSlider.value = self.player.seek();
+        }
+      }, 10);
+    }
+  });
+
   this.player.once('play', function() {
     if (self.seekRate > 0) {
       setInterval(
@@ -168,12 +192,12 @@ var Howler = function(el) {
   });
 
   $(`#${this.id}_forward`).on("click", function(e) {
-    var time = Math.min(self.player.duration(), self.player.seek() + 10);
+    var time = Math.min(self.player.duration(), self.player.seek() + Number(this.dataset.seekChange));
     self.seekTrack(time);
   });
 
   $(`#${this.id}_back`).on("click", function(e) {
-    var time = Math.max(0, self.player.seek() - 10);
+    var time = Math.max(0, self.player.seek() + Number(this.dataset.seekChange));
     self.seekTrack(time);
   });
 
@@ -191,6 +215,16 @@ var Howler = function(el) {
     self.volume = Math.max(0, Number(self.player.volume()) - volumeChange);
     self.player.volume(self.volume);
     self.moveVolumeSlider();
+  });
+
+  $(`#${this.id}_seek_slider`).on("mousedown", function(e) {
+    self.mouseDown = true;
+  });
+
+  $(`#${this.id}_seek_slider`).on("mouseup", function(e) {
+    self.mouseDown = false;
+    var time = Number(this.value);
+    self.seekTrack(time);
   });
 
   $(`#${this.id}_volume_slider`).on("change", function(e) {

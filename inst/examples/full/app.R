@@ -10,6 +10,7 @@ ui <- fluidPage(
 
   h3("Howler Example"),
   howlerPlayer("sound", file.path("audio", list.files("../_audio", ".mp3$"))),
+  howlerSeekSlider("sound"),
   howlerPreviousButton("sound"),
   howlerBackButton("sound"),
   howlerPlayPauseButton("sound"),

@@ -8,6 +8,7 @@
 #' @param files Files that will be used in the player. This can either be a single vector, or a list where different
 #' formats of the same file are kept in each element of the list.
 #' @param ... Further arguments to send to \code{\link{howlerPlayer}}
+#' @param width Width (in pixels) of the player. Defaults to 400px.
 #'
 #' @return
 #' The UI will provide a player with a play/pause button, previous and next buttons, duration information
@@ -15,6 +16,7 @@
 #'
 #' The server-side module will return a list of reactive objects:
 #' \describe{
+#' \item{previous_track, play_pause,next_track}{Values tracking the pressing of the module buttons}
 #' \item{playing}{Logical value whether or not the player is currently playing}
 #' \item{track}{Name of the track currently loaded}
 #' \item{duration}{Duration (in seconds) of the track currently loaded}
@@ -39,25 +41,36 @@
 #' @name howlerModule
 #' @rdname howlerModule
 #' @export
-howlerModuleUI <- function(id, files, ...) {
+howlerModuleUI <- function(id, files, ..., width = "400px") {
   ns <- NS(id)
   howler_id <- ns("howler")
 
   div(
     class = "howler-module",
+    style = paste0("width:", width, ";"),
     howlerPlayer(howler_id, files, ...),
     div(
-      class = "howler-module-settings",
-      if (length(files) > 1) howlerPreviousButton(howler_id),
-      howlerPlayPauseButton(howler_id),
-      if (length(files) > 1) howlerNextButton(howler_id),
-      span(
-        class = "howler-module-duration",
-        textOutput(ns("howler_seek"), inline = TRUE),
-        "/",
-        textOutput(ns("howler_duration"), inline = TRUE)
-      ),
-      howlerVolumeSlider(howler_id)
+      class = "howler-module-container",
+      howlerSeekSlider(howler_id),
+      div(
+        class = "howler-module-settings",
+        div(
+          class = "howler-module-buttons",
+          if (length(files) > 1) howlerPreviousButton(howler_id),
+          howlerPlayPauseButton(howler_id),
+          if (length(files) > 1) howlerNextButton(howler_id)
+        ),
+        div(
+          class = "howler-module-volume",
+          howlerVolumeSlider(howler_id)
+        ),
+        span(
+          class = "howler-module-duration",
+          textOutput(ns("howler_seek"), inline = TRUE),
+          "/",
+          textOutput(ns("howler_duration"), inline = TRUE)
+        )
+      )
     )
   )
 }
@@ -69,15 +82,20 @@ howlerModuleServer <- function(id) {
     id,
     function(input, output, session) {
       output$howler_seek <- renderText({
-        sprintf("%02d:%02.0f", input$howler_seek %/% 60, input$howler_seek %% 60)
+        req(input$howler_seek)
+        sprintf("%02d:%02.0f", round(input$howler_seek) %/% 60, round(input$howler_seek) %% 60)
       })
 
       output$howler_duration <- renderText({
-        sprintf("%02d:%02.0f", input$howler_duration %/% 60, input$howler_duration %% 60)
+        req(input$howler_duration)
+        sprintf("%02d:%02.0f", round(input$howler_duration) %/% 60, round(input$howler_duration) %% 60)
       })
 
       return(
         list(
+          previous_track = reactive(input$howler_previous),
+          play_pause = reactive(input$howler_play_pause),
+          next_track = reactive(input$howler_next),
           playing = reactive(input$howler_playing),
           track = reactive(input$howler_track),
           duration = reactive(input$howler_duration),
