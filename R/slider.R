@@ -50,6 +50,35 @@ howlerVolumeSlider <- function(id, volume = 0.7) {
   )
 }
 
+#' Seek Slider
+#'
+#' @description
+#' A UI element that can be included with a \code{\link{howlerPlayer}} to manually change the location of the track.
+#'
+#' @param id ID given to the volume slider. For it to work with the \code{howlerPlayer}, the ID
+#' must match that of the \code{howlerPlayer}.
+#'
+#' @return A sider element of class \code{howler-seek-slider} that will display the position of the current track
+#' playing.
+#'
+#' @examples
+#' if (interactive()) {
+#'   library(shiny)
+#'
+#'   ui <- fluidPage(
+#'     title = "howler.js Player",
+#'     useHowlerJS(),
+#'     howlerPlayer("sound", "audio/sound.mp3"),
+#'     howlerPlayPauseButton("sound"),
+#'     howlerSeekSlider("sound")
+#'   )
+#'
+#'   server <- function(input, output, session) {
+#'   }
+#'
+#'   shinyApp(ui, server)
+#' }
+#'
 #' @export
 howlerSeekSlider <- function(id) {
   tags$input(
