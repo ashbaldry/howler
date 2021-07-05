@@ -3,7 +3,13 @@
 #' @description
 #' Buttons that can be used to interact with the \code{\link{howlerPlayer}}.
 #'
-#' \code{playButton}, \code{pauseButton} and \code{stopButton} will all be applied to the current track.
+#' \code{howlerPlayButton}, \code{howlerPauseButton}, \code{howlerPlayPauseButton} and \code{howlerStopButton} will all be applied to the current track.
+#'
+#' \code{howlerBackButton} and \code{howlerForwardButton} will change the track position by a specified amount of time.
+#'
+#' \code{howlerPreviousButton} and \code{howlerNextButton} will play the previous/following track supplied to the player.
+#'
+#' \code{howlerVolumeDownButton} and \code{howlerVolumeUpButton} will change the volume of the player by a specified percentage.
 #'
 #' \code{howlerButton} is a customisable version of any of the above individual button.
 #'
@@ -16,7 +22,7 @@
 #' An HTML tag containing the audio button.
 #'
 #' An additional input will be available in the server side in the form \code{\{id\}_\{button_type\}}. For example
-#' \code{backButton("howler")} will create an input element of \code{input$howler_back}. All of these will work in
+#' \code{howlerBackButton("howler")} will create an input element of \code{input$howler_back}. All of these will work in
 #' the same way as \code{\link[shiny]{actionButton}}
 #'
 #' @details
@@ -44,13 +50,13 @@
 #'     tile = "howler.js Player",
 #'     useHowlerJS(),
 #'     howlerPlayer("howler", "audio/sound.mp3"),
-#'     previousButton("howler"),
-#'     backButton("howler"),
-#'     playPauseButton("howler"),
-#'     forwardButton("howler"),
-#'     nextButton("howler"),
-#'     volumeDownButton("howler"),
-#'     volumeUpButton("howler")
+#'     howlerPreviousButton("howler"),
+#'     howlerBackButton("howler"),
+#'     howlerPlayPauseButton("howler"),
+#'     howlerForwardButton("howler"),
+#'     howlerNextButton("howler"),
+#'     howlerVolumeDownButton("howler"),
+#'     howlerVolumeUpButton("howler")
 #'   )
 #'
 #'   server <- function(input, output) {
@@ -76,49 +82,49 @@ howlerButton <- function(id, button_type = HOWLER_BUTTON_TYPES, ...) {
 
 #' @rdname howlerButton
 #' @export
-playButton <- function(id) {
+howlerPlayButton <- function(id) {
   howlerButton(id, "play", shiny::icon("play"))
 }
 
 #' @rdname howlerButton
 #' @export
-pauseButton <- function(id) {
+howlerPauseButton <- function(id) {
   howlerButton(id, "pause", shiny::icon("pause"))
 }
 
 #' @rdname howlerButton
 #' @export
-playPauseButton <- function(id) {
+howlerPlayPauseButton <- function(id) {
   howlerButton(id, "play_pause", shiny::icon("play"))
 }
 
 #' @rdname howlerButton
 #' @export
-stopButton <- function(id) {
+howlerStopButton <- function(id) {
   howlerButton(id, "stop", shiny::icon("stop"))
 }
 
 #' @rdname howlerButton
 #' @export
-backButton <- function(id) {
+howlerBackButton <- function(id) {
   howlerButton(id, "back", shiny::icon("backward"))
 }
 
 #' @rdname howlerButton
 #' @export
-forwardButton <- function(id) {
+howlerForwardButton <- function(id) {
   howlerButton(id, "forward", shiny::icon("forward"))
 }
 
 #' @rdname howlerButton
 #' @export
-previousButton <- function(id) {
+howlerPreviousButton <- function(id) {
   howlerButton(id, "previous", shiny::icon("step-backward"))
 }
 
 #' @rdname howlerButton
 #' @export
-nextButton <- function(id) {
+howlerNextButton <- function(id) {
   howlerButton(id, "next", shiny::icon("step-forward"))
 }
 
@@ -126,13 +132,13 @@ nextButton <- function(id) {
 #'
 #' @rdname howlerButton
 #' @export
-volumeUpButton <- function(id, volume_change = 0.1) {
+howlerVolumeUpButton <- function(id, volume_change = 0.1) {
   howlerButton(id, "volumeup", shiny::icon("volume-up"), `data-volume-change` = volume_change)
 }
 
 #' @rdname howlerButton
 #' @export
-volumeDownButton <- function(id, volume_change = 0.1) {
+howlerVolumeDownButton <- function(id, volume_change = 0.1) {
   howlerButton(id, "volumedown", shiny::icon("volume-down"), `data-volume-change` = volume_change)
 }
 

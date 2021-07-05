@@ -11,11 +11,10 @@ ui <- fluidPage(
   h3("howler Server-Side Example"),
   p("After 10 seconds, the sound will automatically pause. After 20 seconds, it will play the second track"),
   howlerPlayer("sound", file.path("audio", list.files("../_audio", ".mp3$"))),
-  previousButton("sound"),
-  playPauseButton("sound"),
-  nextButton("sound"),
+  howlerPreviousButton("sound"),
+  howlerPlayPauseButton("sound"),
+  howlerNextButton("sound"),
   volumeSlider("sound"),
-  tags$br(),
   tags$br(),
   tags$p("Track Name:", textOutput("sound_track", container = tags$strong, inline = TRUE)),
   tags$p("Currently playing:", textOutput("sound_playing", container = tags$strong, inline = TRUE)),
@@ -24,7 +23,7 @@ ui <- fluidPage(
     textOutput("sound_seek", container = tags$strong, inline = TRUE),
     "/",
     textOutput("sound_duration", container = tags$strong, inline = TRUE)
-  ),
+  )
 )
 
 server <- function(input, output, session) {

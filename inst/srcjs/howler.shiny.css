@@ -19,10 +19,6 @@ input[type=range].howler-volume-slider {
   padding: 0 4px;
 }
 
-.howler-module-settings i.fa {
-
-}
-
 .howler-module-duration {
   flex-direction: row;
   display: flex;

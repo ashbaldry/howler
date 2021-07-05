@@ -2,39 +2,39 @@
 % Please edit documentation in R/button.R
 \name{howlerButton}
 \alias{howlerButton}
-\alias{playButton}
-\alias{pauseButton}
-\alias{playPauseButton}
-\alias{stopButton}
-\alias{backButton}
-\alias{forwardButton}
-\alias{previousButton}
-\alias{nextButton}
-\alias{volumeUpButton}
-\alias{volumeDownButton}
+\alias{howlerPlayButton}
+\alias{howlerPauseButton}
+\alias{howlerPlayPauseButton}
+\alias{howlerStopButton}
+\alias{howlerBackButton}
+\alias{howlerForwardButton}
+\alias{howlerPreviousButton}
+\alias{howlerNextButton}
+\alias{howlerVolumeUpButton}
+\alias{howlerVolumeDownButton}
 \title{Audio Buttons}
 \usage{
 howlerButton(id, button_type = HOWLER_BUTTON_TYPES, ...)
 
-playButton(id)
+howlerPlayButton(id)
 
-pauseButton(id)
+howlerPauseButton(id)
 
-playPauseButton(id)
+howlerPlayPauseButton(id)
 
-stopButton(id)
+howlerStopButton(id)
 
-backButton(id)
+howlerBackButton(id)
 
-forwardButton(id)
+howlerForwardButton(id)
 
-previousButton(id)
+howlerPreviousButton(id)
 
-nextButton(id)
+howlerNextButton(id)
 
-volumeUpButton(id, volume_change = 0.1)
+howlerVolumeUpButton(id, volume_change = 0.1)
 
-volumeDownButton(id, volume_change = 0.1)
+howlerVolumeDownButton(id, volume_change = 0.1)
 }
 \arguments{
 \item{id}{ID given to the button. For it to work with \code{\link{howlerPlayer}}, the ID
@@ -50,13 +50,19 @@ must match that of the \code{howlerPlayer}.}
 An HTML tag containing the audio button.
 
 An additional input will be available in the server side in the form \code{\{id\}_\{button_type\}}. For example
-\code{backButton("howler")} will create an input element of \code{input$howler_back}. All of these will work in
+\code{howlerBackButton("howler")} will create an input element of \code{input$howler_back}. All of these will work in
 the same way as \code{\link[shiny]{actionButton}}
 }
 \description{
 Buttons that can be used to interact with the \code{\link{howlerPlayer}}.
 
-\code{playButton}, \code{pauseButton} and \code{stopButton} will all be applied to the current track.
+\code{howlerPlayButton}, \code{howlerPauseButton}, \code{howlerPlayPauseButton} and \code{howlerStopButton} will all be applied to the current track.
+
+\code{howlerBackButton} and \code{howlerForwardButton} will change the track position by a specified amount of time.
+
+\code{howlerPreviousButton} and \code{howlerNextButton} will play the previous/following track supplied to the player.
+
+\code{howlerVolumeDownButton} and \code{howlerVolumeUpButton} will change the volume of the player by a specified percentage.
 
 \code{howlerButton} is a customisable version of any of the above individual button.
 }
@@ -85,13 +91,13 @@ if (interactive()) {
     tile = "howler.js Player",
     useHowlerJS(),
     howlerPlayer("howler", "audio/sound.mp3"),
-    previousButton("howler"),
-    backButton("howler"),
-    playPauseButton("howler"),
-    forwardButton("howler"),
-    nextButton("howler"),
-    volumeDownButton("howler"),
-    volumeUpButton("howler")
+    howlerPreviousButton("howler"),
+    howlerBackButton("howler"),
+    howlerPlayPauseButton("howler"),
+    howlerForwardButton("howler"),
+    howlerNextButton("howler"),
+    howlerVolumeDownButton("howler"),
+    howlerVolumeUpButton("howler")
   )
 
   server <- function(input, output) {

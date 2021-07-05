@@ -23,7 +23,7 @@
 #'     useHowlerJS(),
 #'     selectInput("track", "Select Track", basename(tracks)),
 #'     howlerPlayer("howler", tracks),
-#'     playPauseButton("howler")
+#'     howlerPlayPauseButton("howler")
 #'   )
 #'
 #'   server <- function(input, output) {

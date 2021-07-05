@@ -37,6 +37,7 @@
 #'   shinyApp(ui, server)
 #' }
 #'
+#' @name howlerModule
 #' @rdname howlerModule
 #' @export
 howlerModuleUI <- function(id, files, ...) {
@@ -48,9 +49,9 @@ howlerModuleUI <- function(id, files, ...) {
     howlerPlayer(howler_id, files, ...),
     div(
       class = "howler-module-settings",
-      if (length(files) > 1) previousButton(howler_id),
-      playPauseButton(howler_id),
-      if (length(files) > 1) nextButton(howler_id),
+      if (length(files) > 1) howlerPreviousButton(howler_id),
+      howlerPlayPauseButton(howler_id),
+      if (length(files) > 1) howlerNextButton(howler_id),
       span(
         class = "howler-module-duration",
         textOutput(ns("howler_seek"), inline = TRUE),

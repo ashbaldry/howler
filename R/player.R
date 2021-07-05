@@ -22,7 +22,7 @@
 #' All buttons associated with the \code{howlerPlayer} should be given the same \code{id} argument. This is to ensure
 #' that the buttons are linked to the player.
 #'
-#' i.e. If \code{howlerPlayer(id = "howler")}, then \code{playButton(id = "howler")}
+#' i.e. If \code{howlerPlayer(id = "howler")}, then \code{howlerPlayButton(id = "howler")}
 #'
 #' @return
 #' A shiny.tag containing all of the required options for a \code{Howl} JS object to be initialised in a shiny application.
@@ -43,7 +43,7 @@
 #'     title = "howler.js Player",
 #'     useHowlerJS(),
 #'     howlerPlayer("howler", "audio/sound.mp3"),
-#'     playPauseButton("howler")
+#'     howlerPlayPauseButton("howler")
 #'   )
 #'
 #'   server <- function(input, output) {

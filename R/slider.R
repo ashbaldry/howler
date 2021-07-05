@@ -9,7 +9,7 @@
 #' @param volume Initial volume to set the player at. Defaults at 70\%
 #'
 #' @return
-#' A volume slider with a \code{\link{volumeDownButton}} and a \code{\link{volumeUpButton}} either side.
+#' A volume slider with a \code{\link{howlerVolumeDownButton}} and a \code{\link{howlerVolumeUpButton}} either side.
 #'
 #' @details
 #' If using \code{volumeSlider}, avoid using the volume buttons, as this will cause duplicate IDs to appear in the
@@ -23,7 +23,7 @@
 #'     title = "howler.js Player",
 #'     useHowlerJS(),
 #'     howlerPlayer("sound", "audio/sound.mp3"),
-#'     playPauseButton("sound"),
+#'     howlerPlayPauseButton("sound"),
 #'     volumeSlider("sound")
 #'   )
 #'
@@ -36,7 +36,7 @@
 #' @export
 volumeSlider <- function(id, volume = 0.7) {
   tagList(
-    volumeDownButton(id),
+    howlerVolumeDownButton(id),
     tags$input(
       class = "howler-volume-slider",
       id = paste0(id, "_volume_slider"),
@@ -46,7 +46,7 @@ volumeSlider <- function(id, volume = 0.7) {
       step = 0.01,
       value = volume
     ),
-    volumeUpButton(id)
+    howlerVolumeUpButton(id)
   )
 }
 

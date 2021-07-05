@@ -24,7 +24,7 @@ if (interactive()) {
     title = "howler.js Player Title",
     useHowlerJS(),
     howlerPlayer("sound", "audio/track1.mp3"),
-    playPauseButton("sound"),
+    howlerPlayPauseButton("sound"),
     volumeSlider("sound")
   )
 

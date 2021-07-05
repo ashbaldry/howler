@@ -13,7 +13,7 @@ must match that of the \code{howlerPlayer}.}
 \item{volume}{Initial volume to set the player at. Defaults at 70\%}
 }
 \value{
-A volume slider with a \code{\link{volumeDownButton}} and a \code{\link{volumeUpButton}} either side.
+A volume slider with a \code{\link{howlerVolumeDownButton}} and a \code{\link{howlerVolumeUpButton}} either side.
 }
 \description{
 A more user friendly way to adjust the volume of the \code{howlerPlayer} than by using buttons. There are
@@ -31,7 +31,7 @@ if (interactive()) {
     title = "howler.js Player",
     useHowlerJS(),
     howlerPlayer("sound", "audio/sound.mp3"),
-    playPauseButton("sound"),
+    howlerPlayPauseButton("sound"),
     volumeSlider("sound")
   )
 

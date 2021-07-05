@@ -52,7 +52,7 @@ In order for \code{howlerPlayer} to work, \code{\link{useHowlerJS}} must be incl
 All buttons associated with the \code{howlerPlayer} should be given the same \code{id} argument. This is to ensure
 that the buttons are linked to the player.
 
-i.e. If \code{howlerPlayer(id = "howler")}, then \code{playButton(id = "howler")}
+i.e. If \code{howlerPlayer(id = "howler")}, then \code{howlerPlayButton(id = "howler")}
 }
 \examples{
 if (interactive()) {
@@ -62,7 +62,7 @@ if (interactive()) {
     title = "howler.js Player",
     useHowlerJS(),
     howlerPlayer("howler", "audio/sound.mp3"),
-    playPauseButton("howler")
+    howlerPlayPauseButton("howler")
   )
 
   server <- function(input, output) {
