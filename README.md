@@ -1,6 +1,6 @@
-## {howler} - Interactive Audio Player
+## `{howler}` - Interactive Audio Player
 
-Using [howler.js](https://github.com/goldfire/howler.js) to create an audio tool that can be implemented into shiny applications.
+`{howler}` is a package that utilises the [howler.js](https://github.com/goldfire/howler.js) library to play audio on the modern web. 
 
 ## Installation
 
@@ -10,79 +10,58 @@ devtools::install_github("ashbaldry/howler")
 
 ## Usage
 
-## Examples
-
-### Basic Example
-
-This player has a single song loaded, and just has the ability to play/pause the track.
+The HTML way to include an audio file in any shiny application/web page is to use the `<audio>` tag. This can generally only handle one audio file, and cannot (easily) be manipulated from the server side. 
 
 ```r
-library(shiny)
-library(howler)
-
-howler_example_dir <- system.file("examples/www/audio", package = "howler")
-addResourcePath("audio_files", howler_example_dir)
-
-howler_example_file <- list.files(howler_example_dir, ".mp3$")[1]
-
-ui <- fluidPage(
-  h3("Basic howler.js Player"),
-  useHowlerJS(),
-  howlerPlayer("sound", file.path("audio_files", howler_example_file)),
-  playPauseButton("sound")
-)
-
-server <- function(input, output, session) { }
-
-shinyApp(ui, server)
+tags$audio(src = "audio/sound.mp3", type = "audio/mp3", autoplay = NA, controls = NA)
 ```
 
-### All The Features
+howler.js uses the [Web Audio API](http://webaudio.github.io/web-audio-api/), and with this we are able to create an audio player that can solve both of the above issues and more:
 
 ```r
 library(shiny)
 library(howler)
 
-howler_example_dir <- system.file("examples/www/audio", package = "howler")
-addResourcePath("audio_files", howler_example_dir)
-
-howler_example_file <- list.files(howler_example_dir, ".mp3$")
-
 ui <- fluidPage(
-  h3("Basic howler.js Player"),
+  title = "howler Example",
   useHowlerJS(),
-  howlerPlayer("sound", file.path("audio_files", howler_example_file)),
-  previousButton("sound"),
-  playPauseButton("sound"),
-  nextButton("sound"),
-  volumeSlider("sound")
+  howlerPlayer(
+    id = "sound", 
+    files = c("audiosound1.mp3", "audio/sound2.mp3"),
+    autoplay_next = TRUE,
+    autoplay_loop = TRUE,
+    seek_ping_rate = 1000
+  ),
+  howlerPreviousButton("sound"),
+  howlerPlayPauseButton("sound"),
+  howlerNextButton("sound")
 )
 
-server <- function(input, output, session) { }
+server <- function(input, output, session) {
+  observe({
+    req(input$sound_seek)
+    if (round(input$sound_seek) == 10) {
+      pauseHowler(session, "sound")
+    } else if (round(input$sound_seek) == 20) {
+      changeHowlerTrack(session, "sound", list.files("../_audio", ".mp3$")[2])
+    }
+  })
+}
 
 shinyApp(ui, server)
 ```
 
 ### Module
 
-```r
-library(shiny)
-library(howler)
+The `{howler}` package also includes a lightweight module `howlerModuleUI` and `howlerModuleServer` that adds a bit of styling to a player.
 
-howler_example_dir <- system.file("examples/www/audio", package = "howler")
-addResourcePath("audio_files", howler_example_dir)
+![Howler module UI](inst/doc/howler_module.jpeg)
 
-howler_example_file <- list.files(howler_example_dir, ".mp3$")
+## Examples
 
-ui <- fluidPage(
-  h3("Basic howler.js Player"),
-  useHowlerJS(),
-  howlerModuleUI("sound", file.path("audio_files", howler_example_file))
-)
+All examples are available in the [Examples](https://github.com/ashbaldry/howler/tree/main/inst/examples) directory and can be run locally by installing the `{howler}` package:
 
-server <- function(input, output, session) { 
-  moduleServer("sound", howlerModuleServer)
-}
-
-shinyApp(ui, server)
-```
+- [Basic Player](https://github.com/ashbaldry/howler/tree/main/inst/examples/basic)
+- [Full Controls](https://github.com/ashbaldry/howler/tree/main/inst/examples/full)
+- [Module Player](https://github.com/ashbaldry/howler/tree/main/inst/examples/module)
+- [Server-Side Controls](https://github.com/ashbaldry/howler/tree/main/inst/examples/server)
