@@ -17,8 +17,6 @@ howlerModuleServer(id)
 formats of the same file are kept in each element of the list.}
 
 \item{...}{Further arguments to send to \code{\link{howlerPlayer}}}
-
-\item{input, output, session}{Standard \code{shiny} input, output and session}
 }
 \value{
 The UI will provide a player with a play/pause button, previous and next buttons, duration information

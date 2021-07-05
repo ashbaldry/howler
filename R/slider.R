@@ -12,7 +12,7 @@
 #' A volume slider with a \code{\link{howlerVolumeDownButton}} and a \code{\link{howlerVolumeUpButton}} either side.
 #'
 #' @details
-#' If using \code{volumeSlider}, avoid using the volume buttons, as this will cause duplicate IDs to appear in the
+#' If using \code{howlerVolumeSlider}, avoid using the volume buttons, as this will cause duplicate IDs to appear in the
 #' shiny application and prevents the slider from working properly.
 #'
 #' @examples
@@ -24,7 +24,7 @@
 #'     useHowlerJS(),
 #'     howlerPlayer("sound", "audio/sound.mp3"),
 #'     howlerPlayPauseButton("sound"),
-#'     volumeSlider("sound")
+#'     howlerVolumeSlider("sound")
 #'   )
 #'
 #'   server <- function(input, output, session) {
@@ -34,7 +34,7 @@
 #' }
 #'
 #' @export
-volumeSlider <- function(id, volume = 0.7) {
+howlerVolumeSlider <- function(id, volume = 0.7) {
   tagList(
     howlerVolumeDownButton(id),
     tags$input(

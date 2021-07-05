@@ -34,17 +34,17 @@ var Howler = function(el) {
 
       onplay: function() {
         Shiny.setInputValue(`${self.id}_playing`, true);
-        self.sethowlerPlayPauseButton('pause');
+        self.setPlayPauseButton('pause');
       },
 
       onpause: function() {
         Shiny.setInputValue(`${self.id}_playing`, false);
-        self.sethowlerPlayPauseButton('play');
+        self.setPlayPauseButton('play');
       },
 
       onstop: function() {
         Shiny.setInputValue(`${self.id}_playing`, false);
-        self.sethowlerPlayPauseButton('play');
+        self.setPlayPauseButton('play');
       },
 
       onend: function() {
@@ -52,7 +52,7 @@ var Howler = function(el) {
           self.changeNextTrack();
         } else {
           Shiny.setInputValue(`${self.id}_playing`, false);
-          self.sethowlerPlayPauseButton('play');
+          self.setPlayPauseButton('play');
         }
       },
 
@@ -97,11 +97,11 @@ var Howler = function(el) {
 
     if (playTrack) {
       self.player.play();
-      self.sethowlerPlayPauseButton('pause');
+      self.setPlayPauseButton('pause');
     }
   };
 
-  this.sethowlerPlayPauseButton = function(icon = 'play') {
+  this.setPlayPauseButton = function(icon = 'play') {
     var iconElement = document.getElementById(self.id + '_play_pause').firstElementChild;
 
     if (iconElement) {

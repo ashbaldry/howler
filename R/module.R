@@ -8,7 +8,6 @@
 #' @param files Files that will be used in the player. This can either be a single vector, or a list where different
 #' formats of the same file are kept in each element of the list.
 #' @param ... Further arguments to send to \code{\link{howlerPlayer}}
-#' @param input,output,session Standard \code{shiny} input, output and session
 #'
 #' @return
 #' The UI will provide a player with a play/pause button, previous and next buttons, duration information
@@ -58,7 +57,7 @@ howlerModuleUI <- function(id, files, ...) {
         "/",
         textOutput(ns("howler_duration"), inline = TRUE)
       ),
-      volumeSlider(howler_id)
+      howlerVolumeSlider(howler_id)
     )
   )
 }

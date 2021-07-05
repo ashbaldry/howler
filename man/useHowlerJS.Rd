@@ -25,7 +25,7 @@ if (interactive()) {
     useHowlerJS(),
     howlerPlayer("sound", "audio/track1.mp3"),
     howlerPlayPauseButton("sound"),
-    volumeSlider("sound")
+    howlerVolumeSlider("sound")
   )
 
   server <- function(input, output, session) {

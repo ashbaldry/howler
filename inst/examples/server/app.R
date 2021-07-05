@@ -14,7 +14,7 @@ ui <- fluidPage(
   howlerPreviousButton("sound"),
   howlerPlayPauseButton("sound"),
   howlerNextButton("sound"),
-  volumeSlider("sound"),
+  howlerVolumeSlider("sound"),
   tags$br(),
   tags$p("Track Name:", textOutput("sound_track", container = tags$strong, inline = TRUE)),
   tags$p("Currently playing:", textOutput("sound_playing", container = tags$strong, inline = TRUE)),
