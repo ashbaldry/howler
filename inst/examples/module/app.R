@@ -1,8 +1,9 @@
 library(shiny)
 library(howler)
 
-addResourcePath("audio", "../_audio")
-
+audio_files_dir <- system.file("examples/_audio", package = "howler")
+addResourcePath("sample_audio", audio_files_dir)
+audio_files <- file.path("sample_audio", list.files(audio_files_dir, ".mp3$"))
 
 ui <- fluidPage(
   title = "howler Module Example",
@@ -10,7 +11,7 @@ ui <- fluidPage(
 
   h3("howler Module Example"),
   textOutput("track", container = h4),
-  howlerModuleUI("sound", file.path("audio", list.files("../_audio", ".mp3$")))
+  howlerModuleUI("sound", audio_files)
 )
 
 server <- function(input, output, session) {

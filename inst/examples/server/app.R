@@ -1,8 +1,9 @@
 library(shiny)
 library(howler)
 
-addResourcePath("audio", "../_audio")
-
+audio_files_dir <- system.file("examples/_audio", package = "howler")
+addResourcePath("sample_audio", audio_files_dir)
+audio_files <- file.path("sample_audio", list.files(audio_files_dir, ".mp3$"))
 
 ui <- fluidPage(
   title = "howler Example",
@@ -10,7 +11,7 @@ ui <- fluidPage(
 
   h3("howler Server-Side Example"),
   p("After 10 seconds, the sound will automatically pause. After 20 seconds, it will play the second track"),
-  howlerPlayer("sound", file.path("audio", list.files("../_audio", ".mp3$"))),
+  howlerPlayer("sound", audio_files),
   howlerPreviousButton("sound"),
   howlerPlayPauseButton("sound"),
   howlerNextButton("sound"),
