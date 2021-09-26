@@ -8,6 +8,7 @@
 #' @param files Files that will be used in the player. This can either be a single vector, or a list where different
 #' formats of the same file are kept in each element of the list.
 #' @param ... Further arguments to send to \code{\link{howlerPlayer}}
+#' @param include_current_track Logical, should the current track be included in the UI of the module?
 #' @param width Width (in pixels) of the player. Defaults to 400px.
 #'
 #' @return
@@ -41,7 +42,7 @@
 #' @name howlerModule
 #' @rdname howlerModule
 #' @export
-howlerModuleUI <- function(id, files, ..., width = "400px") {
+howlerModuleUI <- function(id, files, ..., include_current_track = TRUE, width = "400px") {
   ns <- NS(id)
   howler_id <- ns("howler")
 
@@ -51,6 +52,7 @@ howlerModuleUI <- function(id, files, ..., width = "400px") {
     howlerPlayer(howler_id, files, ...),
     div(
       class = "howler-module-container",
+      if (include_current_track) howlerCurrentTrack(howler_id),
       howlerSeekSlider(howler_id),
       div(
         class = "howler-module-settings",
@@ -60,15 +62,15 @@ howlerModuleUI <- function(id, files, ..., width = "400px") {
           howlerPlayPauseButton(howler_id),
           if (length(files) > 1) howlerNextButton(howler_id)
         ),
-        div(
-          class = "howler-module-volume",
-          howlerVolumeSlider(howler_id)
-        ),
         span(
           class = "howler-module-duration",
           textOutput(ns("howler_seek"), inline = TRUE),
           "/",
           textOutput(ns("howler_duration"), inline = TRUE)
+        ),
+        div(
+          class = "howler-module-volume",
+          howlerVolumeSlider(howler_id)
         )
       )
     )

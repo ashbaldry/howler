@@ -12,6 +12,7 @@
 \alias{howlerNextButton}
 \alias{howlerVolumeUpButton}
 \alias{howlerVolumeDownButton}
+\alias{howlerVolumeToggleButton}
 \title{Audio Buttons}
 \usage{
 howlerButton(id, button_type = HOWLER_BUTTON_TYPES, ...)
@@ -35,6 +36,8 @@ howlerNextButton(id)
 howlerVolumeUpButton(id, volume_change = 0.1)
 
 howlerVolumeDownButton(id, volume_change = 0.1)
+
+howlerVolumeToggleButton(id)
 }
 \arguments{
 \item{id}{ID given to the button. For it to work with \code{\link{howlerPlayer}}, the ID

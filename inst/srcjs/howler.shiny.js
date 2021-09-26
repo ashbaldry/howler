@@ -16,6 +16,7 @@ var Howler = function(el) {
   this.autoLoop = el.dataset.autoloop === "TRUE";
   this.autoPlayNext = true;
   this.autoPlayPrevious = true;
+  this.muted = false;
 
   this.createHowl = function() {
     var track = self.playlist[self.index];
@@ -27,6 +28,12 @@ var Howler = function(el) {
 
       onload: function() {
         Shiny.setInputValue(`${self.id}_track`, track);
+
+        var current_track_tag  = document.getElementById(`${self.id}_current_track`);
+        if (current_track_tag) {
+          current_track_tag.innerHTML = self.cleanTrackTitle(track);
+        }
+
         Shiny.setInputValue(`${self.id}_duration`, self.player.duration());
         if (self.seekRate > 0) {
           Shiny.setInputValue(`${self.id}_seek`, self.player.seek());
@@ -82,7 +89,7 @@ var Howler = function(el) {
         sliderElement.max = self.player.duration();
       }
     }
-  }
+  };
 
   this.changeNextTrack = function(playTrack = true) {
     if (self.index === (self.playlist.length - 1)) {
@@ -128,12 +135,16 @@ var Howler = function(el) {
     var sliderElement = document.getElementById(self.id + '_volume_slider');
 
     if (sliderElement) {
-      sliderElement.value = self.volume;
+      sliderElement.value = self.player.volume();
     }
   };
 
   this.seekTrack = function(time) {
-    self.player.seek(time)
+    self.player.seek(time);
+  };
+
+  this.cleanTrackTitle = function(track) {
+    return track.replace(/(.*\/)(.*)(\.\w+$)/, "$2");
   };
 
   this.player = this.createHowl();
@@ -157,7 +168,7 @@ var Howler = function(el) {
           Shiny.setInputValue(`${self.id}_seek`, Math.round(trackSeek * 100) / 100);
         },
         self.seekRate
-      )
+      );
     }
   });
 
@@ -171,7 +182,6 @@ var Howler = function(el) {
     } else {
       self.player.play();
     }
-
   });
 
   $(`#${this.id}_pause`).on("click", function(e) {
@@ -215,6 +225,19 @@ var Howler = function(el) {
     self.volume = Math.max(0, Number(self.player.volume()) - volumeChange);
     self.player.volume(self.volume);
     self.moveVolumeSlider();
+  });
+
+  $(`#${this.id}_volumetoggle`).on("click", function(e) {
+    var volume_value = self.muted ? self.volume : 0;
+    self.player.volume(volume_value);
+    self.moveVolumeSlider();
+
+    var iconElement = document.getElementById(self.id + '_volumetoggle').firstElementChild;
+    var addIcon = self.muted ? 'fa-volume-up' : 'fa-volume-mute';
+    var removeIcon = self.muted ? 'fa-volume-mute' : 'fa-volume-up';
+    $(iconElement).removeClass(removeIcon).addClass(addIcon);
+
+    self.muted = !self.muted;
   });
 
   $(`#${this.id}_seek_slider`).on("mousedown", function(e) {

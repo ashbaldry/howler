@@ -6,7 +6,7 @@ input[type=range].howler-volume-slider {
 }
 
 .howler-module-container {
-  border: black solid 1px;
+  border: #999999 solid 1px;
   border-radius: 5px;
   padding: 10px;
   background-color: #b3b3b320;
@@ -14,24 +14,31 @@ input[type=range].howler-volume-slider {
   flex-direction: column;
 }
 
+.howler-module-container .howler-current-track {
+  font-size: 18px;
+  font-weight: 500;
+  padding-bottom: 6px;
+}
+
 .howler-module-container input[type=range] {
   height: 5px;
 }
 
-
-
 .howler-module-container input[type=range].howler-seek-slider {
   margin: 5px 0 12px 0;
+  cursor: pointer;
 }
 
 .howler-module-settings {
-  place-content: space-around;
+  place-content: space-between;
   display: flex;
+  height: 20px;
 }
 
 .howler-module-buttons a, .howler-module-volume>* {
   padding: 0 4px;
   font-size: 16px;
+  cursor: pointer;
 }
 
 .howler-module-volume {
@@ -41,6 +48,6 @@ input[type=range].howler-volume-slider {
 .howler-module-duration {
   flex-direction: row;
   display: flex;
-  place-content: space-evenly;
+  place-content: space-around;
   min-width: 100px;
 }

@@ -10,17 +10,11 @@ ui <- fluidPage(
   useHowlerJS(),
 
   h3("howler Module Example"),
-  textOutput("track", container = h4),
   howlerModuleUI("sound", audio_files)
 )
 
 server <- function(input, output, session) {
   track_info <- howlerModuleServer("sound")
-
-  output$track <- renderText({
-    req(track_info$track())
-    sub("\\.\\w*", "", basename(track_info$track()))
-  })
 }
 
 shinyApp(ui, server)

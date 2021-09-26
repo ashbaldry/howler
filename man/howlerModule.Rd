@@ -6,7 +6,7 @@
 \alias{howlerModuleServer}
 \title{Howler.js Module}
 \usage{
-howlerModuleUI(id, files, ..., width = "400px")
+howlerModuleUI(id, files, ..., include_current_track = TRUE, width = "400px")
 
 howlerModuleServer(id)
 }
@@ -17,6 +17,8 @@ howlerModuleServer(id)
 formats of the same file are kept in each element of the list.}
 
 \item{...}{Further arguments to send to \code{\link{howlerPlayer}}}
+
+\item{include_current_track}{Logical, should the current track be included in the UI of the module?}
 
 \item{width}{Width (in pixels) of the player. Defaults to 400px.}
 }

@@ -36,7 +36,7 @@
 #' @export
 howlerVolumeSlider <- function(id, volume = 0.7) {
   tagList(
-    howlerVolumeDownButton(id),
+    howlerVolumeToggleButton(id),
     tags$input(
       class = "howler-volume-slider",
       id = paste0(id, "_volume_slider"),
@@ -45,8 +45,7 @@ howlerVolumeSlider <- function(id, volume = 0.7) {
       max = 1,
       step = 0.01,
       value = volume
-    ),
-    howlerVolumeUpButton(id)
+    )
   )
 }
 
