@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://github.com/ashbaldry/howler/index.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/ashbaldry/howler/reference/howlerButton.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/ashbaldry/howler/reference/howlerCurrentTrack.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/ashbaldry/howler/reference/howlerModule.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/ashbaldry/howler/reference/howlerPlayer.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/ashbaldry/howler/reference/howlerSeekSlider.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/ashbaldry/howler/reference/howlerServer.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/ashbaldry/howler/reference/howlerVolumeSlider.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/ashbaldry/howler/reference/useHowlerJS.html</loc>
+  </url>
+</urlset>
