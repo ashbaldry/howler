@@ -11,7 +11,7 @@ howlerCurrentTrack(id)
 must match that of the \code{howlerPlayer}.}
 }
 \value{
-A \code{div} tag that will be linked to the \code{\link{HowlerPlayer}} to show the current track.
+A \code{div} tag that will be linked to the \code{\link{howlerPlayer}} to show the current track.
 }
 \description{
 A way to display the current track in the UI without having to communicate with the server.

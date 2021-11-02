@@ -7,7 +7,7 @@
 #' must match that of the \code{howlerPlayer}.
 #'
 #' @return
-#' A \code{div} tag that will be linked to the \code{\link{HowlerPlayer}} to show the current track.
+#' A \code{div} tag that will be linked to the \code{\link{howlerPlayer}} to show the current track.
 #'
 #' @examples
 #' if (interactive()) {

@@ -5,7 +5,7 @@
 \alias{availableHowlerExamples}
 \title{Run \code{\{howler\}} Example Applications}
 \usage{
-runHowlerExample(example = "basic", ...)
+runHowlerExample(example = "basic", display.mode = "showcase", ...)
 
 availableHowlerExamples()
 }
@@ -17,6 +17,9 @@ availableHowlerExamples()
 \item{module}{Example of using the \code{howlerModule}}
 \item{server}{Example showing server-side functionality}
 }}
+
+\item{display.mode}{The mode in which to display the application. By default set to \code{"showcase"} to show
+code behind the example.}
 
 \item{...}{Optional arguments to send to \code{shiny::runApp}}
 }

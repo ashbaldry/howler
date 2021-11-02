@@ -9,8 +9,8 @@ Authors@R: c(
 Description: Audio interactivity within shiny applications using 'howler.js'.
 License: MIT + file LICENSE
 URL: https://github.com/ashbaldry/howler, https://github.com/goldfire/howler.js
-BugReport: https://github.com/ashbaldry/howler/issues
+BugReports: https://github.com/ashbaldry/howler/issues
 Encoding: UTF-8
 Imports: shiny, jsonlite
-Suggests: testthat (>= 3.0.0)
+Suggests: shinytest, testthat (>= 3.0.0)
 RoxygenNote: 7.1.2

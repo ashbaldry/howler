@@ -58,6 +58,14 @@
 howlerPlayer <- function(id, files, volume = 0.7, autoplay_next = TRUE, autoplay_loop = FALSE, seek_ping_rate = 1000) {
   files_jsn <- jsonlite::toJSON(files)
 
+  if (volume < 0 || volume > 1) {
+    stop("Volume must be between 0 and 1")
+  }
+
+  if (seek_ping_rate < 0) {
+    stop("Ping rate must be non-negative")
+  }
+
   div(
     id = id,
     class = "howler-player",
