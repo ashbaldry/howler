@@ -61,13 +61,17 @@ the same way as \code{\link[shiny]{actionButton}}
 \description{
 Buttons that can be used to interact with the \code{\link{howlerPlayer}}.
 
-\code{howlerPlayButton}, \code{howlerPauseButton}, \code{howlerPlayPauseButton} and \code{howlerStopButton} will all be applied to the current track.
+\code{howlerPlayButton}, \code{howlerPauseButton}, \code{howlerPlayPauseButton} and
+\code{howlerStopButton} will all be applied to the current track.
 
-\code{howlerBackButton} and \code{howlerForwardButton} will change the track position by a specified amount of time.
+\code{howlerBackButton} and \code{howlerForwardButton} will
+change the track position by a specified amount of time.
 
-\code{howlerPreviousButton} and \code{howlerNextButton} will play the previous/following track supplied to the player.
+\code{howlerPreviousButton} and \code{howlerNextButton} will
+play the previous/following track supplied to the player.
 
-\code{howlerVolumeDownButton} and \code{howlerVolumeUpButton} will change the volume of the player by a specified percentage.
+\code{howlerVolumeDownButton} and \code{howlerVolumeUpButton} will
+change the volume of the player by a specified percentage.
 
 \code{howlerButton} is a customisable version of any of the above individual button.
 }
