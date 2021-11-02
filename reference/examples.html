@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • howler</title>
+<title>Run {howler} Example Applications — runHowlerExample • howler</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Run {howler} Example Applications — runHowlerExample" />
+<meta property="og:description" content="Run {howler} Example Applications" />
 
 
 
@@ -58,7 +59,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -105,90 +106,54 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Run <code>{howler}</code> Example Applications</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ashbaldry/howler/blob/master/R/example.R'><code>R/example.R</code></a></small>
+    <div class="hidden name"><code>examples.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Run <code>{howler}</code> Example Applications</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>runHowlerExample</span><span class='op'>(</span>example <span class='op'>=</span> <span class='st'>"basic"</span>, <span class='va'>...</span><span class='op'>)</span>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="examples.html">runHowlerExample()</a></code> <code><a href="examples.html">availableHowlerExamples()</a></code> </p>
-        </td>
-        <td><p>Run <code>{howler}</code> Example Applications</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="howlerButton.html">howlerButton()</a></code> <code><a href="howlerButton.html">howlerPlayButton()</a></code> <code><a href="howlerButton.html">howlerPauseButton()</a></code> <code><a href="howlerButton.html">howlerPlayPauseButton()</a></code> <code><a href="howlerButton.html">howlerStopButton()</a></code> <code><a href="howlerButton.html">howlerBackButton()</a></code> <code><a href="howlerButton.html">howlerForwardButton()</a></code> <code><a href="howlerButton.html">howlerPreviousButton()</a></code> <code><a href="howlerButton.html">howlerNextButton()</a></code> <code><a href="howlerButton.html">howlerVolumeUpButton()</a></code> <code><a href="howlerButton.html">howlerVolumeDownButton()</a></code> <code><a href="howlerButton.html">howlerVolumeToggleButton()</a></code> </p>
-        </td>
-        <td><p>Audio Buttons</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="howlerCurrentTrack.html">howlerCurrentTrack()</a></code> </p>
-        </td>
-        <td><p>Current Track</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="howlerModule.html">howlerModuleUI()</a></code> <code><a href="howlerModule.html">howlerModuleServer()</a></code> </p>
-        </td>
-        <td><p>Howler.js Module</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="howlerPlayer.html">howlerPlayer()</a></code> </p>
-        </td>
-        <td><p>Howler.js Player</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="howlerSeekSlider.html">howlerSeekSlider()</a></code> </p>
-        </td>
-        <td><p>Seek Slider</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="howlerServer.html">changeHowlerTrack()</a></code> <code><a href="howlerServer.html">playHowler()</a></code> <code><a href="howlerServer.html">pauseHowler()</a></code> <code><a href="howlerServer.html">stopHowler()</a></code> <code><a href="howlerServer.html">seekHowler()</a></code> </p>
-        </td>
-        <td><p>Update howler.js Server-Side</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="howlerVolumeSlider.html">howlerVolumeSlider()</a></code> </p>
-        </td>
-        <td><p>Volume Slider</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="useHowlerJS.html">useHowlerJS()</a></code> </p>
-        </td>
-        <td><p>Enable <code>HowlerJS</code></p></td>
-      </tr>
-    </tbody>
+<span class='fu'>availableHowlerExamples</span><span class='op'>(</span><span class='op'>)</span></pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>example</th>
+      <td><p>Name of the example to load. Current examples include:</p><dl>
+<dt>basic</dt><dd><p>Basic example of <code>howler</code> in use</p></dd>
+<dt>full</dt><dd><p>Basic example of using all buttons available in <code>howler</code></p></dd>
+<dt>module</dt><dd><p>Example of using the <code>howlerModule</code></p></dd>
+<dt>server</dt><dd><p>Example showing server-side functionality</p></dd>
+
+</dl></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Optional arguments to send to <code><a href='https://rdrr.io/pkg/shiny/man/runApp.html'>shiny::runApp</a></code></p></td>
+    </tr>
     </table>
-  </div>
 
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='r-in'><span class='fu'>availableHowlerExamples</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 'basic', 'full', 'module', 'server'</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'>  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://shiny.rstudio.com/'>shiny</a></span><span class='op'>)</span></span>
+<span class='r-in'>  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/ashbaldry/howler'>howler</a></span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'>  <span class='fu'>runHowlerExample</span><span class='op'>(</span><span class='st'>"basic"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+<span class='r-in'></span>
+</pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
