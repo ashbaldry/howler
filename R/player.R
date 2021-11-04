@@ -10,7 +10,7 @@
 #' @param files Files that will be used in the player. This can either be a single vector, or a list where different
 #' formats of the same file are kept in each element of the list
 #' @param volume How loud the player should start off at. Defaults to 0.7 (70\%). If \code{\link{howlerVolumeSlider}} is
-#' included, then this will be overriden by the value used there.
+#' included, then this will be overridden by the value used there.
 #' @param autoplay_next If there are multiple files, would you like to auto play the next file after the current
 #' one has finished? Defaults to \code{TRUE}
 #' @param autoplay_loop Once all files have been played, would you like to restart playing the playlist?

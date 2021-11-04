@@ -61,7 +61,7 @@ howlerVolumeSlider <- function(id, volume = 0.7) {
 #' @param id ID given to the volume slider. For it to work with the \code{howlerPlayer}, the ID
 #' must match that of the \code{howlerPlayer}.
 #'
-#' @return A sider element of class \code{howler-seek-slider} that will display the position of the current track
+#' @return A slider element of class \code{howler-seek-slider} that will display the position of the current track
 #' playing.
 #'
 #' @examples

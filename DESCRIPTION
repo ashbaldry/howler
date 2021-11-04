@@ -13,4 +13,5 @@ BugReports: https://github.com/ashbaldry/howler/issues
 Encoding: UTF-8
 Imports: shiny, jsonlite
 Suggests: shinytest, testthat (>= 3.0.0)
+Language: en-GB
 RoxygenNote: 7.1.2

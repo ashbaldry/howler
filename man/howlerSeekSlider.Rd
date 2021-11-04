@@ -11,7 +11,7 @@ howlerSeekSlider(id)
 must match that of the \code{howlerPlayer}.}
 }
 \value{
-A sider element of class \code{howler-seek-slider} that will display the position of the current track
+A slider element of class \code{howler-seek-slider} that will display the position of the current track
 playing.
 }
 \description{
