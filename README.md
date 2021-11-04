@@ -55,7 +55,7 @@ shinyApp(ui, server)
 
 The `{howler}` package also includes a lightweight module `howlerModuleUI` and `howlerModuleServer` that adds a bit of styling to a player.
 
-![Howler module UI](inst/doc/howler_module.gif)
+![Howler module UI](inst/img/howler_module.gif)
 
 ## Examples
 
