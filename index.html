@@ -75,8 +75,10 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
+<p>This package is not yet available on CRAN. To install the latest version:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ashbaldry/howler"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ashbaldry/howler"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
@@ -94,7 +96,7 @@
   <span class="fu"><a href="reference/useHowlerJS.html">useHowlerJS</a></span><span class="op">(</span><span class="op">)</span>,
   <span class="fu"><a href="reference/howlerPlayer.html">howlerPlayer</a></span><span class="op">(</span>
     id <span class="op">=</span> <span class="st">"sound"</span>, 
-    files <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"audiosound1.mp3"</span>, <span class="st">"audio/sound2.mp3"</span><span class="op">)</span>,
+    files <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"audio/sound1.mp3"</span>, <span class="st">"audio/sound2.mp3"</span><span class="op">)</span>,
     autoplay_next <span class="op">=</span> <span class="cn">TRUE</span>,
     autoplay_loop <span class="op">=</span> <span class="cn">TRUE</span>,
     seek_ping_rate <span class="op">=</span> <span class="fl">1000</span>
@@ -110,7 +112,7 @@
     <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sound_seek</span><span class="op">)</span> <span class="op">==</span> <span class="fl">10</span><span class="op">)</span> <span class="op">{</span>
       <span class="fu"><a href="reference/howlerServer.html">pauseHowler</a></span><span class="op">(</span><span class="va">session</span>, <span class="st">"sound"</span><span class="op">)</span>
     <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sound_seek</span><span class="op">)</span> <span class="op">==</span> <span class="fl">20</span><span class="op">)</span> <span class="op">{</span>
-      <span class="fu"><a href="reference/howlerServer.html">changeHowlerTrack</a></span><span class="op">(</span><span class="va">session</span>, <span class="st">"sound"</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span><span class="st">"../_audio"</span>, <span class="st">".mp3$"</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>
+      <span class="fu"><a href="reference/howlerServer.html">changeHowlerTrack</a></span><span class="op">(</span><span class="va">session</span>, <span class="st">"sound"</span>, <span class="st">"audio/sound2.mp3"</span><span class="op">)</span>
     <span class="op">}</span>
   <span class="op">}</span><span class="op">)</span>
 <span class="op">}</span>
