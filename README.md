@@ -4,7 +4,10 @@
 
 ## Installation
 
+This package is not yet available on CRAN. To install the latest version: 
+
 ```r
+install.packages("devtools")
 devtools::install_github("ashbaldry/howler")
 ```
 
@@ -27,7 +30,7 @@ ui <- fluidPage(
   useHowlerJS(),
   howlerPlayer(
     id = "sound", 
-    files = c("audiosound1.mp3", "audio/sound2.mp3"),
+    files = c("audio/sound1.mp3", "audio/sound2.mp3"),
     autoplay_next = TRUE,
     autoplay_loop = TRUE,
     seek_ping_rate = 1000
@@ -43,7 +46,7 @@ server <- function(input, output, session) {
     if (round(input$sound_seek) == 10) {
       pauseHowler(session, "sound")
     } else if (round(input$sound_seek) == 20) {
-      changeHowlerTrack(session, "sound", list.files("../_audio", ".mp3$")[2])
+      changeHowlerTrack(session, "sound", "audio/sound2.mp3")
     }
   })
 }
