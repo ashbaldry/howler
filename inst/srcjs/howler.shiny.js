@@ -20,7 +20,6 @@ var Howler = function(el) {
 
   this.createHowl = function() {
     var track = self.playlist[self.index];
-
     return new Howl({
       src: track,
       format: self.getTrackFormat(track),
@@ -149,28 +148,21 @@ var Howler = function(el) {
 
   this.player = this.createHowl();
 
-  this.player.on('play', function() {
-    var seekSlider = document.getElementById(self.id + '_seek_slider');
-    if (seekSlider) {
-      setInterval(() => {
-        if (!self.mouseDown) {
-          seekSlider.value = self.player.seek();
-        }
-      }, 10);
-    }
-  });
+  var seekSlider = document.getElementById(self.id + '_seek_slider');
+  if (seekSlider) {
+    setInterval(() => {
+      if (!self.mouseDown) {
+        seekSlider.value = self.player.seek();
+      }
+    }, 10);
+  }
 
-  this.player.once('play', function() {
-    if (self.seekRate > 0) {
-      setInterval(
-        () => {
-          var trackSeek = self.player.seek();
-          Shiny.setInputValue(`${self.id}_seek`, Math.round(trackSeek * 100) / 100);
-        },
-        self.seekRate
-      );
-    }
-  });
+  if (self.seekRate > 0) {
+    setInterval(() => {
+      var trackSeek = self.player.seek();
+      Shiny.setInputValue(`${self.id}_seek`, Math.round(trackSeek * 100) / 100);
+    }, self.seekRate);
+  }
 
   $(`#${this.id}_play`).on("click", function(e) {
     self.player.play();
@@ -269,6 +261,17 @@ $(document).on('shiny:connected', () => {
 
 $(document).on('shiny:disconnected', () => {
   howlerPlayers.forEach(x => { x.player.stop(); })
+});
+
+Shiny.addCustomMessageHandler('addHowlerTrack', function(message) {
+  var howl = howlerPlayers.filter(x => x.id === message.id)[0];
+
+  howl.playlist.push(message.file)
+
+  if (message.play) {
+    howl.index = howl.playlist.length - 1;
+    howl.changeTrack()
+  }
 });
 
 Shiny.addCustomMessageHandler('changeHowlerTrack', function(message) {

@@ -3,6 +3,7 @@
 \name{howlerServer}
 \alias{howlerServer}
 \alias{changeHowlerTrack}
+\alias{addHowlerTrack}
 \alias{playHowler}
 \alias{pauseHowler}
 \alias{stopHowler}
@@ -10,6 +11,8 @@
 \title{Update howler.js Server-Side}
 \usage{
 changeHowlerTrack(session, id, file)
+
+addHowlerTrack(session, id, file, play_track = FALSE)
 
 playHowler(session, id)
 
@@ -26,6 +29,8 @@ seekHowler(session, id, seek)
 
 \item{file}{Base name of the file to change to. If the file is not included in the player nothing will happen.}
 
+\item{play_track}{Logical, should the new track be played on addition?}
+
 \item{seek}{Time (in seconds) to set the position of the track}
 }
 \value{
@@ -38,6 +43,8 @@ Change the state of the howler player from the server.
 
 \code{changeHowlerTrack} will update the track to the file specified. This file must be included when the player
 is initialised, otherwise it won't change the track.
+
+\code{addHowlerTrack} will add a new track to the specified player.
 }
 \examples{
 if (interactive()) {

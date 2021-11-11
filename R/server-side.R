@@ -8,6 +8,8 @@
 #' \code{changeHowlerTrack} will update the track to the file specified. This file must be included when the player
 #' is initialised, otherwise it won't change the track.
 #'
+#' \code{addHowlerTrack} will add a new track to the specified player.
+#'
 #' @param session Shiny session
 #' @param id ID of the \code{howlerPlayer} to update
 #' @param file Base name of the file to change to. If the file is not included in the player nothing will happen.
@@ -41,6 +43,14 @@
 #' @export
 changeHowlerTrack <- function(session, id, file) {
   session$sendCustomMessage("changeHowlerTrack", list(id = id, file = file))
+}
+
+#' @param play_track Logical, should the new track be played on addition?
+#'
+#' @rdname howlerServer
+#' @export
+addHowlerTrack <- function(session, id, file, play_track = FALSE) {
+  session$sendCustomMessage("addHowlerTrack", list(id = id, file = file, play = play_track))
 }
 
 #' @rdname howlerServer

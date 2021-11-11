@@ -52,6 +52,17 @@
 #'   runShiny(ui, server)
 #' }
 #'
+#' \dontrun{
+#' # Multiple file formats
+#' howlerPlayer(
+#'   "howler",
+#'   list(
+#'     c("audio/sound.webm", "audio/sound.mp3"),
+#'     c("audio/sound2.webm", "audio/sound2.mp3"),
+#'   )
+#' )
+#' }
+#'
 #' @seealso \code{\link{howlerButton}}, \code{\link{howlerServer}}
 #'
 #' @export
