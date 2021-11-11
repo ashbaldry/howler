@@ -43,7 +43,8 @@
 <meta property="og:description" content="Change the state of the howler player from the server.
 playHowler, pauseHowler and stopHowler will all be applied to the current track.
 changeHowlerTrack will update the track to the file specified. This file must be included when the player
-is initialised, otherwise it won't change the track." />
+is initialised, otherwise it won't change the track.
+addHowlerTrack will add a new track to the specified player." />
 
 
 
@@ -121,9 +122,12 @@ is initialised, otherwise it won't change the track." />
 <p><code>playHowler</code>, <code>pauseHowler</code> and <code>stopHowler</code> will all be applied to the current track.</p>
 <p><code>changeHowlerTrack</code> will update the track to the file specified. This file must be included when the player
 is initialised, otherwise it won't change the track.</p>
+<p><code>addHowlerTrack</code> will add a new track to the specified player.</p>
     </div>
 
     <pre class="usage"><span class='fu'>changeHowlerTrack</span><span class='op'>(</span><span class='va'>session</span>, <span class='va'>id</span>, <span class='va'>file</span><span class='op'>)</span>
+
+<span class='fu'>addHowlerTrack</span><span class='op'>(</span><span class='va'>session</span>, <span class='va'>id</span>, <span class='va'>file</span>, play_track <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
 <span class='fu'>playHowler</span><span class='op'>(</span><span class='va'>session</span>, <span class='va'>id</span><span class='op'>)</span>
 
@@ -147,6 +151,10 @@ is initialised, otherwise it won't change the track.</p>
     <tr>
       <th>file</th>
       <td><p>Base name of the file to change to. If the file is not included in the player nothing will happen.</p></td>
+    </tr>
+    <tr>
+      <th>play_track</th>
+      <td><p>Logical, should the new track be played on addition?</p></td>
     </tr>
     <tr>
       <th>seek</th>
