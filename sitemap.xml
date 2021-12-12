@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://github.com/ashbaldry/howler/404.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/ashbaldry/howler/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/ashbaldry/howler/authors.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/ashbaldry/howler/index.html</loc>
   </url>
   <url>
@@ -26,6 +35,9 @@
   </url>
   <url>
     <loc>https://github.com/ashbaldry/howler/reference/howlerVolumeSlider.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/ashbaldry/howler/reference/index.html</loc>
   </url>
   <url>
     <loc>https://github.com/ashbaldry/howler/reference/useHowlerJS.html</loc>

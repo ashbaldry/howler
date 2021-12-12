@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">howler</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
@@ -67,36 +63,37 @@
       </header><div class="row">
   <div class="contents col-md-9">
 
-<div id="howler---interactive-audio-player" class="section level2">
-<h2 class="hasAnchor">
-<a href="#howler---interactive-audio-player" class="anchor"></a><code>{howler}</code> - Interactive Audio Player</h2>
-<p><a href="https://github.com/ashbaldry/howler">howler</a> is a package that utilises the <a href="https://github.com/goldfire/howler.js">howler.js</a> library to play audio on the modern web.</p>
+<div class="section level2">
+<h2 id="howler---interactive-audio-player">
+<code>{howler}</code> - Interactive Audio Player<a class="anchor" aria-label="anchor" href="#howler---interactive-audio-player"></a>
+</h2>
+<p><a href="https://github.com/ashbaldry/howler">howler</a> is a package that utilises the <a href="https://github.com/goldfire/howler.js" class="external-link">howler.js</a> library to play audio on the modern web.</p>
 </div>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <p>This package is not yet available on CRAN. To install the latest version:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ashbaldry/howler"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="usage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
+<div class="section level2">
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h2>
 <p>The HTML way to include an audio file in any shiny application/web page is to use the <code>&lt;audio&gt;</code> tag. This can generally only handle one audio file, and cannot (easily) be manipulated from the server side.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tags</span><span class="op">$</span><span class="fu">audio</span><span class="op">(</span>src <span class="op">=</span> <span class="st">"audio/sound.mp3"</span>, type <span class="op">=</span> <span class="st">"audio/mp3"</span>, autoplay <span class="op">=</span> <span class="cn">NA</span>, controls <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></code></pre></div>
-<p>howler.js uses the <a href="http://webaudio.github.io/web-audio-api/">Web Audio API</a>, and with this we are able to create an audio player that can solve both of the above issues and more:</p>
+<p>howler.js uses the <a href="http://webaudio.github.io/web-audio-api/" class="external-link">Web Audio API</a>, and with this we are able to create an audio player that can solve both of the above issues and more:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/">shiny</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ashbaldry/howler">howler</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ashbaldry/howler">howler</a></span><span class="op">)</span>
 
-<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
+<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
   title <span class="op">=</span> <span class="st">"howler Example"</span>,
   <span class="fu"><a href="reference/useHowlerJS.html">useHowlerJS</a></span><span class="op">(</span><span class="op">)</span>,
   <span class="fu"><a href="reference/howlerPlayer.html">howlerPlayer</a></span><span class="op">(</span>
     id <span class="op">=</span> <span class="st">"sound"</span>, 
-    files <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"audio/sound1.mp3"</span>, <span class="st">"audio/sound2.mp3"</span><span class="op">)</span>,
+    files <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"audio/sound1.mp3"</span>, <span class="st">"audio/sound2.mp3"</span><span class="op">)</span>,
     autoplay_next <span class="op">=</span> <span class="cn">TRUE</span>,
     autoplay_loop <span class="op">=</span> <span class="cn">TRUE</span>,
     seek_ping_rate <span class="op">=</span> <span class="fl">1000</span>
@@ -107,27 +104,29 @@
 <span class="op">)</span>
 
 <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observe.html">observe</a></span><span class="op">(</span><span class="op">{</span>
-    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/req.html">req</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sound_seek</span><span class="op">)</span>
-    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sound_seek</span><span class="op">)</span> <span class="op">==</span> <span class="fl">10</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observe.html" class="external-link">observe</a></span><span class="op">(</span><span class="op">{</span>
+    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/req.html" class="external-link">req</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sound_seek</span><span class="op">)</span>
+    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sound_seek</span><span class="op">)</span> <span class="op">==</span> <span class="fl">10</span><span class="op">)</span> <span class="op">{</span>
       <span class="fu"><a href="reference/howlerServer.html">pauseHowler</a></span><span class="op">(</span><span class="va">session</span>, <span class="st">"sound"</span><span class="op">)</span>
-    <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sound_seek</span><span class="op">)</span> <span class="op">==</span> <span class="fl">20</span><span class="op">)</span> <span class="op">{</span>
+    <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sound_seek</span><span class="op">)</span> <span class="op">==</span> <span class="fl">20</span><span class="op">)</span> <span class="op">{</span>
       <span class="fu"><a href="reference/howlerServer.html">changeHowlerTrack</a></span><span class="op">(</span><span class="va">session</span>, <span class="st">"sound"</span>, <span class="st">"audio/sound2.mp3"</span><span class="op">)</span>
     <span class="op">}</span>
   <span class="op">}</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
-<div id="module" class="section level3">
-<h3 class="hasAnchor">
-<a href="#module" class="anchor"></a>Module</h3>
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<div class="section level3">
+<h3 id="module">Module<a class="anchor" aria-label="anchor" href="#module"></a>
+</h3>
 <p>The <a href="https://github.com/ashbaldry/howler">howler</a> package also includes a lightweight module <code>howlerModuleUI</code> and <code>howlerModuleServer</code> that adds a bit of styling to a player.</p>
-<p><img src="inst/img/howler_module.gif" alt="Howler module UI"></p>
+<div class="figure">
+<img src="inst/img/howler_module.gif" alt=""><p class="caption">Howler module UI</p>
 </div>
 </div>
-<div id="examples" class="section level2">
-<h2 class="hasAnchor">
-<a href="#examples" class="anchor"></a>Examples</h2>
+</div>
+<div class="section level2">
+<h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
+</h2>
 <p>All examples are available in the <a href="https://github.com/ashbaldry/howler/tree/main/inst/examples">Examples</a> directory and can be run locally by installing the <a href="https://github.com/ashbaldry/howler">howler</a> package:</p>
 <ul>
 <li><a href="https://github.com/ashbaldry/howler/tree/main/inst/examples/basic">Basic Player</a></li>
@@ -141,41 +140,53 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/ashbaldry/howler/">https://​github.com/​ashbaldry/​howler/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/ashbaldry/howler/issues">https://​github.com/​ashbaldry/​howler/​issues</a>
-</li>
+<li><a href="https://github.com/ashbaldry/howler/">Browse source code</a></li>
+<li><a href="https://github.com/ashbaldry/howler/issues">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li>
-<a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
+<a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
 </li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing howler</a></li>
+</ul>
+</div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Ashley Baldry <br><small class="roles"> Author, maintainer </small>  </li>
-<li>James Simpson <br><small class="roles"> Author </small>  <br><small>(Creator of howler.js)</small>
-</li>
+<li>James Simpson <br><small class="roles"> Author </small>  </li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
+
+
 
   </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Ashley Baldry, James Simpson.</p>
+  <p></p>
+<p>Developed by Ashley Baldry, James Simpson.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -183,6 +194,8 @@
 
   
 
+
+  
 
   </body>
 </html>
