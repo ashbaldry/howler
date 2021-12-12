@@ -13,7 +13,7 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-  observeEvent(input$play, playHowler(session, "sound"))
+  observeEvent(input$play, playHowl(session, "sound"))
 }
 
 shinyApp(ui, server)

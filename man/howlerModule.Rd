@@ -28,7 +28,7 @@ and a volume slider.
 
 The server-side module will return a list of reactive objects:
 \describe{
-\item{previous_track, play_pause,next_track}{Values tracking the pressing of the module buttons}
+\item{previous_track,play_pause,next_track}{Values tracking the pressing of the module buttons}
 \item{playing}{Logical value whether or not the player is currently playing}
 \item{track}{Name of the track currently loaded}
 \item{duration}{Duration (in seconds) of the track currently loaded}

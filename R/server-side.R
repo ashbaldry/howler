@@ -3,12 +3,12 @@
 #' @description
 #' Change the state of the howler player from the server.
 #'
-#' \code{playHowler}, \code{pauseHowler} and \code{stopHowler} will all be applied to the current track.
+#' \code{playHowl}, \code{pauseHowl} and \code{stopHowl} will all be applied to the current track.
 #'
-#' \code{changeHowlerTrack} will update the track to the file specified. This file must be included when the player
+#' \code{changeTrack} will update the track to the file specified. This file must be included when the player
 #' is initialised, otherwise it won't change the track.
 #'
-#' \code{addHowlerTrack} will add a new track to the specified player.
+#' \code{addTrack} will add a new track to the specified player.
 #'
 #' @param session Shiny session
 #' @param id ID of the \code{howlerPlayer} to update
@@ -41,7 +41,7 @@
 #' @name howlerServer
 #' @rdname howlerServer
 #' @export
-changeHowlerTrack <- function(session, id, file) {
+changeTrack <- function(session, id, file) {
   session$sendCustomMessage("changeHowlerTrack", list(id = id, file = file))
 }
 
@@ -49,31 +49,31 @@ changeHowlerTrack <- function(session, id, file) {
 #'
 #' @rdname howlerServer
 #' @export
-addHowlerTrack <- function(session, id, file, play_track = FALSE) {
+addTrack <- function(session, id, file, play_track = FALSE) {
   session$sendCustomMessage("addHowlerTrack", list(id = id, file = file, play = play_track))
 }
 
 #' @rdname howlerServer
 #' @export
-playHowler <- function(session, id) {
+playHowl <- function(session, id) {
   session$sendCustomMessage("playHowler", id)
 }
 
 #' @rdname howlerServer
 #' @export
-pauseHowler <- function(session, id) {
+pauseHowl <- function(session, id) {
   session$sendCustomMessage("pauseHowler", id)
 }
 
 #' @rdname howlerServer
 #' @export
-stopHowler <- function(session, id) {
+stopHowl <- function(session, id) {
   session$sendCustomMessage("stopHowler", id)
 }
 
 #' @param seek Time (in seconds) to set the position of the track
 #' @rdname howlerServer
 #' @export
-seekHowler <- function(session, id, seek) {
+seekHowl <- function(session, id, seek) {
   session$sendCustomMessage("seekHowler", list(id = id, time = as.numeric(seek)))
 }

@@ -2,25 +2,25 @@
 % Please edit documentation in R/server-side.R
 \name{howlerServer}
 \alias{howlerServer}
-\alias{changeHowlerTrack}
-\alias{addHowlerTrack}
-\alias{playHowler}
-\alias{pauseHowler}
-\alias{stopHowler}
-\alias{seekHowler}
+\alias{changeTrack}
+\alias{addTrack}
+\alias{playHowl}
+\alias{pauseHowl}
+\alias{stopHowl}
+\alias{seekHowl}
 \title{Update howler.js Server-Side}
 \usage{
-changeHowlerTrack(session, id, file)
+changeTrack(session, id, file)
 
-addHowlerTrack(session, id, file, play_track = FALSE)
+addTrack(session, id, file, play_track = FALSE)
 
-playHowler(session, id)
+playHowl(session, id)
 
-pauseHowler(session, id)
+pauseHowl(session, id)
 
-stopHowler(session, id)
+stopHowl(session, id)
 
-seekHowler(session, id, seek)
+seekHowl(session, id, seek)
 }
 \arguments{
 \item{session}{Shiny session}
@@ -39,12 +39,12 @@ Updates the the state of the specified \code{howlerPlayer} in the shiny applicat
 \description{
 Change the state of the howler player from the server.
 
-\code{playHowler}, \code{pauseHowler} and \code{stopHowler} will all be applied to the current track.
+\code{playHowl}, \code{pauseHowl} and \code{stopHowl} will all be applied to the current track.
 
-\code{changeHowlerTrack} will update the track to the file specified. This file must be included when the player
+\code{changeTrack} will update the track to the file specified. This file must be included when the player
 is initialised, otherwise it won't change the track.
 
-\code{addHowlerTrack} will add a new track to the specified player.
+\code{addTrack} will add a new track to the specified player.
 }
 \examples{
 if (interactive()) {
