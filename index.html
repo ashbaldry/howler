@@ -107,9 +107,9 @@
   <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observe.html" class="external-link">observe</a></span><span class="op">(</span><span class="op">{</span>
     <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/req.html" class="external-link">req</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sound_seek</span><span class="op">)</span>
     <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sound_seek</span><span class="op">)</span> <span class="op">==</span> <span class="fl">10</span><span class="op">)</span> <span class="op">{</span>
-      <span class="fu"><a href="reference/howlerServer.html">pauseHowler</a></span><span class="op">(</span><span class="va">session</span>, <span class="st">"sound"</span><span class="op">)</span>
+      <span class="fu">pauseHowler</span><span class="op">(</span><span class="va">session</span>, <span class="st">"sound"</span><span class="op">)</span>
     <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sound_seek</span><span class="op">)</span> <span class="op">==</span> <span class="fl">20</span><span class="op">)</span> <span class="op">{</span>
-      <span class="fu"><a href="reference/howlerServer.html">changeHowlerTrack</a></span><span class="op">(</span><span class="va">session</span>, <span class="st">"sound"</span>, <span class="st">"audio/sound2.mp3"</span><span class="op">)</span>
+      <span class="fu">changeHowlerTrack</span><span class="op">(</span><span class="va">session</span>, <span class="st">"sound"</span>, <span class="st">"audio/sound2.mp3"</span><span class="op">)</span>
     <span class="op">}</span>
   <span class="op">}</span><span class="op">)</span>
 <span class="op">}</span>
