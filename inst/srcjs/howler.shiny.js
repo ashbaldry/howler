@@ -72,8 +72,12 @@ var Howler = function(el) {
 
   this.getTrackFormat = function(track) {
     if (typeof(track) === 'string') {
-      var file_type = track.split('.').pop();
-      return file_type === 'mp4' ? 'dolby' : file_type;
+      if (track.includes('base64,')) {
+        return null;
+      } else {
+        var file_type = track.split('.').pop();
+        return file_type === 'mp4' ? 'dolby' : file_type;
+      }
     } else {
       return track.map(self.getTrackFormat);
     }
