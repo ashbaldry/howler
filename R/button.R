@@ -17,8 +17,7 @@
 #'
 #' \code{howlerButton} is a customisable version of any of the above individual button.
 #'
-#' @param id ID given to the button. For it to work with \code{\link{howlerPlayer}}, the ID
-#' must match that of the \code{howlerPlayer}.
+#' @param howler_id ID given to the \code{\link{howler}} player.
 #' @param button_type Type of button to create. Available buttons are in the details, default set to \code{play_pause}.
 #' @param ... Attributes/Inner tags added to the button
 #'
@@ -72,13 +71,12 @@
 #'
 #' @rdname howlerButton
 #' @export
-howlerButton <- function(id, button_type = HOWLER_BUTTON_TYPES, ...) {
+howlerButton <- function(howler_id, button_type = HOWLER_BUTTON_TYPES, ...) {
   button_type <- match.arg(button_type)
-  button_id <- paste0(id, "_", button_type)
 
   tags$a(
-    id = button_id,
-    class = paste0("action-button howler-", button_type),
+    `data-howler` = howler_id,
+    class = paste0("action-button howler-", button_type, "-button"),
     `aria-label` = button_type,
     title = button_type,
     ...
@@ -87,72 +85,72 @@ howlerButton <- function(id, button_type = HOWLER_BUTTON_TYPES, ...) {
 
 #' @rdname howlerButton
 #' @export
-howlerPlayButton <- function(id) {
-  howlerButton(id, "play", shiny::icon("play"))
+howlerPlayButton <- function(howler_id) {
+  howlerButton(howler_id, "play", shiny::icon("play"))
 }
 
 #' @rdname howlerButton
 #' @export
-howlerPauseButton <- function(id) {
-  howlerButton(id, "pause", shiny::icon("pause"))
+howlerPauseButton <- function(howler_id) {
+  howlerButton(howler_id, "pause", shiny::icon("pause"))
 }
 
 #' @rdname howlerButton
 #' @export
-howlerPlayPauseButton <- function(id) {
-  howlerButton(id, "play_pause", shiny::icon("play"))
+howlerPlayPauseButton <- function(howler_id) {
+  howlerButton(howler_id, "play_pause", shiny::icon("play"))
 }
 
 #' @rdname howlerButton
 #' @export
-howlerStopButton <- function(id) {
-  howlerButton(id, "stop", shiny::icon("stop"))
+howlerStopButton <- function(howler_id) {
+  howlerButton(howler_id, "stop", shiny::icon("stop"))
 }
 
 #' @param seek_change Time (in seconds) to move forward/backward the track when clicked. Default is 10 seconds
 #'
 #' @rdname howlerButton
 #' @export
-howlerBackButton <- function(id, seek_change = 10) {
-  howlerButton(id, "back", shiny::icon("backward"), `data-seek-change` = -abs(seek_change))
+howlerBackButton <- function(howler_id, seek_change = 10) {
+  howlerButton(howler_id, "back", shiny::icon("backward"), `data-seek-change` = -abs(seek_change))
 }
 
 #' @rdname howlerButton
 #' @export
-howlerForwardButton <- function(id, seek_change = 10) {
-  howlerButton(id, "forward", shiny::icon("forward"), `data-seek-change` = seek_change)
+howlerForwardButton <- function(howler_id, seek_change = 10) {
+  howlerButton(howler_id, "forward", shiny::icon("forward"), `data-seek-change` = seek_change)
 }
 
 #' @rdname howlerButton
 #' @export
-howlerPreviousButton <- function(id) {
-  howlerButton(id, "previous", shiny::icon("step-backward"))
+howlerPreviousButton <- function(howler_id) {
+  howlerButton(howler_id, "previous", shiny::icon("step-backward"))
 }
 
 #' @rdname howlerButton
 #' @export
-howlerNextButton <- function(id) {
-  howlerButton(id, "next", shiny::icon("step-forward"))
+howlerNextButton <- function(howler_id) {
+  howlerButton(howler_id, "next", shiny::icon("step-forward"))
 }
 
 #' @param volume_change How much to change the volume by. Default is 10\%.
 #'
 #' @rdname howlerButton
 #' @export
-howlerVolumeUpButton <- function(id, volume_change = 0.1) {
-  howlerButton(id, "volumeup", shiny::icon("volume-up"), `data-volume-change` = volume_change)
+howlerVolumeUpButton <- function(howler_id, volume_change = 0.1) {
+  howlerButton(howler_id, "volumeup", shiny::icon("volume-up"), `data-volume-change` = volume_change)
 }
 
 #' @rdname howlerButton
 #' @export
-howlerVolumeDownButton <- function(id, volume_change = 0.1) {
-  howlerButton(id, "volumedown", shiny::icon("volume-down"), `data-volume-change` = volume_change)
+howlerVolumeDownButton <- function(howler_id, volume_change = 0.1) {
+  howlerButton(howler_id, "volumedown", shiny::icon("volume-down"), `data-volume-change` = volume_change)
 }
 
 #' @rdname howlerButton
 #' @export
-howlerVolumeToggleButton <- function(id) {
-  howlerButton(id, "volumetoggle", shiny::icon("volume-up"))
+howlerVolumeToggleButton <- function(howler_id) {
+  howlerButton(howler_id, "volumetoggle", shiny::icon("volume-up"))
 }
 
 HOWLER_BUTTON_TYPES <- c(

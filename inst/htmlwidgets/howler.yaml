@@ -1,0 +1,5 @@
+dependencies:
+  - name: howler
+    version: 2.2.3
+    src: htmlwidgets/howler
+    script: howler.min.js

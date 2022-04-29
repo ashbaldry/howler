@@ -4,11 +4,7 @@
 \alias{useHowlerJS}
 \title{Enable \code{HowlerJS}}
 \usage{
-useHowlerJS(spatial = FALSE)
-}
-\arguments{
-\item{spatial}{Logical, whether or not the spatial aspects of \code{howler.js} are required. Default is set to \code{FALSE}.
-(Unless writing custom functionality, this is not used).}
+useHowlerJS()
 }
 \value{
 HTML tags that link to relevant JavaScript and CSS files used to display and run \code{howler.js}.
@@ -17,21 +13,19 @@ HTML tags that link to relevant JavaScript and CSS files used to display and run
 Add \code{useHowlerJS} to the UI of a shiny application so that the necessary resources can be added to the application.
 }
 \examples{
-if (interactive()) {
-  library(shiny)
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+library(shiny)
 
-  ui <- fluidPage(
-    title = "howler.js Player Title",
-    useHowlerJS(),
-    howlerPlayer("sound", "audio/track1.mp3"),
-    howlerPlayPauseButton("sound"),
-    howlerVolumeSlider("sound")
-  )
+ui <- fluidPage(
+  title = "howler.js Player Title",
+  useHowlerJS(),
+  howlerPlayer("sound", "audio/track1.mp3"),
+  howlerPlayPauseButton("sound"),
+  howlerVolumeSlider("sound")
+)
 
-  server <- function(input, output, session) {
-  }
+server <- function(input, output, session) {}
 
-  shinyApp(ui, server)
-}
-
+shinyApp(ui, server)
+\dontshow{\}) # examplesIf}
 }
