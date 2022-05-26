@@ -34,14 +34,22 @@ HTMLWidgets.widget({
 
     return {
       renderValue: function(x) {
-        tracks = x.tracks;
-        track_names = x.names;
-        if (x.formats) {
-          track_formats = x.formats;
+        if (Array.isArray(x.tracks)) {
+          tracks = x.tracks;
+          track_names = x.names;
+          if (x.formats) {
+            track_formats = x.formats;
+          }
+        } else {
+          tracks = [x.tracks];
+          track_names = [x.names];
+          if (x.formats) {
+            track_formats = [x.formats];
+          }
         }
 
         // TODO: code to render the widget, e.g.
-        el.innerHTML = `<div>THIS IS A TEST ${x.names[0]}</div>`;
+        el.innerHTML = `<div>THIS IS A TEST ${track_names[0]}</div>`;
 
         var options = x.options;
         options.src = tracks[0];
