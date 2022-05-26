@@ -16,6 +16,10 @@ HTMLWidgets.widget({
       sound.pause();
     });
 
+    $(`.howler-stop-button[data-howler=${el.id}]`).on("click", (el) => {
+      sound.stop();
+    });
+
     $(`.howler-play_pause-button[data-howler=${el.id}]`).on("click", (el) => {
       const iconElement = $(el.currentTarget).find("i");
 
