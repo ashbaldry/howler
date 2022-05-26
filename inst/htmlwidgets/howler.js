@@ -32,6 +32,17 @@ HTMLWidgets.widget({
       }
     });
 
+    Shiny.addCustomMessageHandler(`pauseHowler_${el.id}`, function(id) {
+      sound.pause();
+      $(`.howler-play_pause-button[data-howler=${id}] i`).removeClass("fa-pause").addClass("fa-play");
+    });
+
+    // Shiny inputs
+    setInterval(() => {
+      var trackSeek = sound.seek();
+      Shiny.setInputValue(`${el.id}_seek`, Math.round(trackSeek * 100) / 100);
+    }, 1000);
+
     return {
       renderValue: function(x) {
         if (Array.isArray(x.tracks)) {

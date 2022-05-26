@@ -62,7 +62,8 @@ playHowl <- function(session, id) {
 #' @rdname howlerServer
 #' @export
 pauseHowl <- function(session, id) {
-  session$sendCustomMessage("pauseHowler", id)
+  message_name <- paste0("pauseHowler_", session$ns(id))
+  session$sendCustomMessage(message_name, id)
 }
 
 #' @rdname howlerServer

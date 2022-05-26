@@ -13,7 +13,7 @@ ui <- fluidPage(
   howlerPauseButton("sound"),
   howlerStopButton("sound"),
 
-  howler(audio_files[2:3], elementId = "sound2"),
+  howler(audio_files[2], elementId = "sound2"),
   howlerPlayPauseButton("sound2"),
   howlerPauseButton("sound2"),
   howlerStopButton("sound2")
