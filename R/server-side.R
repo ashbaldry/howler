@@ -42,7 +42,8 @@
 #' @rdname howlerServer
 #' @export
 changeTrack <- function(session, id, file) {
-  session$sendCustomMessage("changeHowlerTrack", list(id = id, file = file))
+  message_name <- paste0("changeHowlerTrack_", session$ns(id))
+  session$sendCustomMessage(message_name, list(id = id, file = file))
 }
 
 #' @param play_track Logical, should the new track be played on addition?
@@ -50,13 +51,15 @@ changeTrack <- function(session, id, file) {
 #' @rdname howlerServer
 #' @export
 addTrack <- function(session, id, file, play_track = FALSE) {
-  session$sendCustomMessage("addHowlerTrack", list(id = id, file = file, play = play_track))
+  message_name <- paste0("addHowlerTrack_", session$ns(id))
+  session$sendCustomMessage(message_name, list(id = id, file = file, play = play_track))
 }
 
 #' @rdname howlerServer
 #' @export
 playHowl <- function(session, id) {
-  session$sendCustomMessage("playHowler", id)
+  message_name <- paste0("playHowler_", session$ns(id))
+  session$sendCustomMessage(message_name, id)
 }
 
 #' @rdname howlerServer
@@ -69,12 +72,14 @@ pauseHowl <- function(session, id) {
 #' @rdname howlerServer
 #' @export
 stopHowl <- function(session, id) {
-  session$sendCustomMessage("stopHowler", id)
+  message_name <- paste0("stopHowler_", session$ns(id))
+  session$sendCustomMessage(message_name, id)
 }
 
 #' @param seek Time (in seconds) to set the position of the track
 #' @rdname howlerServer
 #' @export
 seekHowl <- function(session, id, seek) {
-  session$sendCustomMessage("seekHowler", list(id = id, time = as.numeric(seek)))
+  message_name <- paste0("seekHowler_", session$ns(id))
+  session$sendCustomMessage(message_name, list(id = id, time = as.numeric(seek)))
 }
