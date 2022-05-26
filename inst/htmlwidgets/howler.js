@@ -21,20 +21,11 @@ HTMLWidgets.widget({
     });
 
     $(`.howler-play_pause-button[data-howler=${el.id}]`).on("click", (el) => {
-      const iconElement = $(el.currentTarget).find("i");
-
-      if (sound.playing()) {
-        sound.pause();
-        $(iconElement).removeClass("fa-pause").addClass("fa-play");
-      } else {
-        sound.play();
-        $(iconElement).removeClass("fa-play").addClass("fa-pause");
-      }
+      sound.playing() ? sound.pause() : sound.play();
     });
 
     Shiny.addCustomMessageHandler(`pauseHowler_${el.id}`, function(id) {
       sound.pause();
-      $(`.howler-play_pause-button[data-howler=${id}] i`).removeClass("fa-pause").addClass("fa-play");
     });
 
     // Shiny inputs
@@ -64,6 +55,44 @@ HTMLWidgets.widget({
 
         var options = x.options;
         options.src = tracks[0];
+
+        if (!options.onload) {
+          options.onload = function() {
+            Shiny.setInputValue(`${el.id}_current_track`, tracks[0]);
+            Shiny.setInputValue(`${el.id}_seek`, this.seek());
+            Shiny.setInputValue(`${el.id}_duration`, this.duration());
+          };
+        }
+
+        if (!options.onpause) {
+          options.onpause = function() {
+            $(`.howler-play_pause-button[data-howler=${el.id}] i`).removeClass("fa-pause").addClass("fa-play");
+          };
+        }
+
+        if (!options.onstop) {
+          options.onstop = function() {
+            $(`.howler-play_pause-button[data-howler=${el.id}] i`).removeClass("fa-pause").addClass("fa-play");
+          };
+        }
+
+        if (!options.onplay) {
+          options.onplay = function() {
+            $(`.howler-play_pause-button[data-howler=${el.id}] i`).removeClass("fa-play").addClass("fa-pause");
+          };
+        }
+
+        if (!options.onend) {
+          options.onend = function() {
+          };
+        }
+
+        if (!options.onseek) {
+          options.onseek = function() {
+            Shiny.setInputValue(`${el.id}_seek`, this.seek());
+          };
+        }
+
         if (track_formats) {
           options.format = track_formats[0];
         }
