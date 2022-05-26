@@ -9,15 +9,19 @@ howler <- function(tracks, options = list(),
                    width = "100%", height = "100px", elementId = NULL) {
 
   if (is.null(names(tracks))) {
-    tracks <- setNames(
-      as.list(tracks),
-      sapply(tracks, function(x) sub("\\.[^\\.]+$", "", basename(x[1])))
-    )
+    track_names <- vapply(tracks, function(x) sub("\\.[^\\.]+$", "", basename(x[1])), character(1), USE.NAMES = FALSE)
+  } else {
+    track_names <- names(track_names)
   }
+
+  settings <- c(
+    list(tracks = unname(tracks), names = track_names),
+    options
+  )
 
   htmlwidgets::createWidget(
     name = "howler",
-    x = c(list(tracks = tracks), options),
+    x = settings,
     width = width,
     height = height,
     package = "howler",
