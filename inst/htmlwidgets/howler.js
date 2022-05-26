@@ -3,7 +3,7 @@ HTMLWidgets.widget({
   type: 'output',
 
   factory: function(el, width, height) {
-    var tracks, track_names;
+    var tracks, track_names, track_formats;
     var sound;
     let track_played = 0;
 
@@ -32,13 +32,20 @@ HTMLWidgets.widget({
       renderValue: function(x) {
         tracks = x.tracks;
         track_names = x.names;
+        if (x.formats) {
+          track_formats = x.formats;
+        }
 
         // TODO: code to render the widget, e.g.
         el.innerHTML = `<div>THIS IS A TEST ${x.names[0]}</div>`;
 
-        sound = new Howl({
-          src: [x.tracks[0]]
-        });
+        var options = x.options;
+        options.src = tracks[0];
+        if (track_formats) {
+          options.format = track_formats[0];
+        }
+
+        sound = new Howl(options);
       },
 
       resize: function(width, height) {

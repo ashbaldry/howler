@@ -5,8 +5,12 @@
 #' @import htmlwidgets
 #'
 #' @export
-howler <- function(tracks, options = list(),
+howler <- function(tracks, options = list(), track_formats = NULL,
                    width = "100%", height = "100px", elementId = NULL) {
+
+  if (!(is.null(track_formats) || length(tracks) == length(track_formats))) {
+    stop("Track formats must be the same length as tracks")
+  }
 
   if (is.null(names(tracks))) {
     track_names <- vapply(tracks, function(x) sub("\\.[^\\.]+$", "", basename(x[1])), character(1), USE.NAMES = FALSE)
@@ -14,10 +18,7 @@ howler <- function(tracks, options = list(),
     track_names <- names(track_names)
   }
 
-  settings <- c(
-    list(tracks = unname(tracks), names = track_names),
-    options
-  )
+  settings <- list(tracks = unname(tracks), names = track_names, formats = track_formats, options = options)
 
   htmlwidgets::createWidget(
     name = "howler",
