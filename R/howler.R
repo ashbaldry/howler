@@ -6,7 +6,7 @@
 #'
 #' @export
 howler <- function(tracks, options = list(), track_formats = NULL, auto_continue = FALSE, seek_ping_rate = 1000,
-                   width = "100%", height = "100px", elementId = NULL) {
+                   width = "0", height = "0", elementId = NULL) {
 
   if (!(is.null(track_formats) || length(tracks) == length(track_formats))) {
     stop("Track formats must be the same length as tracks")
@@ -56,7 +56,7 @@ howler <- function(tracks, options = list(), track_formats = NULL, auto_continue
 #' @name howler-shiny
 #'
 #' @export
-howlerOutput <- function(outputId, width = '100%', height = '400px') {
+howlerOutput <- function(outputId, width = '0', height = '0') {
   htmlwidgets::shinyWidgetOutput(outputId, 'howler', package = 'howler')
 }
 
