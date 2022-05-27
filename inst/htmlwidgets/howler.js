@@ -6,6 +6,8 @@ HTMLWidgets.widget({
     var tracks, track_names, track_formats, options, sound;
     let current_track = 0;
     let auto_continue = false;
+    let not_changing_seek = true;
+    const seek_slider = $(`.howler-seek-slider[data-howler=${el.id}]`);
 
     function selectPreviousTrack() {
       if (current_track === 0) {
@@ -23,7 +25,7 @@ HTMLWidgets.widget({
       }
     }
 
-    function startNewTrack (play_track = true) {
+    function startNewTrack(play_track = true) {
       options.src = tracks[current_track];
       if (track_formats) {
         options.format = track_formats[current_track];
@@ -36,6 +38,14 @@ HTMLWidgets.widget({
       }
 
       return;
+    }
+
+    function updateVolume(volume, update_slider = true) {
+      options.volume = volume;
+      sound.volume(volume);
+      if (update_slider) {
+        $(`.howler-volume-slider[data-howler=${el.id}]`).val(volume);
+      }
     }
 
     $(document).on('shiny:disconnected', () => {
@@ -71,11 +81,42 @@ HTMLWidgets.widget({
       startNewTrack();
     });
 
-    $(`.howler-volume-slider[data-howler=${el.id}]`).on("mouseup", (el) => {
-      var volume = Number(el.target.value);
-      options.volume = volume;
-      sound.volume(volume);
+    $(`.howler-back-button[data-howler=${el.id}]`).on("click", (el) => {
+      sound.seek(Math.max(0, sound.seek() - 10));
     });
+
+    $(`.howler-forward-button[data-howler=${el.id}]`).on("click", (el) => {
+      sound.seek(Math.min(sound.duration(), sound.seek() + 10));
+    });
+
+    $(`.howler-volumedown-button[data-howler=${el.id}]`).on("mouseup", (el) => {
+      updateVolume(Math.min(1, sound.volume() + 0.1));
+    });
+
+    $(`.howler-volumeup-button[data-howler=${el.id}]`).on("mouseup", (el) => {
+      updateVolume(Math.max(0, sound.volume() - 0.1));
+    });
+
+    $(`.howler-volume-slider[data-howler=${el.id}]`).on("mouseup", (el) => {
+      updateVolume(Number(el.target.value), false);
+    });
+
+    if (seek_slider.length) {
+      seek_slider.on("mousedown", (el) => {
+        not_changing_seek = false;
+      });
+
+      seek_slider.on("mouseup", (el) => {
+        not_changing_seek = true;
+        sound.seek(Number(el.target.value));
+      });
+
+      setInterval(() => {
+        if (not_changing_seek) {
+          seek_slider.val(sound.seek());
+        }
+      }, 10);
+    }
 
     // Custom Message Handlers
     Shiny.addCustomMessageHandler(`playHowler_${el.id}`, function(id) {
@@ -137,6 +178,11 @@ HTMLWidgets.widget({
 
         if (!options.onload) {
           options.onload = function() {
+            if (seek_slider.length) {
+              seek_slider.attr("max", sound.duration());
+              seek_slider.attr("value", 0);
+            }
+
             Shiny.setInputValue(`${el.id}_track`, {name: track_names[current_track], id: current_track + 1});
             Shiny.setInputValue(`${el.id}_seek`, this.seek());
             Shiny.setInputValue(`${el.id}_duration`, this.duration());
