@@ -15,7 +15,7 @@ howler <- function(tracks, options = list(), track_formats = NULL, auto_continue
   if (is.null(names(tracks))) {
     track_names <- vapply(tracks, function(x) sub("\\.[^\\.]+$", "", basename(x[1])), character(1), USE.NAMES = FALSE)
   } else {
-    track_names <- names(track_names)
+    track_names <- names(tracks)
   }
 
   settings <- list(

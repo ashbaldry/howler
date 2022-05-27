@@ -67,6 +67,13 @@ HTMLWidgets.widget({
       startNewTrack();
     });
 
+    $(`.howler-volume-slider[data-howler=${el.id}]`).on("mouseup", (el) => {
+      var volume = Number(el.target.value);
+      options.volume = volume;
+      sound.volume(volume);
+    });
+
+    // Custom Message Handlers
     Shiny.addCustomMessageHandler(`pauseHowler_${el.id}`, function(id) {
       sound.pause();
     });
@@ -81,10 +88,15 @@ HTMLWidgets.widget({
       startNewTrack();
     });
 
-    $(`.howler-volume-slider[data-howler=${el.id}]`).on("mouseup", (el) => {
-      var volume = Number(el.target.value);
-      options.volume = volume;
-      sound.volume(volume);
+    Shiny.addCustomMessageHandler(`addHowlerTrack_${el.id}`, function(track_info) {
+      tracks.push(track_info.track);
+      track_names.push(track_info.track_name);
+
+      if (track_info.play) {
+        sound.stop();
+        current_track = tracks.length - 1;
+        startNewTrack();
+      }
     });
 
     return {

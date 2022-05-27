@@ -50,9 +50,15 @@ changeTrack <- function(session, id, track) {
 #'
 #' @rdname howlerServer
 #' @export
-addTrack <- function(session, id, file, play_track = FALSE) {
+addTrack <- function(session, id, track, play_track = FALSE) {
+  if (is.null(names(track))) {
+    track_name <- sub("\\.[^\\.]+$", "", basename(track[1]))
+  } else {
+    track_name <- names(track)
+  }
+
   message_name <- paste0("addHowlerTrack_", session$ns(id))
-  session$sendCustomMessage(message_name, list(id = id, file = file, play = play_track))
+  session$sendCustomMessage(message_name, list(track = track, track_name = track_name, play = play_track))
 }
 
 #' @rdname howlerServer
