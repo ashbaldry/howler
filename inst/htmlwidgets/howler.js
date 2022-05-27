@@ -34,12 +34,6 @@ HTMLWidgets.widget({
       sound.volume(volume);
     });
 
-    // Shiny inputs
-    setInterval(() => {
-      var trackSeek = sound.seek();
-      Shiny.setInputValue(`${el.id}_seek`, Math.round(trackSeek * 100) / 100);
-    }, 1000);
-
     return {
       renderValue: function(x) {
         auto_continue = x.auto_continue;
@@ -131,10 +125,16 @@ HTMLWidgets.widget({
         }
 
         sound = new Howl(options);
+
+        // Shiny inputs
+        if (x.seek_ping_rate > 0) {
+          setInterval(() => {
+            Shiny.setInputValue(`${el.id}_seek`, Math.round(sound.seek() * 100) / 100);
+          }, x.seek_ping_rate);
+        }
       },
 
-      resize: function(width, height) {
-      }
+      resize: function(width, height) {}
     };
   }
 });

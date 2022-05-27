@@ -5,7 +5,7 @@
 #' @import htmlwidgets
 #'
 #' @export
-howler <- function(tracks, options = list(), track_formats = NULL, auto_continue = FALSE,
+howler <- function(tracks, options = list(), track_formats = NULL, auto_continue = FALSE, seek_ping_rate = 1000,
                    width = "100%", height = "100px", elementId = NULL) {
 
   if (!(is.null(track_formats) || length(tracks) == length(track_formats))) {
@@ -23,6 +23,7 @@ howler <- function(tracks, options = list(), track_formats = NULL, auto_continue
     names = track_names,
     formats = track_formats,
     auto_continue = auto_continue,
+    seek_ping_rate = seek_ping_rate,
     options = options
   )
 
