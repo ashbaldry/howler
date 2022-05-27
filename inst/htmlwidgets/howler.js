@@ -53,52 +53,67 @@ HTMLWidgets.widget({
     });
 
     // Events on button clicks
-    $(`.howler-play-button[data-howler=${el.id}]`).on("click", (el) => {
+    $(`.howler-play-button[data-howler=${el.id}]`).on("click", (e) => {
       sound.play();
     });
 
-    $(`.howler-pause-button[data-howler=${el.id}]`).on("click", (el) => {
+    $(`.howler-pause-button[data-howler=${el.id}]`).on("click", (e) => {
       sound.pause();
     });
 
-    $(`.howler-stop-button[data-howler=${el.id}]`).on("click", (el) => {
+    $(`.howler-stop-button[data-howler=${el.id}]`).on("click", (e) => {
       sound.stop();
     });
 
-    $(`.howler-play_pause-button[data-howler=${el.id}]`).on("click", (el) => {
+    $(`.howler-play_pause-button[data-howler=${el.id}]`).on("click", (e) => {
       sound.playing() ? sound.pause() : sound.play();
     });
 
-    $(`.howler-previous-button[data-howler=${el.id}]`).on("click", (el) => {
+    $(`.howler-previous-button[data-howler=${el.id}]`).on("click", (e) => {
       sound.stop();
       selectPreviousTrack();
       startNewTrack();
     });
 
-    $(`.howler-next-button[data-howler=${el.id}]`).on("click", (el) => {
+    $(`.howler-next-button[data-howler=${el.id}]`).on("click", (e) => {
       sound.stop();
       selectNextTrack();
       startNewTrack();
     });
 
-    $(`.howler-back-button[data-howler=${el.id}]`).on("click", (el) => {
+    $(`.howler-back-button[data-howler=${el.id}]`).on("click", (e) => {
       sound.seek(Math.max(0, sound.seek() - 10));
     });
 
-    $(`.howler-forward-button[data-howler=${el.id}]`).on("click", (el) => {
+    $(`.howler-forward-button[data-howler=${el.id}]`).on("click", (e) => {
       sound.seek(Math.min(sound.duration(), sound.seek() + 10));
     });
 
-    $(`.howler-volumedown-button[data-howler=${el.id}]`).on("mouseup", (el) => {
+    $(`.howler-volumetoggle-button[data-howler=${el.id}]`).on("click", function(e) {
+      var muted = sound.mute();
+      sound.mute(!muted);
+
+      if (muted) {
+        $(`.howler-volumetoggle-button[data-howler=${el.id}] i`).removeClass("fa-volume-mute").addClass("fa-volume-up");
+        $(`.howler-volume-slider[data-howler=${el.id}]`).val(sound.volume());
+      } else {
+        $(`.howler-volumetoggle-button[data-howler=${el.id}] i`).removeClass("fa-volume-up").addClass("fa-volume-mute");
+        $(`.howler-volume-slider[data-howler=${el.id}]`).val(0);
+      }
+    });
+
+    $(`.howler-volumedown-button[data-howler=${el.id}]`).on("mouseup", (e) => {
       updateVolume(Math.min(1, sound.volume() + 0.1));
     });
 
-    $(`.howler-volumeup-button[data-howler=${el.id}]`).on("mouseup", (el) => {
+    $(`.howler-volumeup-button[data-howler=${el.id}]`).on("mouseup", (e) => {
       updateVolume(Math.max(0, sound.volume() - 0.1));
     });
 
-    $(`.howler-volume-slider[data-howler=${el.id}]`).on("mouseup", (el) => {
-      updateVolume(Number(el.target.value), false);
+    $(`.howler-volume-slider[data-howler=${el.id}]`).on("mouseup", (e) => {
+      sound.mute(false);
+      $(`.howler-volumetoggle-button[data-howler=${el.id}] i`).removeClass("fa-volume-mute").addClass("fa-volume-up");
+      updateVolume(Number(e.target.value), false);
     });
 
     if (seek_slider.length) {
