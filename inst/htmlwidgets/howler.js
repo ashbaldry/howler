@@ -3,9 +3,9 @@ HTMLWidgets.widget({
   type: 'output',
 
   factory: function(el, width, height) {
-    var tracks, track_names, track_formats;
-    var sound;
-    let track_played = 0;
+    var tracks, track_names, track_formats, options, sound;
+    let current_track = 0;
+    let auto_continue = false;
 
     // Events on button clicks
     $(`.howler-play-button[data-howler=${el.id}]`).on("click", (el) => {
@@ -29,7 +29,9 @@ HTMLWidgets.widget({
     });
 
     $(`.howler-volume-slider[data-howler=${el.id}]`).on("mouseup", (el) => {
-      sound.volume(Number(el.target.value));
+      var volume = Number(el.target.value);
+      options.volume = volume;
+      sound.volume(volume);
     });
 
     // Shiny inputs
@@ -40,6 +42,7 @@ HTMLWidgets.widget({
 
     return {
       renderValue: function(x) {
+        auto_continue = x.auto_continue;
         if (Array.isArray(x.tracks)) {
           tracks = x.tracks;
           track_names = x.names;
@@ -54,10 +57,7 @@ HTMLWidgets.widget({
           }
         }
 
-        // TODO: code to render the widget, e.g.
-        el.innerHTML = `<div>THIS IS A TEST ${track_names[0]}</div>`;
-
-        var options = x.options;
+        options = x.options;
         options.src = tracks[0];
 
         if (!options.onload) {
@@ -88,6 +88,26 @@ HTMLWidgets.widget({
 
         if (!options.onend) {
           options.onend = function() {
+            if (tracks.length === 1) {
+              return;
+            }
+
+            if (current_track === tracks.length - 1) {
+              current_track = 0;
+            } else {
+              current_track = current_track + 1;
+            }
+
+            options.src = tracks[current_track];
+            if (track_formats) {
+              options.format = track_formats[current_track];
+            }
+
+            sound = new Howl(options);
+
+            if (auto_continue) {
+              sound.play();
+            }
           };
         }
 

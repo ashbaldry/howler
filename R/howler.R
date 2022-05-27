@@ -5,7 +5,7 @@
 #' @import htmlwidgets
 #'
 #' @export
-howler <- function(tracks, options = list(), track_formats = NULL,
+howler <- function(tracks, options = list(), track_formats = NULL, auto_continue = FALSE,
                    width = "100%", height = "100px", elementId = NULL) {
 
   if (!(is.null(track_formats) || length(tracks) == length(track_formats))) {
@@ -18,7 +18,14 @@ howler <- function(tracks, options = list(), track_formats = NULL,
     track_names <- names(track_names)
   }
 
-  settings <- list(tracks = unname(tracks), names = track_names, formats = track_formats, options = options)
+  settings <- list(
+    tracks = unname(tracks),
+    names = track_names,
+    formats = track_formats,
+    auto_continue = auto_continue,
+    options = options
+  )
+
   settings <- settings[!vapply(settings, is.null, logical(1))]
 
   htmlwidgets::createWidget(
