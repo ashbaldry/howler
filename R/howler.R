@@ -19,6 +19,7 @@ howler <- function(tracks, options = list(), track_formats = NULL,
   }
 
   settings <- list(tracks = unname(tracks), names = track_names, formats = track_formats, options = options)
+  settings <- settings[!vapply(settings, is.null, logical(1))]
 
   htmlwidgets::createWidget(
     name = "howler",
