@@ -66,3 +66,12 @@ renderHowler <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(expr) } # force quoted
   htmlwidgets::shinyRenderWidget(expr, howlerOutput, env, quoted = TRUE)
 }
+
+howler_html <- function(id, style, class, ...) {
+  tags$audio(
+    id = id,
+    style = style,
+    class = class,
+    ...
+  )
+}
