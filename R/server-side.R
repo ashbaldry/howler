@@ -41,9 +41,9 @@
 #' @name howlerServer
 #' @rdname howlerServer
 #' @export
-changeTrack <- function(session, id, file) {
+changeTrack <- function(session, id, track) {
   message_name <- paste0("changeHowlerTrack_", session$ns(id))
-  session$sendCustomMessage(message_name, list(id = id, file = file))
+  session$sendCustomMessage(message_name, track)
 }
 
 #' @param play_track Logical, should the new track be played on addition?

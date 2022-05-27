@@ -7,21 +7,23 @@ HTMLWidgets.widget({
     let current_track = 0;
     let auto_continue = false;
 
-    function chooseNextTrack (play_track = true, previous_track = false) {
-      if (previous_track) {
-        if (current_track === 0) {
-          current_track = tracks.length - 1;
-        } else {
-          current_track = current_track - 1;
-        }
+    function selectPreviousTrack() {
+      if (current_track === 0) {
+        current_track = tracks.length - 1;
       } else {
-        if (current_track === tracks.length - 1) {
-          current_track = 0;
-        } else {
-          current_track = current_track + 1;
-        }
+        current_track = current_track - 1;
       }
+    }
 
+    function selectNextTrack() {
+      if (current_track === tracks.length - 1) {
+        current_track = 0;
+      } else {
+        current_track = current_track + 1;
+      }
+    }
+
+    function startNewTrack (play_track = true) {
       options.src = tracks[current_track];
       if (track_formats) {
         options.format = track_formats[current_track];
@@ -29,12 +31,8 @@ HTMLWidgets.widget({
 
       sound = new Howl(options);
 
-
       if (play_track) {
         sound.play();
-        Shiny.setInputValue(`${el.id}_playing`, true);
-      } else {
-        Shiny.setInputValue(`${el.id}_playing`, false);
       }
 
       return;
@@ -59,16 +57,28 @@ HTMLWidgets.widget({
 
     $(`.howler-previous-button[data-howler=${el.id}]`).on("click", (el) => {
       sound.stop();
-      chooseNextTrack(play_track = true, previous_track = true);
+      selectPreviousTrack();
+      startNewTrack();
     });
 
     $(`.howler-next-button[data-howler=${el.id}]`).on("click", (el) => {
       sound.stop();
-      chooseNextTrack(play_track = true);
+      selectNextTrack();
+      startNewTrack();
     });
 
     Shiny.addCustomMessageHandler(`pauseHowler_${el.id}`, function(id) {
       sound.pause();
+    });
+
+    Shiny.addCustomMessageHandler(`changeHowlerTrack_${el.id}`, function(track) {
+      sound.stop();
+      if (isNaN(track)) {
+        current_track = track_names.indexOf(track);
+      } else {
+        current_track = Number(track) - 1;
+      }
+      startNewTrack();
     });
 
     $(`.howler-volume-slider[data-howler=${el.id}]`).on("mouseup", (el) => {
@@ -99,7 +109,7 @@ HTMLWidgets.widget({
 
         if (!options.onload) {
           options.onload = function() {
-            Shiny.setInputValue(`${el.id}_current_track`, tracks[0]);
+            Shiny.setInputValue(`${el.id}_track`, {name: track_names[current_track], id: current_track + 1});
             Shiny.setInputValue(`${el.id}_seek`, this.seek());
             Shiny.setInputValue(`${el.id}_duration`, this.duration());
             Shiny.setInputValue(`${el.id}_playing`, false);
@@ -130,7 +140,8 @@ HTMLWidgets.widget({
         if (!options.onend) {
           options.onend = function() {
             if (tracks.length > 1) {
-              chooseNextTrack(auto_continue);
+              selectNextTrack();
+              startNewTrack(auto_continue);
             }
           };
         }
@@ -159,7 +170,7 @@ HTMLWidgets.widget({
         // Shiny inputs
         if (x.seek_ping_rate > 0) {
           setInterval(() => {
-            Shiny.setInputValue(`${el.id}_seek`, Math.round(sound.seek() * 100) / 100);
+            Shiny.setInputValue(`${el.id}_seek`, Math.round(sound.seek() * 1000) / 1000);
           }, x.seek_ping_rate);
         }
       },
