@@ -38,6 +38,10 @@ HTMLWidgets.widget({
       return;
     }
 
+    $(document).on('shiny:disconnected', () => {
+      sound.stop();
+    });
+
     // Events on button clicks
     $(`.howler-play-button[data-howler=${el.id}]`).on("click", (el) => {
       sound.play();
@@ -74,8 +78,20 @@ HTMLWidgets.widget({
     });
 
     // Custom Message Handlers
+    Shiny.addCustomMessageHandler(`playHowler_${el.id}`, function(id) {
+      sound.play();
+    });
+
     Shiny.addCustomMessageHandler(`pauseHowler_${el.id}`, function(id) {
       sound.pause();
+    });
+
+    Shiny.addCustomMessageHandler(`stopHowler_${el.id}`, function(id) {
+      sound.stop();
+    });
+
+    Shiny.addCustomMessageHandler(`seekHowler_${el.id}`, function(time) {
+      sound.seek(time);
     });
 
     Shiny.addCustomMessageHandler(`changeHowlerTrack_${el.id}`, function(track) {

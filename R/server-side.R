@@ -87,5 +87,5 @@ stopHowl <- function(session, id) {
 #' @export
 seekHowl <- function(session, id, seek) {
   message_name <- paste0("seekHowler_", session$ns(id))
-  session$sendCustomMessage(message_name, list(id = id, time = as.numeric(seek)))
+  session$sendCustomMessage(message_name, as.numeric(seek))
 }
