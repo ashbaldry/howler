@@ -28,6 +28,10 @@ HTMLWidgets.widget({
       sound.pause();
     });
 
+    $(`.howler-volume-slider[data-howler=${el.id}]`).on("mouseup", (el) => {
+      sound.volume(Number(el.target.value));
+    });
+
     // Shiny inputs
     setInterval(() => {
       var trackSeek = sound.seek();
@@ -95,6 +99,15 @@ HTMLWidgets.widget({
 
         if (track_formats) {
           options.format = track_formats[0];
+        }
+
+        if (options.volume) {
+          $(`.howler-volume-slider[data-howler=${el.id}]`).val(options.volume);
+        } else {
+          var slider_volume = $(`.howler-volume-slider[data-howler=${el.id}]`).val();
+          if (slider_volume) {
+            options.volume = Number(slider_volume);
+          }
         }
 
         sound = new Howl(options);

@@ -34,7 +34,7 @@
 #' }
 #'
 #' @export
-howlerVolumeSlider <- function(id, volume = 0.7) {
+howlerVolumeSlider <- function(id, volume = 1) {
   if (volume < 0 || volume > 1) {
     stop("Volume must be between 0 and 1")
   }
@@ -43,7 +43,7 @@ howlerVolumeSlider <- function(id, volume = 0.7) {
     howlerVolumeToggleButton(id),
     tags$input(
       class = "howler-volume-slider",
-      id = paste0(id, "_volume_slider"),
+      `data-howler` = id,
       type = "range",
       min = 0,
       max = 1,
