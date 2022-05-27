@@ -7,6 +7,39 @@ HTMLWidgets.widget({
     let current_track = 0;
     let auto_continue = false;
 
+    function chooseNextTrack (play_track = true, previous_track = false) {
+      if (previous_track) {
+        if (current_track === 0) {
+          current_track = tracks.length - 1;
+        } else {
+          current_track = current_track - 1;
+        }
+      } else {
+        if (current_track === tracks.length - 1) {
+          current_track = 0;
+        } else {
+          current_track = current_track + 1;
+        }
+      }
+
+      options.src = tracks[current_track];
+      if (track_formats) {
+        options.format = track_formats[current_track];
+      }
+
+      sound = new Howl(options);
+
+
+      if (play_track) {
+        sound.play();
+        Shiny.setInputValue(`${el.id}_playing`, true);
+      } else {
+        Shiny.setInputValue(`${el.id}_playing`, false);
+      }
+
+      return;
+    }
+
     // Events on button clicks
     $(`.howler-play-button[data-howler=${el.id}]`).on("click", (el) => {
       sound.play();
@@ -22,6 +55,16 @@ HTMLWidgets.widget({
 
     $(`.howler-play_pause-button[data-howler=${el.id}]`).on("click", (el) => {
       sound.playing() ? sound.pause() : sound.play();
+    });
+
+    $(`.howler-previous-button[data-howler=${el.id}]`).on("click", (el) => {
+      sound.stop();
+      chooseNextTrack(play_track = true, previous_track = true);
+    });
+
+    $(`.howler-next-button[data-howler=${el.id}]`).on("click", (el) => {
+      sound.stop();
+      chooseNextTrack(play_track = true);
     });
 
     Shiny.addCustomMessageHandler(`pauseHowler_${el.id}`, function(id) {
@@ -59,55 +102,42 @@ HTMLWidgets.widget({
             Shiny.setInputValue(`${el.id}_current_track`, tracks[0]);
             Shiny.setInputValue(`${el.id}_seek`, this.seek());
             Shiny.setInputValue(`${el.id}_duration`, this.duration());
+            Shiny.setInputValue(`${el.id}_playing`, false);
           };
         }
 
         if (!options.onpause) {
           options.onpause = function() {
             $(`.howler-play_pause-button[data-howler=${el.id}] i`).removeClass("fa-pause").addClass("fa-play");
+            Shiny.setInputValue(`${el.id}_playing`, false);
           };
         }
 
         if (!options.onstop) {
           options.onstop = function() {
             $(`.howler-play_pause-button[data-howler=${el.id}] i`).removeClass("fa-pause").addClass("fa-play");
+            Shiny.setInputValue(`${el.id}_playing`, false);
           };
         }
 
         if (!options.onplay) {
           options.onplay = function() {
             $(`.howler-play_pause-button[data-howler=${el.id}] i`).removeClass("fa-play").addClass("fa-pause");
+            Shiny.setInputValue(`${el.id}_playing`, true);
           };
         }
 
         if (!options.onend) {
           options.onend = function() {
-            if (tracks.length === 1) {
-              return;
-            }
-
-            if (current_track === tracks.length - 1) {
-              current_track = 0;
-            } else {
-              current_track = current_track + 1;
-            }
-
-            options.src = tracks[current_track];
-            if (track_formats) {
-              options.format = track_formats[current_track];
-            }
-
-            sound = new Howl(options);
-
-            if (auto_continue) {
-              sound.play();
+            if (tracks.length > 1) {
+              chooseNextTrack(auto_continue);
             }
           };
         }
 
         if (!options.onseek) {
           options.onseek = function() {
-            Shiny.setInputValue(`${el.id}_seek`, this.seek());
+            Shiny.setInputValue(`${el.id}_seek`, sound.seek());
           };
         }
 
