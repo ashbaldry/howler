@@ -30,7 +30,6 @@ ui <- fluidPage(
     "/",
     textOutput("sound_duration", container = tags$strong, inline = TRUE)
   ),
-
   actionButton("add_track", "Add New Track")
 )
 

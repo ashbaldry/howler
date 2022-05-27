@@ -10,7 +10,7 @@ ui <- fluidPage(
   useHowlerJS(),
 
   h3("Howler Example"),
-  howlerPlayer("sound", audio_files),
+  howler(elementId = "sound", audio_files),
   howlerSeekSlider("sound"),
   howlerPreviousButton("sound"),
   howlerBackButton("sound"),
@@ -58,8 +58,7 @@ server <- function(input, output, session) {
   })
 
   output$sound_track <- renderText({
-    req(input$sound_track)
-    sub("\\.\\w+$", "", basename(input$sound_track))
+    input$sound_track$name
   })
 }
 
