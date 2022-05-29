@@ -3,3 +3,7 @@ dependencies:
     version: 2.2.3
     src: htmlwidgets/howler
     script: howler.min.js
+  - name: howler-css
+    version: 0.1.0
+    src: htmlwidgets/howler-css
+    stylesheet: howler.css
