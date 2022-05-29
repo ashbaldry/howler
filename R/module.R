@@ -49,7 +49,7 @@ howlerModuleUI <- function(id, files, ..., include_current_track = TRUE, width =
   div(
     class = "howler-module",
     style = paste0("width:", width, ";"),
-    howlerPlayer(howler_id, files, ...),
+    howler(elementId = howler_id, tracks = files, ...),
     div(
       class = "howler-module-container",
       if (include_current_track) howlerCurrentTrack(howler_id),
