@@ -22,9 +22,8 @@ if (interactive()) {
 
   ui <- fluidPage(
     title = "howler.js Player",
-    useHowlerJS(),
+    howler(elementId = "sound", "audio/sound.mp3"),
     howlerCurrentTrack("sound"),
-    howlerPlayer("sound", "audio/sound.mp3"),
     howlerPlayPauseButton("sound")
   )
 

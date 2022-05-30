@@ -8,7 +8,7 @@ audio_files <- file.path("sample_audio", list.files(audio_files_dir, ".mp3$"))
 ui <- fluidPage(
   title = "howler Module Example",
   h3("howler Module Example"),
-  howlerModuleUI("sound", audio_files)
+  howlerModuleUI("sound", audio_files, include_current_track = TRUE)
 )
 
 server <- function(input, output, session) {

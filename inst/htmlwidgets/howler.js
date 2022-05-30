@@ -206,6 +206,7 @@ HTMLWidgets.widget({
               seek_slider.attr("value", 0);
             }
 
+            $(`.howler-current-track[data-howler="${el.id}"]`).html(track_names[current_track]);
             Shiny.setInputValue(`${el.id}_track`, {name: track_names[current_track], id: current_track + 1});
             Shiny.setInputValue(`${el.id}_seek`, this.seek());
             Shiny.setInputValue(`${el.id}_duration`, this.duration());

@@ -1,14 +1,14 @@
 library(shiny)
 library(howler)
 
+base64_file <- readLines("audio.txt")
+print(base64_file)
+
 ui <- fluidPage(
   title = "howler Base64 Example",
-  useHowlerJS(),
 
-  h3("howler Base64 Example"),
-  howlerPlayer("sound", readLines("audio.txt")),
-  howlerPlayPauseButton("sound"),
-  tags$br(),
+  h1("howler Base64 Example"),
+  howler(elementId = "sound", list(sound = base64_file)),
   actionButton("play", "Play Sound")
 )
 

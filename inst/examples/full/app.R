@@ -7,8 +7,6 @@ audio_files <- file.path("sample_audio", list.files(audio_files_dir, ".mp3$"))
 
 ui <- fluidPage(
   title = "howler Example",
-  useHowlerJS(),
-
   h3("Howler Example"),
   howler(elementId = "sound", audio_files),
   howlerSeekSlider("sound"),

@@ -52,8 +52,7 @@
 #'
 #'   ui <- fluidPage(
 #'     tile = "howler.js Player",
-#'     useHowlerJS(),
-#'     howlerPlayer("howler", "audio/sound.mp3"),
+#'     howler(elementId = "howler", "audio/sound.mp3"),
 #'     howlerPreviousButton("howler"),
 #'     howlerBackButton("howler"),
 #'     howlerPlayPauseButton("howler"),

@@ -21,7 +21,6 @@
 #'
 #'   ui <- fluidPage(
 #'     title = "howler.js Player",
-#'     useHowlerJS(),
 #'     howlerPlayer("sound", "audio/sound.mp3"),
 #'     howlerPlayPauseButton("sound"),
 #'     howlerVolumeSlider("sound")
@@ -70,7 +69,6 @@ howlerVolumeSlider <- function(id, volume = 1) {
 #'
 #'   ui <- fluidPage(
 #'     title = "howler.js Player",
-#'     useHowlerJS(),
 #'     howlerPlayer("sound", "audio/sound.mp3"),
 #'     howlerPlayPauseButton("sound"),
 #'     howlerSeekSlider("sound")

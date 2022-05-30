@@ -15,33 +15,32 @@
 \alias{howlerVolumeToggleButton}
 \title{Audio Buttons}
 \usage{
-howlerButton(id, button_type = HOWLER_BUTTON_TYPES, ...)
+howlerButton(howler_id, button_type = HOWLER_BUTTON_TYPES, ...)
 
-howlerPlayButton(id)
+howlerPlayButton(howler_id)
 
-howlerPauseButton(id)
+howlerPauseButton(howler_id)
 
-howlerPlayPauseButton(id)
+howlerPlayPauseButton(howler_id)
 
-howlerStopButton(id)
+howlerStopButton(howler_id)
 
-howlerBackButton(id, seek_change = 10)
+howlerBackButton(howler_id, seek_change = 10)
 
-howlerForwardButton(id, seek_change = 10)
+howlerForwardButton(howler_id, seek_change = 10)
 
-howlerPreviousButton(id)
+howlerPreviousButton(howler_id)
 
-howlerNextButton(id)
+howlerNextButton(howler_id)
 
-howlerVolumeUpButton(id, volume_change = 0.1)
+howlerVolumeUpButton(howler_id, volume_change = 0.1)
 
-howlerVolumeDownButton(id, volume_change = 0.1)
+howlerVolumeDownButton(howler_id, volume_change = 0.1)
 
-howlerVolumeToggleButton(id)
+howlerVolumeToggleButton(howler_id)
 }
 \arguments{
-\item{id}{ID given to the button. For it to work with \code{\link{howlerPlayer}}, the ID
-must match that of the \code{howlerPlayer}.}
+\item{howler_id}{ID given to the \code{\link{howler}} player.}
 
 \item{button_type}{Type of button to create. Available buttons are in the details, default set to \code{play_pause}.}
 
@@ -99,8 +98,7 @@ if (interactive()) {
 
   ui <- fluidPage(
     tile = "howler.js Player",
-    useHowlerJS(),
-    howlerPlayer("howler", "audio/sound.mp3"),
+    howler(elementId = "howler", "audio/sound.mp3"),
     howlerPreviousButton("howler"),
     howlerBackButton("howler"),
     howlerPlayPauseButton("howler"),

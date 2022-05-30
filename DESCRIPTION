@@ -1,7 +1,7 @@
 Package: howler
 Type: Package
 Title: Shiny Extension of 'howler.js'
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: c(
     person("Ashley", "Baldry", email = "arbaldry91@gmail.com", role = c("aut", "cre")),
     person("James", "Simpson", role = "aut", comment = "Creator of howler.js")

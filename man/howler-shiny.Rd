@@ -6,7 +6,7 @@
 \alias{renderHowler}
 \title{Shiny bindings for howler}
 \usage{
-howlerOutput(outputId, width = "100\%", height = "400px")
+howlerOutput(outputId, width = "0", height = "0")
 
 renderHowler(expr, env = parent.frame(), quoted = FALSE)
 }

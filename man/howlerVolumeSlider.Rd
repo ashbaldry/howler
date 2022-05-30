@@ -4,7 +4,7 @@
 \alias{howlerVolumeSlider}
 \title{Volume Slider}
 \usage{
-howlerVolumeSlider(id, volume = 0.7)
+howlerVolumeSlider(id, volume = 1)
 }
 \arguments{
 \item{id}{ID given to the volume slider. For it to work with the \code{\link{howlerPlayer}}, the ID
@@ -29,7 +29,6 @@ if (interactive()) {
 
   ui <- fluidPage(
     title = "howler.js Player",
-    useHowlerJS(),
     howlerPlayer("sound", "audio/sound.mp3"),
     howlerPlayPauseButton("sound"),
     howlerVolumeSlider("sound")

@@ -15,9 +15,8 @@
 #'
 #'   ui <- fluidPage(
 #'     title = "howler.js Player",
-#'     useHowlerJS(),
+#'     howler(elementId = "sound", "audio/sound.mp3"),
 #'     howlerCurrentTrack("sound"),
-#'     howlerPlayer("sound", "audio/sound.mp3"),
 #'     howlerPlayPauseButton("sound")
 #'   )
 #'
@@ -29,5 +28,5 @@
 #'
 #' @export
 howlerCurrentTrack <- function(id) {
-  div(class = "howler-current-track", id = paste0(id, "_current_track"))
+  div(class = "howler-current-track", `data-howler` = id)
 }

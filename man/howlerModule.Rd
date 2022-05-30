@@ -43,7 +43,6 @@ current position of the track being played and the duration of the track.
 if (interactive()) {
   ui <- fluidPage(
     title = "howler.js Module",
-    useHowlerJS(),
     howlerModuleUI("howl", c("audio/track1.mp3", "audio/track2.mp3"))
   )
 

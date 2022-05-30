@@ -12,7 +12,7 @@
 #'
 #' @param session Shiny session
 #' @param id ID of the \code{howlerPlayer} to update
-#' @param file Base name of the file to change to. If the file is not included in the player nothing will happen.
+#' @param track Base name of the file to change to. If the file is not included in the player nothing will happen.
 #'
 #' @examples
 #' if (interactive()) {
