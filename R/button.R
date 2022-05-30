@@ -1,7 +1,7 @@
 #' Audio Buttons
 #'
 #' @description
-#' Buttons that can be used to interact with the \code{\link{howlerPlayer}}.
+#' Buttons that can be used to interact with the \code{\link{howler}}.
 #'
 #' \code{howlerPlayButton}, \code{howlerPauseButton}, \code{howlerPlayPauseButton} and
 #' \code{howlerStopButton} will all be applied to the current track.

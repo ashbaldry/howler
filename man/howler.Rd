@@ -9,27 +9,31 @@ howler(
   options = list(),
   track_formats = NULL,
   auto_continue = FALSE,
+  auto_loop = FALSE,
   seek_ping_rate = 1000,
   elementId = NULL
 )
 }
 \arguments{
-\item{tracks}{Files that will be used in the player. This can either be a single vector, or a list where different
-formats of the same file are kept in each element of the list}
+\item{tracks}{A named vector of file paths to sounds. If multiple file extensions are included, then use a named
+list instead, with each list item containing each extension of the sound.}
 
 \item{options}{A named list of options to add to the player. For a full list of options see
 \url{https://github.com/goldfire/howler.js}}
+
+\item{track_formats}{An optional list of formats of the sounds. By default 'howler' will guess the format to
+play in. Must be the same length as tracks}
+
+\item{auto_continue}{If there are multiple files, would you like to auto play the next file after the current
+one has finished? Defaults to \code{TRUE}}
+
+\item{auto_loop}{Once all files have been played, would you like to restart playing the playlist?
+Defaults to \code{FALSE}}
 
 \item{seek_ping_rate}{Number of milliseconds between each update of `input$\{id\}_seek` while playing. Default is
 set to 1000. If set to 0, then `input$\{id\}_seek` will not exist.}
 
 \item{elementId}{HTML id tag to be given to the howler player element}
-
-\item{autoplay_next}{If there are multiple files, would you like to auto play the next file after the current
-one has finished? Defaults to \code{TRUE}}
-
-\item{autoplay_loop}{Once all files have been played, would you like to restart playing the playlist?
-Defaults to \code{FALSE}}
 }
 \value{
 A shiny.tag containing all of the required options for a \code{Howl} JS object to be initialised in a shiny application.
@@ -58,7 +62,7 @@ if (interactive()) {
 
   ui <- fluidPage(
     title = "howler.js Player",
-    howler(elementId = "howler", "audio/sound.mp3"),
+    howler(elementId = "howler", c(sound = "audio/sound.mp3")),
     howlerPlayPauseButton("howler")
   )
 

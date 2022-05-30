@@ -4,13 +4,15 @@
 #' \code{howler} is used to initialise the 'howler.js' framework by adding all of the specified tracks to the
 #' player, and can be run by either including UI buttons or server-side actions.
 #'
-#' @param tracks Files that will be used in the player. This can either be a single vector, or a list where different
-#' formats of the same file are kept in each element of the list
+#' @param tracks A named vector of file paths to sounds. If multiple file extensions are included, then use a named
+#' list instead, with each list item containing each extension of the sound.
 #' @param options A named list of options to add to the player. For a full list of options see
 #' \url{https://github.com/goldfire/howler.js}
-#' @param autoplay_next If there are multiple files, would you like to auto play the next file after the current
+#' @param track_formats An optional list of formats of the sounds. By default 'howler' will guess the format to
+#' play in. Must be the same length as tracks
+#' @param auto_continue If there are multiple files, would you like to auto play the next file after the current
 #' one has finished? Defaults to \code{TRUE}
-#' @param autoplay_loop Once all files have been played, would you like to restart playing the playlist?
+#' @param auto_loop Once all files have been played, would you like to restart playing the playlist?
 #' Defaults to \code{FALSE}
 #' @param seek_ping_rate Number of milliseconds between each update of `input$\{id\}_seek` while playing. Default is
 #' set to 1000. If set to 0, then `input$\{id\}_seek` will not exist.
@@ -39,7 +41,7 @@
 #'
 #'   ui <- fluidPage(
 #'     title = "howler.js Player",
-#'     howler(elementId = "howler", "audio/sound.mp3"),
+#'     howler(elementId = "howler", c(sound = "audio/sound.mp3")),
 #'     howlerPlayPauseButton("howler")
 #'   )
 #'
@@ -63,13 +65,18 @@
 #' @seealso \code{\link{howlerButton}}, \code{\link{howlerServer}}
 #'
 #' @import htmlwidgets
+#' @import shiny
 #'
 #' @export
 howler <- function(tracks, options = list(), track_formats = NULL,
-                   auto_continue = FALSE, seek_ping_rate = 1000, elementId = NULL) {
+                   auto_continue = FALSE, auto_loop = FALSE, seek_ping_rate = 1000, elementId = NULL) {
 
   if (!(is.null(track_formats) || length(tracks) == length(track_formats))) {
     stop("Track formats must be the same length as tracks")
+  }
+
+  if (seek_ping_rate < 0) {
+    stop("Seek ping rate cannot be negative")
   }
 
   if (is.null(names(tracks))) {
@@ -79,10 +86,11 @@ howler <- function(tracks, options = list(), track_formats = NULL,
   }
 
   settings <- list(
-    tracks = unname(tracks),
+    tracks = as.list(unname(tracks)),
     names = track_names,
     formats = track_formats,
     auto_continue = auto_continue,
+    auto_loop = auto_loop,
     seek_ping_rate = seek_ping_rate,
     options = options
   )

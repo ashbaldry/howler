@@ -12,6 +12,6 @@ URL: https://github.com/ashbaldry/howler, https://github.com/goldfire/howler.js
 BugReports: https://github.com/ashbaldry/howler/issues
 Encoding: UTF-8
 Imports: shiny, jsonlite, htmlwidgets
-Suggests: rmarkdown, knitr, shinytest, testthat (>= 3.0.0)
+Suggests: rmarkdown, knitr, shinytest2, globals, testthat (>= 3.0.0)
 Language: en-GB
 RoxygenNote: 7.1.2

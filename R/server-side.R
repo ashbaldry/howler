@@ -11,7 +11,7 @@
 #' \code{addTrack} will add a new track to the specified player.
 #'
 #' @param session Shiny session
-#' @param id ID of the \code{howlerPlayer} to update
+#' @param id ID of the \code{howler} to update
 #' @param track Base name of the file to change to. If the file is not included in the player nothing will happen.
 #'
 #' @examples
@@ -24,7 +24,7 @@
 #'     title = "howler.js Player",
 #'     useHowlerJS(),
 #'     selectInput("track", "Select Track", basename(tracks)),
-#'     howlerPlayer("howler", tracks),
+#'     howler(elementId = "howler", tracks),
 #'     howlerPlayPauseButton("howler")
 #'   )
 #'
@@ -36,7 +36,7 @@
 #' }
 #'
 #' @return
-#' Updates the the state of the specified \code{howlerPlayer} in the shiny application.
+#' Updates the the state of the specified \code{howler} in the shiny application.
 #'
 #' @name howlerServer
 #' @rdname howlerServer

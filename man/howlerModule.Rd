@@ -16,7 +16,7 @@ howlerModuleServer(id)
 \item{files}{Files that will be used in the player. This can either be a single vector, or a list where different
 formats of the same file are kept in each element of the list.}
 
-\item{...}{Further arguments to send to \code{\link{howlerPlayer}}}
+\item{...}{Further arguments to send to \code{\link{howler}}}
 
 \item{include_current_track}{Logical, should the current track be included in the UI of the module?}
 
@@ -28,7 +28,6 @@ and a volume slider.
 
 The server-side module will return a list of reactive objects:
 \describe{
-\item{previous_track,play_pause,next_track}{Values tracking the pressing of the module buttons}
 \item{playing}{Logical value whether or not the player is currently playing}
 \item{track}{Name of the track currently loaded}
 \item{duration}{Duration (in seconds) of the track currently loaded}

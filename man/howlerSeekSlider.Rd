@@ -7,15 +7,15 @@
 howlerSeekSlider(id)
 }
 \arguments{
-\item{id}{ID given to the volume slider. For it to work with the \code{howlerPlayer}, the ID
-must match that of the \code{howlerPlayer}.}
+\item{id}{ID given to the volume slider. For it to work with the \code{howler}, the ID
+must match that of the \code{howler}.}
 }
 \value{
 A slider element of class \code{howler-seek-slider} that will display the position of the current track
 playing.
 }
 \description{
-A UI element that can be included with a \code{\link{howlerPlayer}} to manually change the location of the track.
+A UI element that can be included with a \code{\link{howler}} to manually change the location of the track.
 }
 \examples{
 if (interactive()) {
@@ -23,7 +23,7 @@ if (interactive()) {
 
   ui <- fluidPage(
     title = "howler.js Player",
-    howlerPlayer("sound", "audio/sound.mp3"),
+    howler(elementId = "sound", "audio/sound.mp3"),
     howlerPlayPauseButton("sound"),
     howlerSeekSlider("sound")
   )

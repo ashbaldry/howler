@@ -6,6 +6,7 @@ HTMLWidgets.widget({
     var tracks, track_names, track_formats, options, sound;
     let current_track = 0;
     let auto_continue = false;
+    let auto_loop = false;
     let not_changing_seek = true;
     const seek_slider = $(`.howler-seek-slider[data-howler=${el.id}]`);
 
@@ -72,13 +73,13 @@ HTMLWidgets.widget({
     $(`.howler-previous-button[data-howler=${el.id}]`).on("click", (e) => {
       sound.stop();
       selectPreviousTrack();
-      startNewTrack();
+      startNewTrack(auto_continue);
     });
 
     $(`.howler-next-button[data-howler=${el.id}]`).on("click", (e) => {
       sound.stop();
       selectNextTrack();
-      startNewTrack();
+      startNewTrack(auto_continue);
     });
 
     $(`.howler-back-button[data-howler=${el.id}]`).on("click", (e) => {
@@ -177,6 +178,8 @@ HTMLWidgets.widget({
     return {
       renderValue: function(x) {
         auto_continue = x.auto_continue;
+        auto_loop = x.auto_loop;
+
         if (Array.isArray(x.tracks)) {
           tracks = x.tracks;
           track_names = x.names;
@@ -237,10 +240,19 @@ HTMLWidgets.widget({
 
         if (!options.onend) {
           options.onend = function() {
+            $(`.howler-play_pause-button[data-howler=${el.id}] i`).removeClass("fa-pause").addClass("fa-play");
+
             if (tracks.length > 1) {
               selectNextTrack();
-              startNewTrack(auto_continue);
             }
+
+            var play_track;
+            if (current_track === 0) {
+              play_track = auto_loop;
+            } else {
+              play_track = auto_continue;
+            }
+            startNewTrack(play_track);
           };
         }
 

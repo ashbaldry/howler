@@ -1,21 +1,35 @@
 testthat::context("Shiny Application Tests")
 
 testthat::test_that("howlerModule works", {
-  example_app <- system.file("examples/module", package = "howler")
-  howler_module_app <- tryCatch(shinytest::ShinyDriver$new(example_app, 3000), error = function(e) NULL)
-  testthat::skip_if(is.null(howler_module_app), "Unable to initialise application")
-  on.exit(howler_module_app$stop())
+  # Don't run these tests on the CRAN build servers
+  testthat::skip_on_cran()
 
-  testthat::expect_error(howler_module_app$findElement("#sound-howler"), NA)
-  testthat::expect_error(howler_module_app$click("sound-howler_play_pause"), NA)
-})
+  audio_files_dir <- system.file("examples/_audio", package = "howler")
+  addResourcePath("sample_audio", audio_files_dir)
+  audio_files <- file.path("sample_audio", list.files(audio_files_dir, ".mp3$"))
 
-testthat::test_that("Server-side functions work", {
-  example_app <- system.file("examples/server", package = "howler")
-  howler_module_app <- tryCatch(shinytest::ShinyDriver$new(example_app, 3000), error = function(e) NULL)
-  testthat::skip_if(is.null(howler_module_app), "Unable to initialise application")
-  on.exit(howler_module_app$stop())
+  ui <- fluidPage(
+    howlerModuleUI(NULL, audio_files)
+  )
 
-  testthat::expect_error(howler_module_app$findElement("#sound"), NA)
-  testthat::expect_error(howler_module_app$click("sound_play_pause"), NA)
+  server <- function(input, output, session) {
+    howlerModuleServer(NULL)
+  }
+
+  app <- shinytest2::AppDriver$new(shinyApp(ui, server), name = "howler_app")
+  on.exit(app$stop())
+
+  Sys.sleep(1)
+
+  testthat::expect_false(app$get_value(input = "howler_playing"))
+  testthat::expect_equal(app$get_value(input = "howler_seek"), 0)
+  testthat::expect_gte(app$get_value(input = "howler_duration"), 0)
+
+  first_track <- list(name = sub(".mp3", "", basename(audio_files[1])), id = 1)
+  testthat::expect_equal(app$get_value(input = "howler_track"), first_track)
+
+  app$click(selector = ".howler-next-button")
+  Sys.sleep(0.5)
+  second_track <- list(name = sub(".mp3", "", basename(audio_files[2])), id = 2)
+  testthat::expect_equal(app$get_value(input = "howler_track"), second_track)
 })
