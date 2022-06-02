@@ -1,5 +1,5 @@
 library(testthat)
-library(shinytest)
+library(shinytest2)
 library(howler)
 
 test_check("howler")

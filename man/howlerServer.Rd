@@ -10,9 +10,9 @@
 \alias{seekHowl}
 \title{Update howler.js Server-Side}
 \usage{
-changeTrack(session, id, file)
+changeTrack(session, id, track)
 
-addTrack(session, id, file, play_track = FALSE)
+addTrack(session, id, track, play_track = FALSE)
 
 playHowl(session, id)
 
@@ -25,16 +25,16 @@ seekHowl(session, id, seek)
 \arguments{
 \item{session}{Shiny session}
 
-\item{id}{ID of the \code{howlerPlayer} to update}
+\item{id}{ID of the \code{howler} to update}
 
-\item{file}{Base name of the file to change to. If the file is not included in the player nothing will happen.}
+\item{track}{Base name of the file to change to. If the file is not included in the player nothing will happen.}
 
 \item{play_track}{Logical, should the new track be played on addition?}
 
 \item{seek}{Time (in seconds) to set the position of the track}
 }
 \value{
-Updates the the state of the specified \code{howlerPlayer} in the shiny application.
+Updates the the state of the specified \code{howler} in the shiny application.
 }
 \description{
 Change the state of the howler player from the server.
@@ -56,7 +56,7 @@ if (interactive()) {
     title = "howler.js Player",
     useHowlerJS(),
     selectInput("track", "Select Track", basename(tracks)),
-    howlerPlayer("howler", tracks),
+    howler(elementId = "howler", tracks),
     howlerPlayPauseButton("howler")
   )
 

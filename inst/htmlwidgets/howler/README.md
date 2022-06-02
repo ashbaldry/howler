@@ -92,7 +92,7 @@ const {Howl, Howler} = require('howler');
 
 Included distribution files:
 
-* **howler**: This is the default and fully bundled source the includes `howler.core` and `howler.spatial`. It inclues all functionality that howler comes with.
+* **howler**: This is the default and fully bundled source that includes `howler.core` and `howler.spatial`. It includes all functionality that howler comes with.
 * **howler.core**: This includes only the core functionality that aims to create parity between Web Audio and HTML5 Audio. It doesn't include any of the spatial/stereo audio functionality.
 * **howler.spatial**: This is a plugin that adds spatial/stereo audio functionality. It requires `howler.core` to operate as it is simply an add-on to the core.
 
@@ -260,7 +260,7 @@ Fires when the sound is unable to load. The first parameter is the ID of the sou
 The load error codes are [defined in the spec](http://dev.w3.org/html5/spec-author-view/spec.html#mediaerror):
 * **1** - The fetching process for the media resource was aborted by the user agent at the user's request.
 * **2** - A network error of some description caused the user agent to stop fetching the media resource, after the resource was established to be usable.
-* **3** - An error of some description occured while decoding the media resource, after the resource was established to be usable.
+* **3** - An error of some description occurred while decoding the media resource, after the resource was established to be usable.
 * **4** - The media resource indicated by the src attribute or assigned media provider object was not suitable.
 #### onplayerror `Function`
 Fires when the sound is unable to play. The first parameter is the ID of the sound and the second is the error message/code.
@@ -480,7 +480,7 @@ Get/set the direction the listener is pointing in the 3D cartesian space. A fron
 
 
 ### Group Playback
-Each `new Howl()` instance is also a group. You can play multiple sounds from the `Howl` and control them individually or as a group. For example, the following plays two sounds from a sprite, changes their volume together and then pauses both of them at the same time.
+Each `new Howl()` instance is also a group. You can play multiple sound instances from the `Howl` and control them individually or as a group (note: each `Howl` can only contain a single audio file). For example, the following plays two sounds from a sprite, changes their volume together and then pauses both of them at the same time.
 
 ```javascript
 var sound = new Howl({
@@ -552,8 +552,13 @@ If you want your `webm` files to be seekable in Firefox, be sure to encode them 
 ffmpeg -i sound1.wav -dash 1 sound1.webm
 ```
 
+### Sponsors
+Support the ongoing development of howler.js and get your logo on our README with a link to your site [[become a sponsor](https://github.com/sponsors/goldfire)]. You can also become a backer at a lower tier and get your name in the [BACKERS](https://github.com/goldfire/howler.js/blob/master/BACKERS.md) list. All support is greatly appreciated!
+
+[![GoldFire Studios](https://s3.amazonaws.com/howler.js/sponsors/goldfire_studios.png "GoldFire Studios")](https://goldfirestudios.com)
+
 ### License
 
-Copyright (c) 2013-2020 [James Simpson](https://twitter.com/GoldFireStudios) and [GoldFire Studios, Inc.](http://goldfirestudios.com)
+Copyright (c) 2013-2021 [James Simpson](https://twitter.com/GoldFireStudios) and [GoldFire Studios, Inc.](http://goldfirestudios.com)
 
 Released under the [MIT License](https://github.com/goldfire/howler.js/blob/master/LICENSE.md).

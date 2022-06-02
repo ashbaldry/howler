@@ -4,11 +4,11 @@
 \alias{howlerVolumeSlider}
 \title{Volume Slider}
 \usage{
-howlerVolumeSlider(id, volume = 0.7)
+howlerVolumeSlider(id, volume = 1)
 }
 \arguments{
-\item{id}{ID given to the volume slider. For it to work with the \code{\link{howlerPlayer}}, the ID
-must match that of the \code{howlerPlayer}.}
+\item{id}{ID given to the volume slider. For it to work with the \code{\link{howler}}, the ID
+must match that of the \code{howler}.}
 
 \item{volume}{Initial volume to set the player at. Defaults at 70\%}
 }
@@ -16,7 +16,7 @@ must match that of the \code{howlerPlayer}.}
 A volume slider with a \code{\link{howlerVolumeDownButton}} and a \code{\link{howlerVolumeUpButton}} either side.
 }
 \description{
-A more user friendly way to adjust the volume of the \code{howlerPlayer} than by using buttons. There are
+A more user friendly way to adjust the volume of the \code{howler} than by using buttons. There are
 still volume up/down buttons, but a slider can be moved up/down as required.
 }
 \details{
@@ -29,8 +29,7 @@ if (interactive()) {
 
   ui <- fluidPage(
     title = "howler.js Player",
-    useHowlerJS(),
-    howlerPlayer("sound", "audio/sound.mp3"),
+    howler(elementId = "sound", "audio/sound.mp3"),
     howlerPlayPauseButton("sound"),
     howlerVolumeSlider("sound")
   )

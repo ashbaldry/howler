@@ -12,16 +12,8 @@ testthat::test_that("howlerModuleUI passes with 1 file", {
   testthat::expect_error(howlerModuleUI("test", "test.mp3"), NA)
 })
 
-testthat::test_that("howlerPlayer passes with multiple files", {
+testthat::test_that("howlerModuleUI passes with multiple files", {
   testthat::expect_error(howlerModuleUI("test", rep("test.mp3", 3)), NA)
-})
-
-testthat::test_that("howlerModuleUI errors when volume is negative", {
-  testthat::expect_error(howlerModuleUI("test", "test.mp3", volume = -1))
-})
-
-testthat::test_that("howlerModuleUI errors when volume is greater than 1", {
-  testthat::expect_error(howlerModuleUI("test", "test.mp3", volume = 2))
 })
 
 testthat::test_that("howlerModuleUI errors when seek rate is negative", {

@@ -11,8 +11,8 @@
 #' \code{addTrack} will add a new track to the specified player.
 #'
 #' @param session Shiny session
-#' @param id ID of the \code{howlerPlayer} to update
-#' @param file Base name of the file to change to. If the file is not included in the player nothing will happen.
+#' @param id ID of the \code{howler} to update
+#' @param track Base name of the file to change to. If the file is not included in the player nothing will happen.
 #'
 #' @examples
 #' if (interactive()) {
@@ -24,7 +24,7 @@
 #'     title = "howler.js Player",
 #'     useHowlerJS(),
 #'     selectInput("track", "Select Track", basename(tracks)),
-#'     howlerPlayer("howler", tracks),
+#'     howler(elementId = "howler", tracks),
 #'     howlerPlayPauseButton("howler")
 #'   )
 #'
@@ -36,44 +36,56 @@
 #' }
 #'
 #' @return
-#' Updates the the state of the specified \code{howlerPlayer} in the shiny application.
+#' Updates the the state of the specified \code{howler} in the shiny application.
 #'
 #' @name howlerServer
 #' @rdname howlerServer
 #' @export
-changeTrack <- function(session, id, file) {
-  session$sendCustomMessage("changeHowlerTrack", list(id = id, file = file))
+changeTrack <- function(session, id, track) {
+  message_name <- paste0("changeHowlerTrack_", session$ns(id))
+  session$sendCustomMessage(message_name, track)
 }
 
 #' @param play_track Logical, should the new track be played on addition?
 #'
 #' @rdname howlerServer
 #' @export
-addTrack <- function(session, id, file, play_track = FALSE) {
-  session$sendCustomMessage("addHowlerTrack", list(id = id, file = file, play = play_track))
+addTrack <- function(session, id, track, play_track = FALSE) {
+  if (is.null(names(track))) {
+    track_name <- sub("\\.[^\\.]+$", "", basename(track[1]))
+  } else {
+    track_name <- names(track)
+  }
+
+  message_name <- paste0("addHowlerTrack_", session$ns(id))
+  session$sendCustomMessage(message_name, list(track = track, track_name = track_name, play = play_track))
 }
 
 #' @rdname howlerServer
 #' @export
 playHowl <- function(session, id) {
-  session$sendCustomMessage("playHowler", id)
+  message_name <- paste0("playHowler_", session$ns(id))
+  session$sendCustomMessage(message_name, id)
 }
 
 #' @rdname howlerServer
 #' @export
 pauseHowl <- function(session, id) {
-  session$sendCustomMessage("pauseHowler", id)
+  message_name <- paste0("pauseHowler_", session$ns(id))
+  session$sendCustomMessage(message_name, id)
 }
 
 #' @rdname howlerServer
 #' @export
 stopHowl <- function(session, id) {
-  session$sendCustomMessage("stopHowler", id)
+  message_name <- paste0("stopHowler_", session$ns(id))
+  session$sendCustomMessage(message_name, id)
 }
 
 #' @param seek Time (in seconds) to set the position of the track
 #' @rdname howlerServer
 #' @export
 seekHowl <- function(session, id, seek) {
-  session$sendCustomMessage("seekHowler", list(id = id, time = as.numeric(seek)))
+  message_name <- paste0("seekHowler_", session$ns(id))
+  session$sendCustomMessage(message_name, as.numeric(seek))
 }

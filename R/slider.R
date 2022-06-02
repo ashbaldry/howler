@@ -1,11 +1,11 @@
 #' Volume Slider
 #'
 #' @description
-#' A more user friendly way to adjust the volume of the \code{howlerPlayer} than by using buttons. There are
+#' A more user friendly way to adjust the volume of the \code{howler} than by using buttons. There are
 #' still volume up/down buttons, but a slider can be moved up/down as required.
 #'
-#' @param id ID given to the volume slider. For it to work with the \code{\link{howlerPlayer}}, the ID
-#' must match that of the \code{howlerPlayer}.
+#' @param id ID given to the volume slider. For it to work with the \code{\link{howler}}, the ID
+#' must match that of the \code{howler}.
 #' @param volume Initial volume to set the player at. Defaults at 70\%
 #'
 #' @return
@@ -21,8 +21,7 @@
 #'
 #'   ui <- fluidPage(
 #'     title = "howler.js Player",
-#'     useHowlerJS(),
-#'     howlerPlayer("sound", "audio/sound.mp3"),
+#'     howler(elementId = "sound", "audio/sound.mp3"),
 #'     howlerPlayPauseButton("sound"),
 #'     howlerVolumeSlider("sound")
 #'   )
@@ -34,7 +33,7 @@
 #' }
 #'
 #' @export
-howlerVolumeSlider <- function(id, volume = 0.7) {
+howlerVolumeSlider <- function(id, volume = 1) {
   if (volume < 0 || volume > 1) {
     stop("Volume must be between 0 and 1")
   }
@@ -43,7 +42,7 @@ howlerVolumeSlider <- function(id, volume = 0.7) {
     howlerVolumeToggleButton(id),
     tags$input(
       class = "howler-volume-slider",
-      id = paste0(id, "_volume_slider"),
+      `data-howler` = id,
       type = "range",
       min = 0,
       max = 1,
@@ -56,10 +55,10 @@ howlerVolumeSlider <- function(id, volume = 0.7) {
 #' Seek Slider
 #'
 #' @description
-#' A UI element that can be included with a \code{\link{howlerPlayer}} to manually change the location of the track.
+#' A UI element that can be included with a \code{\link{howler}} to manually change the location of the track.
 #'
-#' @param id ID given to the volume slider. For it to work with the \code{howlerPlayer}, the ID
-#' must match that of the \code{howlerPlayer}.
+#' @param id ID given to the volume slider. For it to work with the \code{howler}, the ID
+#' must match that of the \code{howler}.
 #'
 #' @return A slider element of class \code{howler-seek-slider} that will display the position of the current track
 #' playing.
@@ -70,8 +69,7 @@ howlerVolumeSlider <- function(id, volume = 0.7) {
 #'
 #'   ui <- fluidPage(
 #'     title = "howler.js Player",
-#'     useHowlerJS(),
-#'     howlerPlayer("sound", "audio/sound.mp3"),
+#'     howler(elementId = "sound", "audio/sound.mp3"),
 #'     howlerPlayPauseButton("sound"),
 #'     howlerSeekSlider("sound")
 #'   )
@@ -86,7 +84,7 @@ howlerVolumeSlider <- function(id, volume = 0.7) {
 howlerSeekSlider <- function(id) {
   tags$input(
     class = "howler-seek-slider",
-    id = paste0(id, "_seek_slider"),
+    `data-howler` = id,
     type = "range",
     min = 0,
     max = 1,

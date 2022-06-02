@@ -7,7 +7,7 @@
 #' @param id ID to give to the namespace of the module. The howler player will have the ID \code{{id}-howler}.
 #' @param files Files that will be used in the player. This can either be a single vector, or a list where different
 #' formats of the same file are kept in each element of the list.
-#' @param ... Further arguments to send to \code{\link{howlerPlayer}}
+#' @param ... Further arguments to send to \code{\link{howler}}
 #' @param include_current_track Logical, should the current track be included in the UI of the module?
 #' @param width Width (in pixels) of the player. Defaults to 400px.
 #'
@@ -17,7 +17,6 @@
 #'
 #' The server-side module will return a list of reactive objects:
 #' \describe{
-#' \item{previous_track,play_pause,next_track}{Values tracking the pressing of the module buttons}
 #' \item{playing}{Logical value whether or not the player is currently playing}
 #' \item{track}{Name of the track currently loaded}
 #' \item{duration}{Duration (in seconds) of the track currently loaded}
@@ -28,7 +27,6 @@
 #' if (interactive()) {
 #'   ui <- fluidPage(
 #'     title = "howler.js Module",
-#'     useHowlerJS(),
 #'     howlerModuleUI("howl", c("audio/track1.mp3", "audio/track2.mp3"))
 #'   )
 #'
@@ -49,7 +47,7 @@ howlerModuleUI <- function(id, files, ..., include_current_track = TRUE, width =
   div(
     class = "howler-module",
     style = paste0("width:", width, ";"),
-    howlerPlayer(howler_id, files, ...),
+    howler(elementId = howler_id, tracks = files, ...),
     div(
       class = "howler-module-container",
       if (include_current_track) howlerCurrentTrack(howler_id),
@@ -95,9 +93,6 @@ howlerModuleServer <- function(id) {
 
       return(
         list(
-          previous_track = reactive(input$howler_previous),
-          play_pause = reactive(input$howler_play_pause),
-          next_track = reactive(input$howler_next),
           playing = reactive(input$howler_playing),
           track = reactive(input$howler_track),
           duration = reactive(input$howler_duration),

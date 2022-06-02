@@ -7,11 +7,10 @@ audio_files <- file.path("sample_audio", list.files(audio_files_dir, ".mp3$"))
 
 ui <- fluidPage(
   title = "howler Server-Side Example",
-  useHowlerJS(),
 
   h3("howler Server-Side Example"),
   p("After 10 seconds, the sound will automatically pause. After 20 seconds, it will play the second track"),
-  howlerPlayer("sound", audio_files[1:2]),
+  howler(audio_files[1:2], auto_continue = TRUE, elementId = "sound"),
   howlerPreviousButton("sound"),
   howlerPlayPauseButton("sound"),
   howlerNextButton("sound"),
@@ -31,7 +30,6 @@ ui <- fluidPage(
     "/",
     textOutput("sound_duration", container = tags$strong, inline = TRUE)
   ),
-
   actionButton("add_track", "Add New Track")
 )
 
@@ -57,8 +55,7 @@ server <- function(input, output, session) {
   })
 
   output$sound_track <- renderText({
-    req(input$sound_track)
-    sub("\\.\\w+$", "", basename(input$sound_track))
+    input$sound_track$name
   })
 
   observe({
@@ -66,7 +63,7 @@ server <- function(input, output, session) {
     if (round(input$sound_seek) == 10) {
       pauseHowl(session, "sound")
     } else if (round(input$sound_seek) == 20) {
-      changeTrack(session, "sound", list.files("../_audio", ".mp3$")[2])
+      changeTrack(session, "sound", 2)
     }
   })
 

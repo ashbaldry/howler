@@ -22,10 +22,10 @@ testthat::test_that("Basic howlerVolumeSlider creates two shiny tags: volume but
   testthat::expect_match(slider[[2]]$attribs$class, "howler-volume-slider")
 })
 
-testthat::test_that("Basic howlerVolumeSlider has volume of 0.7", {
+testthat::test_that("Basic howlerVolumeSlider has volume of 1", {
   slider <- howlerVolumeSlider("test")
 
-  testthat::expect_equal(slider[[2]]$attribs$value, 0.7)
+  testthat::expect_equal(slider[[2]]$attribs$value, 1)
 })
 
 testthat::test_that("howlerVolumeSlider errors when volume is negative", {

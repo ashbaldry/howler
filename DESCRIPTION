@@ -1,17 +1,17 @@
 Package: howler
 Type: Package
-Title: Shiny Extension of 'howler.js'
-Version: 0.1.0
+Title: 'Shiny' Extension of 'howler.js'
+Version: 0.2.0
 Authors@R: c(
     person("Ashley", "Baldry", email = "arbaldry91@gmail.com", role = c("aut", "cre")),
     person("James", "Simpson", role = "aut", comment = "Creator of howler.js")
     )
-Description: Audio interactivity within shiny applications using 'howler.js'.
+Description: Audio interactivity within 'shiny' applications using 'howler.js'.
 License: MIT + file LICENSE
 URL: https://github.com/ashbaldry/howler, https://github.com/goldfire/howler.js
 BugReports: https://github.com/ashbaldry/howler/issues
 Encoding: UTF-8
-Imports: shiny, jsonlite
-Suggests: rmarkdown, knitr, shinytest, testthat (>= 3.0.0)
+Imports: shiny, jsonlite, htmlwidgets
+Suggests: rmarkdown, knitr, shinytest2, globals, testthat (>= 3.0.0)
 Language: en-GB
 RoxygenNote: 7.1.2

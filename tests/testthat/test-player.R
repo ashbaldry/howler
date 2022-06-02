@@ -1,51 +1,34 @@
 testthat::context("Howler Player")
 
-testthat::test_that("howlerPlayer fails with no `id`", {
-  testthat::expect_error(howlerButton())
+testthat::test_that("howler fails with no `id`", {
+  testthat::expect_error(howler())
 })
 
-testthat::test_that("howlerPlayer fails with no files", {
-  testthat::expect_error(howlerPlayer("test"))
+testthat::test_that("howler fails with no files", {
+  testthat::expect_error(howler(elementId = "test"))
 })
 
-testthat::test_that("howlerPlayer passes with 1 file", {
-  testthat::expect_error(howlerPlayer("test", "test.mp3"), NA)
+testthat::test_that("howler passes with 1 file", {
+  testthat::expect_error(howler(elementId = "test", "test.mp3"), NA)
 })
 
-testthat::test_that("howlerPlayer passes with multiple files", {
-  testthat::expect_error(howlerPlayer("test", rep("test.mp3", 3)), NA)
+testthat::test_that("howler passes with multiple files", {
+  testthat::expect_error(howler(elementId = "test", rep("test.mp3", 3)), NA)
 })
 
-testthat::test_that("howlerPlayer creates 'div' shiny.tag", {
-  player <- howlerPlayer("test", "test.mp3")
-
-  testthat::expect_is(player, "shiny.tag")
-  testthat::expect_equal(player$name, "div")
-  testthat::expect_match(player$attribs$class, "howler-player")
+testthat::test_that("Valid howler creates htmlwidget", {
+  testthat::expect_is(howler(elementId = "test", "test.mp3"), c("howler", "htmlwidget"))
 })
 
-testthat::test_that("howlerPlayer contains track names", {
-  player <- howlerPlayer("test", "test.mp3")
-  attributes <- paste0("data-", c("autoplay-next-track", "autoloop", "volume", "seek-rate"))
+testthat::test_that("howler contains track names", {
+  player <- howler(elementId = "test", "test.mp3")
+  attribs <- c("tracks", "names", "auto_continue", "auto_loop", "seek_ping_rate", "options")
 
-  testthat::expect_match(player$attribs$`data-audio-files`, "test.mp3")
+  testthat::expect_true(all(attribs %in% names(player$x)))
+  testthat::expect_match(player$x$tracks[[1]], "test.mp3")
+  testthat::expect_match(player$x$names, "test")
 })
 
-testthat::test_that("howlerPlayer contains autoplay, autoloop, volume and seek rate attributes", {
-  player <- howlerPlayer("test", "test.mp3")
-  attributes <- paste0("data-", c("autoplay-next-track", "autoloop", "volume", "seek-rate"))
-
-  testthat::expect_true(all(attributes %in% names(player$attribs)))
-})
-
-testthat::test_that("howlerPlayer errors when volume is negative", {
-  testthat::expect_error(howlerPlayer("test", "test.mp3", volume = -1))
-})
-
-testthat::test_that("howlerPlayer errors when volume is greater than 1", {
-  testthat::expect_error(howlerPlayer("test", "test.mp3", volume = 2))
-})
-
-testthat::test_that("howlerPlayer errors when seek rate is negative", {
-  testthat::expect_error(howlerPlayer("test", "test.mp3", seek_ping_rate = -1))
+testthat::test_that("howler errors when seek rate is negative", {
+  testthat::expect_error(howler(elementId = "test", "test.mp3", seek_ping_rate = -1))
 })

@@ -7,11 +7,11 @@
 howlerCurrentTrack(id)
 }
 \arguments{
-\item{id}{ID given to the current track label. For it to work with the \code{\link{howlerPlayer}}, the ID
-must match that of the \code{howlerPlayer}.}
+\item{id}{ID given to the current track label. For it to work with the \code{\link{howler}}, the ID
+must match that of the \code{howler}.}
 }
 \value{
-A \code{div} tag that will be linked to the \code{\link{howlerPlayer}} to show the current track.
+A \code{div} tag that will be linked to the \code{\link{howler}} to show the current track.
 }
 \description{
 A way to display the current track in the UI without having to communicate with the server.
@@ -22,9 +22,8 @@ if (interactive()) {
 
   ui <- fluidPage(
     title = "howler.js Player",
-    useHowlerJS(),
+    howler(elementId = "sound", "audio/sound.mp3"),
     howlerCurrentTrack("sound"),
-    howlerPlayer("sound", "audio/sound.mp3"),
     howlerPlayPauseButton("sound")
   )
 
