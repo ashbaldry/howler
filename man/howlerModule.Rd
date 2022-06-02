@@ -3,10 +3,13 @@
 \name{howlerModule}
 \alias{howlerModule}
 \alias{howlerModuleUI}
+\alias{howlerBasicModuleUI}
 \alias{howlerModuleServer}
 \title{Howler.js Module}
 \usage{
-howlerModuleUI(id, files, ..., include_current_track = TRUE, width = "400px")
+howlerModuleUI(id, files, ..., include_current_track = TRUE, width = "300px")
+
+howlerBasicModuleUI(id, files, ..., width = "300px")
 
 howlerModuleServer(id)
 }

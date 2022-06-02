@@ -73,11 +73,12 @@
 howlerButton <- function(howler_id, button_type = HOWLER_BUTTON_TYPES, ...) {
   button_type <- match.arg(button_type)
 
-  tags$a(
+  tags$button(
     `data-howler` = howler_id,
-    class = paste0("action-button howler-", button_type, "-button"),
+    class = paste0("action-button howler-button howler-", button_type, "-button"),
     `aria-label` = button_type,
     title = button_type,
+    type = "button",
     ...
   )
 }

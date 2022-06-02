@@ -40,7 +40,7 @@
 #' @name howlerModule
 #' @rdname howlerModule
 #' @export
-howlerModuleUI <- function(id, files, ..., include_current_track = TRUE, width = "400px") {
+howlerModuleUI <- function(id, files, ..., include_current_track = TRUE, width = "300px") {
   ns <- NS(id)
   howler_id <- ns("howler")
 
@@ -69,6 +69,45 @@ howlerModuleUI <- function(id, files, ..., include_current_track = TRUE, width =
         div(
           class = "howler-module-volume",
           howlerVolumeSlider(howler_id)
+        )
+      )
+    )
+  )
+}
+
+#' @rdname howlerModule
+#' @export
+howlerBasicModuleUI <- function(id, files, ..., width = "300px") {
+  if (length(files) > 1) stop("Only one file can be included in the basic module")
+  ns <- NS(id)
+  howler_id <- ns("howler")
+
+  div(
+    class = "howler-module howler-basic-module",
+    style = paste0("width:", width, ";"),
+    howler(elementId = howler_id, tracks = files, ...),
+    div(
+      class = "howler-module-container",
+      div(
+        class = "howler-module-settings",
+        div(
+          class = "howler-module-buttons",
+          howlerPlayPauseButton(howler_id),
+        ),
+        span(
+          class = "howler-module-duration",
+          textOutput(ns("howler_seek"), inline = TRUE),
+          "/",
+          textOutput(ns("howler_duration"), inline = TRUE)
+        ),
+        div(
+          class = "howler-module-seek",
+          howlerSeekSlider(howler_id)
+        ),
+        div(
+          class = "howler-module-volume",
+          howlerVolumeSlider(howler_id, button = FALSE),
+          howlerVolumeToggleButton(howler_id)
         )
       )
     )

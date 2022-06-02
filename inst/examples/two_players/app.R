@@ -6,17 +6,31 @@ addResourcePath("sample_audio", audio_files_dir)
 audio_files <- file.path("sample_audio", list.files(audio_files_dir, ".mp3$"))
 
 ui <- fluidPage(
-  title = "howler Basic Example",
-  h3("howler Basic Example"),
-  howler(audio_files, elementId = "sound"),
-  howlerPlayPauseButton("sound"),
-  howlerPauseButton("sound"),
-  howlerStopButton("sound"),
+  title = "Two howler.js Players Example",
+  h1("Two howler.js Players Example"),
 
-  howler(audio_files[2], elementId = "sound2"),
-  howlerPlayPauseButton("sound2"),
-  howlerPauseButton("sound2"),
-  howlerStopButton("sound2")
+  fluidRow(
+    column(
+      width = 3,
+      offset = 2,
+      tags$section(
+        h2("Player 1"),
+        howler(audio_files[1], elementId = "sound"),
+        howlerPlayPauseButton("sound"),
+        howlerStopButton("sound2")
+      )
+    ),
+    column(
+      width = 3,
+      offset = 2,
+      tags$section(
+        h2("Player 2"),
+        howler(audio_files[2], elementId = "sound2"),
+        howlerPlayPauseButton("sound2"),
+        howlerStopButton("sound2")
+      )
+    )
+  )
 )
 
 server <- function(input, output) {
