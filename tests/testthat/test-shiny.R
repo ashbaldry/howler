@@ -29,7 +29,7 @@ testthat::test_that("howlerModule works", {
   testthat::expect_equal(app$get_value(input = "howler_track"), first_track)
 
   app$click(selector = ".howler-next-button")
-  Sys.sleep(0.5)
+  Sys.sleep(1)
   second_track <- list(name = sub(".mp3", "", basename(audio_files[2])), id = 2)
   testthat::expect_equal(app$get_value(input = "howler_track"), second_track)
 })
