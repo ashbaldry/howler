@@ -38,13 +38,6 @@ input[type=range].howler-seek-slider {
   display: flex;
 }
 
-.howler-module-duration {
-  flex-direction: row;
-  display: flex;
-  place-content: space-around;
-  min-width: 100px;
-}
-
 .howler-module {
   border-radius: 2rem;
   background-color: #F1F3F4;
@@ -75,11 +68,23 @@ input[type=range].howler-seek-slider {
   padding: 0.4rem 0.6rem;
 }
 
+.howler-module .howler-module-duration {
+  flex-direction: row;
+  display: flex;
+  place-content: center;
+  min-width: 100px;
+}
+
+.howler-module .howler-module-duration span {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
 .howler-basic-module .howler-module-seek {
   padding-top: 0.6rem;
 }
 
-.howler-module .howler-volume-button {
+.howler-module .howler-volumetoggle-button {
   font-size: 1.4rem;
 }
 
