@@ -6,7 +6,8 @@
 #'
 #' @param id ID given to the volume slider. For it to work with the \code{\link{howler}}, the ID
 #' must match that of the \code{howler}.
-#' @param volume Initial volume to set the player at. Defaults at 70\%
+#' @param volume Initial volume to set the player at. Defaults at 100\%
+#' @param button Logical, should a mute toggle button be included next to the slider? Default is \code{TRUE}
 #'
 #' @return
 #' A volume slider with a \code{\link{howlerVolumeDownButton}} and a \code{\link{howlerVolumeUpButton}} either side.
@@ -33,13 +34,13 @@
 #' }
 #'
 #' @export
-howlerVolumeSlider <- function(id, volume = 1) {
+howlerVolumeSlider <- function(id, volume = 1, button = TRUE) {
   if (volume < 0 || volume > 1) {
     stop("Volume must be between 0 and 1")
   }
 
   tagList(
-    howlerVolumeToggleButton(id),
+    if (button) howlerVolumeToggleButton(id),
     tags$input(
       class = "howler-volume-slider",
       `data-howler` = id,

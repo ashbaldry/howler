@@ -4,13 +4,15 @@
 \alias{howlerVolumeSlider}
 \title{Volume Slider}
 \usage{
-howlerVolumeSlider(id, volume = 1)
+howlerVolumeSlider(id, volume = 1, button = TRUE)
 }
 \arguments{
 \item{id}{ID given to the volume slider. For it to work with the \code{\link{howler}}, the ID
 must match that of the \code{howler}.}
 
-\item{volume}{Initial volume to set the player at. Defaults at 70\%}
+\item{volume}{Initial volume to set the player at. Defaults at 100\%}
+
+\item{button}{Logical, should a mute toggle button be included next to the slider? Default is \code{TRUE}}
 }
 \value{
 A volume slider with a \code{\link{howlerVolumeDownButton}} and a \code{\link{howlerVolumeUpButton}} either side.

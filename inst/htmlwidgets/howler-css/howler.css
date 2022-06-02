@@ -1,31 +1,30 @@
+input[type=range].howler-seek-slider, input[type=range].howler-volume-slider {
+  color: #111111;
+}
+
 input[type=range].howler-volume-slider {
-  display: inline;
-  width: 75px;
-  vertical-align: text-bottom;
+  width: 7rem;
   place-self: center;
 }
 
-.howler-module-container {
-  border-radius: 10px;
-  padding: 10px;
-  background-color: #f1f3f4;
-  display: flex;
-  flex-direction: column;
+input[type=range].howler-seek-slider {
+  place-self: center;
 }
 
 .howler-module-container .howler-current-track {
-  font-size: 18px;
+  font-size: 1.5rem;
   font-weight: 500;
-  padding-bottom: 6px;
+  padding-bottom: 0.5rem;
+  margin-top: -0.5rem;
 }
 
 .howler-module-container input[type=range] {
-  height: 5px;
+  height: 0.4rem;
+  cursor: pointer;
 }
 
 .howler-module-container input[type=range].howler-seek-slider {
   margin: 5px 0 12px 0;
-  cursor: pointer;
 }
 
 .howler-module-settings {
@@ -33,23 +32,6 @@ input[type=range].howler-volume-slider {
   align-items: center;
   display: flex;
   height: 20px;
-}
-
-.howler-module-container a {
-  color: #000000;
-  text-decoration: none;
-  padding: 5px;
-}
-
-.howler-module-container a:hover {
-  background-color: #cccccc;
-  text-decoration: none;
-  border-radius: 5px;
-}
-
-.howler-module-buttons a, .howler-module-volume>* {
-  font-size: 16px;
-  cursor: pointer;
 }
 
 .howler-module-volume {
@@ -61,4 +43,62 @@ input[type=range].howler-volume-slider {
   display: flex;
   place-content: space-around;
   min-width: 100px;
+}
+
+.howler-module {
+  border-radius: 2rem;
+  background-color: #F1F3F4;
+  padding: 1.5rem 1rem;
+}
+
+.howler-basic-module {
+  border-radius: 3rem;
+}
+
+.howler-module .howler-button {
+  border: 0;
+  border-radius: 50%;
+  padding: 0.4rem 0.8rem;
+  color: #111111;
+}
+
+.howler-module .howler-button:hover {
+  border-radius: 50%;
+  background-color: #DFDFDF;
+}
+
+.howler-module-buttons {
+  font-size: 1.1rem;
+}
+
+.howler-module .howler-module-buttons .howler-button {
+  padding: 0.4rem 0.6rem;
+}
+
+.howler-basic-module .howler-module-seek {
+  padding-top: 0.6rem;
+}
+
+.howler-module .howler-volume-button {
+  font-size: 1.4rem;
+}
+
+.howler-basic-module .howler-module-volume .howler-volume-slider {
+  display: none;
+}
+
+.howler-basic-module .howler-module-volume:hover {
+  background-color: #DDDDDD;
+  border-radius: 1.5rem;
+  padding: 0.2rem 0.2rem;
+  display: inline-flex;
+  z-index: 10;
+}
+
+.howler-basic-module .howler-module-volume:hover .howler-button {
+  background-color: #DDDDDD;
+}
+
+.howler-basic-module .howler-module-volume:hover .howler-volume-slider {
+  display: block;
 }

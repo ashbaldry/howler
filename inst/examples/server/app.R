@@ -8,28 +8,35 @@ audio_files <- file.path("sample_audio", list.files(audio_files_dir, ".mp3$"))
 ui <- fluidPage(
   title = "howler Server-Side Example",
 
-  h3("howler Server-Side Example"),
+  h1("howler Server-Side Example"),
   p("After 10 seconds, the sound will automatically pause. After 20 seconds, it will play the second track"),
-  howler(audio_files[1:2], auto_continue = TRUE, elementId = "sound"),
-  howlerPreviousButton("sound"),
-  howlerPlayPauseButton("sound"),
-  howlerNextButton("sound"),
-  howlerVolumeSlider("sound"),
+
+  tags$section(
+    howler(audio_files[1:2], auto_continue = TRUE, elementId = "sound"),
+    howlerPreviousButton("sound"),
+    howlerPlayPauseButton("sound"),
+    howlerNextButton("sound"),
+    howlerVolumeSlider("sound")
+  ),
   tags$br(),
+
   tags$p(
     "Track Name:",
-    textOutput("sound_track", container = tags$strong, inline = TRUE)
+    textOutput("sound_track", container = tags$b, inline = TRUE)
   ),
+
   tags$p(
     "Currently playing:",
-    textOutput("sound_playing", container = tags$strong, inline = TRUE)
+    textOutput("sound_playing", container = tags$b, inline = TRUE)
   ),
+
   tags$p(
     "Duration:",
-    textOutput("sound_seek", container = tags$strong, inline = TRUE),
+    textOutput("sound_seek", container = tags$b, inline = TRUE),
     "/",
-    textOutput("sound_duration", container = tags$strong, inline = TRUE)
+    textOutput("sound_duration", container = tags$b, inline = TRUE)
   ),
+
   actionButton("add_track", "Add New Track")
 )
 
