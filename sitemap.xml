@@ -16,6 +16,12 @@
     <loc>https://github.com/ashbaldry/howler/reference/examples.html</loc>
   </url>
   <url>
+    <loc>https://github.com/ashbaldry/howler/reference/howler-shiny.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/ashbaldry/howler/reference/howler.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/ashbaldry/howler/reference/howlerButton.html</loc>
   </url>
   <url>
@@ -23,9 +29,6 @@
   </url>
   <url>
     <loc>https://github.com/ashbaldry/howler/reference/howlerModule.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/ashbaldry/howler/reference/howlerPlayer.html</loc>
   </url>
   <url>
     <loc>https://github.com/ashbaldry/howler/reference/howlerSeekSlider.html</loc>
@@ -38,8 +41,5 @@
   </url>
   <url>
     <loc>https://github.com/ashbaldry/howler/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/ashbaldry/howler/reference/useHowlerJS.html</loc>
   </url>
 </urlset>

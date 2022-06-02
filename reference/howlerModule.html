@@ -18,7 +18,7 @@ current position of the track being played and the duration of the track."><!-- 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">howler</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0</span>
       </span>
     </div>
 
@@ -65,7 +65,7 @@ current position of the track being played and the duration of the track.</p>
 <dd><p>Files that will be used in the player. This can either be a single vector, or a list where different
 formats of the same file are kept in each element of the list.</p></dd>
 <dt>...</dt>
-<dd><p>Further arguments to send to <code><a href="howlerPlayer.html">howlerPlayer</a></code></p></dd>
+<dd><p>Further arguments to send to <code><a href="howler.html">howler</a></code></p></dd>
 <dt>include_current_track</dt>
 <dd><p>Logical, should the current track be included in the UI of the module?</p></dd>
 <dt>width</dt>
@@ -75,10 +75,7 @@ formats of the same file are kept in each element of the list.</p></dd>
     <h2>Value</h2>
     <p>The UI will provide a player with a play/pause button, previous and next buttons, duration information
 and a volume slider.
-The server-side module will return a list of reactive objects:</p><dl><dt>previous_track,play_pause,next_track</dt>
-<dd><p>Values tracking the pressing of the module buttons</p></dd>
-
-<dt>playing</dt>
+The server-side module will return a list of reactive objects:</p><dl><dt>playing</dt>
 <dd><p>Logical value whether or not the player is currently playing</p></dd>
 
 <dt>track</dt>
@@ -98,7 +95,6 @@ The server-side module will return a list of reactive objects:</p><dl><dt>previo
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span class="r-in">  <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
 <span class="r-in">    title <span class="op">=</span> <span class="st">"howler.js Module"</span>,</span>
-<span class="r-in">    <span class="fu"><a href="useHowlerJS.html">useHowlerJS</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span class="r-in">    <span class="fu">howlerModuleUI</span><span class="op">(</span><span class="st">"howl"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"audio/track1.mp3"</span>, <span class="st">"audio/track2.mp3"</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in">  <span class="op">)</span></span>
 <span class="r-in"></span>
@@ -123,7 +119,7 @@ The server-side module will return a list of reactive objects:</p><dl><dt>previo
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer></div>

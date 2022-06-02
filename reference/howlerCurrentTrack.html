@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">howler</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0</span>
       </span>
     </div>
 
@@ -56,12 +56,12 @@
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>id</dt>
-<dd><p>ID given to the current track label. For it to work with the <code><a href="howlerPlayer.html">howlerPlayer</a></code>, the ID
-must match that of the <code>howlerPlayer</code>.</p></dd>
+<dd><p>ID given to the current track label. For it to work with the <code><a href="howler.html">howler</a></code>, the ID
+must match that of the <code>howler</code>.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A <code>div</code> tag that will be linked to the <code><a href="howlerPlayer.html">howlerPlayer</a></code> to show the current track.</p>
+    <p>A <code>div</code> tag that will be linked to the <code><a href="howler.html">howler</a></code> to show the current track.</p>
     </div>
 
     <div id="ref-examples">
@@ -71,9 +71,8 @@ must match that of the <code>howlerPlayer</code>.</p></dd>
 <span class="r-in"></span>
 <span class="r-in">  <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
 <span class="r-in">    title <span class="op">=</span> <span class="st">"howler.js Player"</span>,</span>
-<span class="r-in">    <span class="fu"><a href="useHowlerJS.html">useHowlerJS</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span class="r-in">    <span class="fu"><a href="howler.html">howler</a></span><span class="op">(</span>elementId <span class="op">=</span> <span class="st">"sound"</span>, <span class="st">"audio/sound.mp3"</span><span class="op">)</span>,</span>
 <span class="r-in">    <span class="fu">howlerCurrentTrack</span><span class="op">(</span><span class="st">"sound"</span><span class="op">)</span>,</span>
-<span class="r-in">    <span class="fu"><a href="howlerPlayer.html">howlerPlayer</a></span><span class="op">(</span><span class="st">"sound"</span>, <span class="st">"audio/sound.mp3"</span><span class="op">)</span>,</span>
 <span class="r-in">    <span class="fu"><a href="howlerButton.html">howlerPlayPauseButton</a></span><span class="op">(</span><span class="st">"sound"</span><span class="op">)</span></span>
 <span class="r-in">  <span class="op">)</span></span>
 <span class="r-in"></span>
@@ -97,7 +96,7 @@ must match that of the <code>howlerPlayer</code>.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer></div>
