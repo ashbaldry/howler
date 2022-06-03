@@ -1,4 +1,11 @@
-## `{howler}` - Interactive Audio Player
+
+<!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![Codecov test coverage](https://codecov.io/gh/ashbaldry/howler/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ashbaldry/howler?branch=main)
+[![R-CMD-check](https://github.com/ashbaldry/howler/workflows/R-CMD-check/badge.svg)](https://github.com/ashbaldry/howler/actions)
+<!-- badges: end -->
+
+# {howler}  - Interactive Audio Player <img src="https://raw.githubusercontent.com/ashbaldry/howler/master/man/figures/logo.png" align="right" width="120"/>
 
 `{howler}` is a package that utilises the [howler.js](https://github.com/goldfire/howler.js) library to play audio on the modern web. 
 
@@ -27,12 +34,11 @@ library(howler)
 
 ui <- fluidPage(
   title = "howler Example",
-  useHowlerJS(),
-  howlerPlayer(
-    id = "sound", 
-    files = c("audio/sound1.mp3", "audio/sound2.mp3"),
-    autoplay_next = TRUE,
-    autoplay_loop = TRUE,
+  howler(
+    elementId = "sound", 
+    tracks = list("Track 1" = "audio/track_1.mp3", "Track 2" = "audio/track_2.mp3"),
+    auto_continue = TRUE,
+    auto_loop = TRUE,
     seek_ping_rate = 1000
   ),
   howlerPreviousButton("sound"),
@@ -46,7 +52,7 @@ server <- function(input, output, session) {
     if (round(input$sound_seek) == 10) {
       pauseHowl(session, "sound")
     } else if (round(input$sound_seek) == 20) {
-      changeTrack(session, "sound", "audio/sound2.mp3")
+      changeTrack(session, "sound", "Track 2")
     }
   })
 }
@@ -56,9 +62,9 @@ shinyApp(ui, server)
 
 ### Module
 
-The `{howler}` package also includes a lightweight module `howlerModuleUI` and `howlerModuleServer` that adds a bit of styling to a player.
+The `{howler}` package also includes a lightweight module `howlerModuleUI` and `howlerModuleServer` that adds a bit of styling to replicate the style of a standard `<audio>` HTML player.
 
-![Howler module UI](inst/img/howler_module.gif)
+![Howler module UI](man/figures/howler_module.png)
 
 ## Examples
 
