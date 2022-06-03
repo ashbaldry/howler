@@ -8,11 +8,11 @@ testthat::test_that("howlerButton passes with any `id`", {
   testthat::expect_error(howlerButton("test"), regexp = NA)
 })
 
-testthat::test_that("Basic howlerButton creates 'a' shiny.tag", {
+testthat::test_that("Basic howlerButton creates 'button' shiny.tag", {
   button <- howlerButton("test")
 
   testthat::expect_is(button, "shiny.tag")
-  testthat::expect_equal(button$name, "a")
+  testthat::expect_equal(button$name, "button")
   testthat::expect_match(button$attribs$class, "\\baction-button\\b")
   testthat::expect_match(button$attribs$class, "\\bhowler-")
 })
@@ -34,7 +34,7 @@ testthat::test_that("All specific buttons produce a valid howlerButton with icon
     button <- get(button_function)("test")
 
     testthat::expect_is(button, "shiny.tag")
-    testthat::expect_equal(button$name, "a")
+    testthat::expect_equal(button$name, "button")
     testthat::expect_match(button$attribs$class, "\\baction-button\\b")
     testthat::expect_match(button$attribs$class, "\\bhowler-")
 
