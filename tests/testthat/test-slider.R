@@ -14,7 +14,7 @@ testthat::test_that("Basic howlerVolumeSlider creates two shiny tags: volume but
   testthat::expect_is(slider, "shiny.tag.list")
   testthat::expect_length(slider, 2)
 
-  testthat::expect_equal(slider[[1]]$name, "a")
+  testthat::expect_equal(slider[[1]]$name, "button")
   testthat::expect_match(slider[[1]]$attribs$class, "action-button")
   testthat::expect_match(slider[[1]]$attribs$class, "howler-volumetoggle")
 
