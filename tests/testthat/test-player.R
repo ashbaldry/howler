@@ -26,7 +26,7 @@ testthat::test_that("howler contains track names", {
 
   testthat::expect_true(all(attribs %in% names(player$x)))
   testthat::expect_match(player$x$tracks[[1]], "test.mp3")
-  testthat::expect_match(player$x$names, "test")
+  testthat::expect_match(player$x$names[[1]], "test")
 })
 
 testthat::test_that("howler errors when seek rate is negative", {
