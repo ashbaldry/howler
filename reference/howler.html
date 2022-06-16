@@ -68,28 +68,45 @@ player, and can be run by either including UI buttons or server-side actions.</p
     <dl><dt>tracks</dt>
 <dd><p>A named vector of file paths to sounds. If multiple file extensions are included, then use a named
 list instead, with each list item containing each extension of the sound.</p></dd>
+
+
 <dt>options</dt>
 <dd><p>A named list of options to add to the player. For a full list of options see
 <a href="https://github.com/goldfire/howler.js" class="external-link">https://github.com/goldfire/howler.js</a></p></dd>
+
+
 <dt>track_formats</dt>
 <dd><p>An optional list of formats of the sounds. By default 'howler' will guess the format to
 play in. Must be the same length as tracks</p></dd>
+
+
 <dt>auto_continue</dt>
 <dd><p>If there are multiple files, would you like to auto play the next file after the current
 one has finished? Defaults to <code>TRUE</code></p></dd>
+
+
 <dt>auto_loop</dt>
 <dd><p>Once all files have been played, would you like to restart playing the playlist?
 Defaults to <code>FALSE</code></p></dd>
+
+
 <dt>seek_ping_rate</dt>
 <dd><p>Number of milliseconds between each update of `input${id}_seek` while playing. Default is
 set to 1000. If set to 0, then `input${id}_seek` will not exist.</p></dd>
+
+
 <dt>elementId</dt>
 <dd><p>HTML id tag to be given to the howler player element</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A shiny.tag containing all of the required options for a <code>Howl</code> JS object to be initialised in a shiny application.
-On the server side there will be up to four additional objects available as inputs:</p><dl><dt><code>{id}_playing</code></dt>
+    
+
+<p>A shiny.tag containing all of the required options for a <code>Howl</code> JS object to be initialised in a shiny application.</p>
+
+
+<p>On the server side there will be up to four additional objects available as inputs:</p><dl><dt><code>{id}_playing</code></dt>
 <dd><p>A logical value as to whether or not the <code>howler</code> is playing audio</p></dd>
 
 <dt><code>{id}_track</code></dt>
@@ -156,7 +173,7 @@ that the buttons are linked to the player.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
       </footer></div>
