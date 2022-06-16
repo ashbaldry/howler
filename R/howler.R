@@ -92,8 +92,8 @@ howler <- function(tracks, options = list(), track_formats = NULL,
 
   settings <- list(
     tracks = as.list(unname(tracks)),
-    names = track_names,
-    formats = track_formats,
+    names = as.list(track_names),
+    formats = as.list(track_formats),
     auto_continue = auto_continue,
     auto_loop = auto_loop,
     seek_ping_rate = seek_ping_rate,
