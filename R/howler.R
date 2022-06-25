@@ -118,9 +118,6 @@ howler <- function(tracks, options = list(), track_formats = NULL,
 #' applications and interactive Rmd documents.
 #'
 #' @param outputId output variable to read from
-#' @param width,height Must be a valid CSS unit (like \code{'100\%'},
-#'   \code{'400px'}, \code{'auto'}) or a number, which will be coerced to a
-#'   string and have \code{'px'} appended.
 #' @param expr An expression that generates a howler
 #' @param env The environment in which to evaluate \code{expr}.
 #' @param quoted Is \code{expr} a quoted expression (with \code{quote()})? This
@@ -129,7 +126,7 @@ howler <- function(tracks, options = list(), track_formats = NULL,
 #' @name howler-shiny
 #'
 #' @export
-howlerOutput <- function(outputId, width = '0', height = '0') {
+howlerOutput <- function(outputId) {
   htmlwidgets::shinyWidgetOutput(outputId, 'howler', package = 'howler')
 }
 
@@ -140,7 +137,7 @@ renderHowler <- function(expr, env = parent.frame(), quoted = FALSE) {
   htmlwidgets::shinyRenderWidget(expr, howlerOutput, env, quoted = TRUE)
 }
 
-howler_html <- function(id, style, class, ...) {
+widget_html.howler <- function(id, style, class, ...) {
   tags$audio(
     id = id,
     style = style,
