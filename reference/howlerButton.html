@@ -68,29 +68,29 @@ change the volume of the player by a specified percentage.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">howlerButton</span><span class="op">(</span><span class="va">howler_id</span>, button_type <span class="op">=</span> <span class="va">HOWLER_BUTTON_TYPES</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="fu">howlerPlayButton</span><span class="op">(</span><span class="va">howler_id</span><span class="op">)</span>
-
-<span class="fu">howlerPauseButton</span><span class="op">(</span><span class="va">howler_id</span><span class="op">)</span>
-
-<span class="fu">howlerPlayPauseButton</span><span class="op">(</span><span class="va">howler_id</span><span class="op">)</span>
-
-<span class="fu">howlerStopButton</span><span class="op">(</span><span class="va">howler_id</span><span class="op">)</span>
-
-<span class="fu">howlerBackButton</span><span class="op">(</span><span class="va">howler_id</span>, seek_change <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
-
-<span class="fu">howlerForwardButton</span><span class="op">(</span><span class="va">howler_id</span>, seek_change <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
-
-<span class="fu">howlerPreviousButton</span><span class="op">(</span><span class="va">howler_id</span><span class="op">)</span>
-
-<span class="fu">howlerNextButton</span><span class="op">(</span><span class="va">howler_id</span><span class="op">)</span>
-
-<span class="fu">howlerVolumeUpButton</span><span class="op">(</span><span class="va">howler_id</span>, volume_change <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>
-
-<span class="fu">howlerVolumeDownButton</span><span class="op">(</span><span class="va">howler_id</span>, volume_change <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>
-
-<span class="fu">howlerVolumeToggleButton</span><span class="op">(</span><span class="va">howler_id</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">howlerButton</span><span class="op">(</span><span class="va">howler_id</span>, button_type <span class="op">=</span> <span class="va">HOWLER_BUTTON_TYPES</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">howlerPlayButton</span><span class="op">(</span><span class="va">howler_id</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">howlerPauseButton</span><span class="op">(</span><span class="va">howler_id</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">howlerPlayPauseButton</span><span class="op">(</span><span class="va">howler_id</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">howlerStopButton</span><span class="op">(</span><span class="va">howler_id</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">howlerBackButton</span><span class="op">(</span><span class="va">howler_id</span>, seek_change <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">howlerForwardButton</span><span class="op">(</span><span class="va">howler_id</span>, seek_change <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">howlerPreviousButton</span><span class="op">(</span><span class="va">howler_id</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">howlerNextButton</span><span class="op">(</span><span class="va">howler_id</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">howlerVolumeUpButton</span><span class="op">(</span><span class="va">howler_id</span>, volume_change <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">howlerVolumeDownButton</span><span class="op">(</span><span class="va">howler_id</span>, volume_change <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">howlerVolumeToggleButton</span><span class="op">(</span><span class="va">howler_id</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -161,27 +161,27 @@ depending on whether or not the track is playing.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
-<span class="r-in">    tile <span class="op">=</span> <span class="st">"howler.js Player"</span>,</span>
-<span class="r-in">    <span class="fu"><a href="howler.html">howler</a></span><span class="op">(</span>elementId <span class="op">=</span> <span class="st">"howler"</span>, <span class="st">"audio/sound.mp3"</span><span class="op">)</span>,</span>
-<span class="r-in">    <span class="fu">howlerPreviousButton</span><span class="op">(</span><span class="st">"howler"</span><span class="op">)</span>,</span>
-<span class="r-in">    <span class="fu">howlerBackButton</span><span class="op">(</span><span class="st">"howler"</span><span class="op">)</span>,</span>
-<span class="r-in">    <span class="fu">howlerPlayPauseButton</span><span class="op">(</span><span class="st">"howler"</span><span class="op">)</span>,</span>
-<span class="r-in">    <span class="fu">howlerForwardButton</span><span class="op">(</span><span class="st">"howler"</span><span class="op">)</span>,</span>
-<span class="r-in">    <span class="fu">howlerNextButton</span><span class="op">(</span><span class="st">"howler"</span><span class="op">)</span>,</span>
-<span class="r-in">    <span class="fu">howlerVolumeDownButton</span><span class="op">(</span><span class="st">"howler"</span><span class="op">)</span>,</span>
-<span class="r-in">    <span class="fu">howlerVolumeUpButton</span><span class="op">(</span><span class="st">"howler"</span><span class="op">)</span></span>
-<span class="r-in">  <span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="op">}</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    tile <span class="op">=</span> <span class="st">"howler.js Player"</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="howler.html">howler</a></span><span class="op">(</span>elementId <span class="op">=</span> <span class="st">"howler"</span>, <span class="st">"audio/sound.mp3"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">howlerPreviousButton</span><span class="op">(</span><span class="st">"howler"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">howlerBackButton</span><span class="op">(</span><span class="st">"howler"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">howlerPlayPauseButton</span><span class="op">(</span><span class="st">"howler"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">howlerForwardButton</span><span class="op">(</span><span class="st">"howler"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">howlerNextButton</span><span class="op">(</span><span class="st">"howler"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">howlerVolumeDownButton</span><span class="op">(</span><span class="st">"howler"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">howlerVolumeUpButton</span><span class="op">(</span><span class="st">"howler"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -196,7 +196,7 @@ depending on whether or not the track is playing.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

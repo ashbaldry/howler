@@ -80,46 +80,46 @@
 </h2>
 <p>This package is not yet available on CRAN. To install the latest version:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ashbaldry/howler"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ashbaldry/howler"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
 <p>The HTML way to include an audio file in any shiny application/web page is to use the <code>&lt;audio&gt;</code> tag. This can generally only handle one audio file, and cannot (easily) be manipulated from the server side.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tags</span><span class="op">$</span><span class="fu">audio</span><span class="op">(</span>src <span class="op">=</span> <span class="st">"audio/sound.mp3"</span>, type <span class="op">=</span> <span class="st">"audio/mp3"</span>, autoplay <span class="op">=</span> <span class="cn">NA</span>, controls <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">tags</span><span class="op">$</span><span class="fu">audio</span><span class="op">(</span>src <span class="op">=</span> <span class="st">"audio/sound.mp3"</span>, type <span class="op">=</span> <span class="st">"audio/mp3"</span>, autoplay <span class="op">=</span> <span class="cn">NA</span>, controls <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div>
 <p>howler.js uses the <a href="http://webaudio.github.io/web-audio-api/" class="external-link">Web Audio API</a>, and with this we are able to create an audio player that can solve both of the above issues and more:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ashbaldry/howler">howler</a></span><span class="op">)</span>
-
-<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
-  title <span class="op">=</span> <span class="st">"howler Example"</span>,
-  <span class="fu"><a href="reference/howler.html">howler</a></span><span class="op">(</span>
-    elementId <span class="op">=</span> <span class="st">"sound"</span>, 
-    tracks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"Track 1"</span> <span class="op">=</span> <span class="st">"audio/track_1.mp3"</span>, <span class="st">"Track 2"</span> <span class="op">=</span> <span class="st">"audio/track_2.mp3"</span><span class="op">)</span>,
-    auto_continue <span class="op">=</span> <span class="cn">TRUE</span>,
-    auto_loop <span class="op">=</span> <span class="cn">TRUE</span>,
-    seek_ping_rate <span class="op">=</span> <span class="fl">1000</span>
-  <span class="op">)</span>,
-  <span class="fu"><a href="reference/howlerButton.html">howlerPreviousButton</a></span><span class="op">(</span><span class="st">"sound"</span><span class="op">)</span>,
-  <span class="fu"><a href="reference/howlerButton.html">howlerPlayPauseButton</a></span><span class="op">(</span><span class="st">"sound"</span><span class="op">)</span>,
-  <span class="fu"><a href="reference/howlerButton.html">howlerNextButton</a></span><span class="op">(</span><span class="st">"sound"</span><span class="op">)</span>
-<span class="op">)</span>
-
-<span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observe.html" class="external-link">observe</a></span><span class="op">(</span><span class="op">{</span>
-    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/req.html" class="external-link">req</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sound_seek</span><span class="op">)</span>
-    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sound_seek</span><span class="op">)</span> <span class="op">==</span> <span class="fl">10</span><span class="op">)</span> <span class="op">{</span>
-      <span class="fu"><a href="reference/howlerServer.html">pauseHowl</a></span><span class="op">(</span><span class="va">session</span>, <span class="st">"sound"</span><span class="op">)</span>
-    <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sound_seek</span><span class="op">)</span> <span class="op">==</span> <span class="fl">20</span><span class="op">)</span> <span class="op">{</span>
-      <span class="fu"><a href="reference/howlerServer.html">changeTrack</a></span><span class="op">(</span><span class="va">session</span>, <span class="st">"sound"</span>, <span class="st">"Track 2"</span><span class="op">)</span>
-    <span class="op">}</span>
-  <span class="op">}</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ashbaldry/howler">howler</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
+<span>  title <span class="op">=</span> <span class="st">"howler Example"</span>,</span>
+<span>  <span class="fu"><a href="reference/howler.html">howler</a></span><span class="op">(</span></span>
+<span>    elementId <span class="op">=</span> <span class="st">"sound"</span>, </span>
+<span>    tracks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"Track 1"</span> <span class="op">=</span> <span class="st">"audio/track_1.mp3"</span>, <span class="st">"Track 2"</span> <span class="op">=</span> <span class="st">"audio/track_2.mp3"</span><span class="op">)</span>,</span>
+<span>    auto_continue <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    auto_loop <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    seek_ping_rate <span class="op">=</span> <span class="fl">1000</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="reference/howlerButton.html">howlerPreviousButton</a></span><span class="op">(</span><span class="st">"sound"</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="reference/howlerButton.html">howlerPlayPauseButton</a></span><span class="op">(</span><span class="st">"sound"</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="reference/howlerButton.html">howlerNextButton</a></span><span class="op">(</span><span class="st">"sound"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observe.html" class="external-link">observe</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/req.html" class="external-link">req</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sound_seek</span><span class="op">)</span></span>
+<span>    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sound_seek</span><span class="op">)</span> <span class="op">==</span> <span class="fl">10</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="fu"><a href="reference/howlerServer.html">pauseHowl</a></span><span class="op">(</span><span class="va">session</span>, <span class="st">"sound"</span><span class="op">)</span></span>
+<span>    <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sound_seek</span><span class="op">)</span> <span class="op">==</span> <span class="fl">20</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="fu"><a href="reference/howlerServer.html">changeTrack</a></span><span class="op">(</span><span class="va">session</span>, <span class="st">"sound"</span>, <span class="st">"Track 2"</span><span class="op">)</span></span>
+<span>    <span class="op">}</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="module">Module<a class="anchor" aria-label="anchor" href="#module"></a>
 </h3>
@@ -199,7 +199,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer>
