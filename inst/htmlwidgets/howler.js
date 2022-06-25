@@ -49,10 +49,6 @@ HTMLWidgets.widget({
       }
     }
 
-    $(document).on('shiny:disconnected', () => {
-      sound.stop();
-    });
-
     // Events on button clicks
     $(`.howler-play-button[data-howler=${el.id}]`).on("click", (e) => {
       sound.play();
@@ -134,70 +130,76 @@ HTMLWidgets.widget({
       }, 10);
     }
 
-    // Custom Message Handlers
-    Shiny.addCustomMessageHandler(`playHowler_${el.id}`, function(id) {
-      sound.play();
-    });
+    if (HTMLWidgets.shinyMode) {
+      $(document).on('shiny:disconnected', () => {
+        sound.stop();
+      });
 
-    Shiny.addCustomMessageHandler(`pauseHowler_${el.id}`, function(id) {
-      sound.pause();
-    });
+      // Custom Message Handlers
+      Shiny.addCustomMessageHandler(`playHowler_${el.id}`, function(id) {
+        sound.play();
+      });
 
-    Shiny.addCustomMessageHandler(`stopHowler_${el.id}`, function(id) {
-      sound.stop();
-    });
+      Shiny.addCustomMessageHandler(`pauseHowler_${el.id}`, function(id) {
+        sound.pause();
+      });
 
-    Shiny.addCustomMessageHandler(`seekHowler_${el.id}`, function(time) {
-      sound.seek(time);
-    });
+      Shiny.addCustomMessageHandler(`stopHowler_${el.id}`, function(id) {
+        sound.stop();
+      });
 
-    Shiny.addCustomMessageHandler(`changeHowlerTrack_${el.id}`, function(track) {
-      sound.stop();
-      if (isNaN(track)) {
-        current_track = track_names.indexOf(track);
-      } else {
-        current_track = Number(track) - 1;
-      }
-      startNewTrack();
-    });
+      Shiny.addCustomMessageHandler(`seekHowler_${el.id}`, function(time) {
+        sound.seek(time);
+      });
 
-    Shiny.addCustomMessageHandler(`addHowlerTrack_${el.id}`, function(track_info) {
-      const original_length = tracks.length;
-      tracks.push(track_info.track);
-      track_names.push(track_info.track_name);
-
-      if (track_info.play) {
-        if (original_length > 0) {
-          sound.stop();
+      Shiny.addCustomMessageHandler(`changeHowlerTrack_${el.id}`, function(track) {
+        sound.stop();
+        if (isNaN(track)) {
+          current_track = track_names.indexOf(track);
+        } else {
+          current_track = Number(track) - 1;
         }
-        current_track = tracks.length - 1;
         startNewTrack();
-      }
-    });
+      });
+
+      Shiny.addCustomMessageHandler(`addHowlerTrack_${el.id}`, function(track_info) {
+        const original_length = tracks.length;
+        tracks.push(track_info.track);
+        track_names.push(track_info.track_name);
+
+        if (track_info.play) {
+          if (original_length > 0) {
+            sound.stop();
+          }
+          current_track = tracks.length - 1;
+          startNewTrack();
+        }
+      });
+    }
 
     return {
-      renderValue: function(x) {
-        auto_continue = x.auto_continue;
-        auto_loop = x.auto_loop;
+      renderValue: function(settings) {
+        auto_continue = settings.auto_continue;
+        auto_loop = settings.auto_loop;
 
-        if (Array.isArray(x.tracks)) {
-          tracks = x.tracks;
-          track_names = x.names;
-          if (x.formats) {
-            track_formats = x.formats;
+        if (Array.isArray(settings.tracks)) {
+          tracks = settings.tracks;
+          track_names = settings.names;
+          if (settings.formats) {
+            track_formats = settings.formats;
           }
-        } else if (x.tracks) {
-          tracks = [x.tracks];
-          track_names = [x.names];
-          if (x.formats) {
-            track_formats = [x.formats];
+        } else if (settings.tracks) {
+          tracks = [settings.tracks];
+          track_names = [settings.names];
+          if (settings.formats) {
+            track_formats = [settings.formats];
           }
         } else {
           tracks = [];
           track_names = [];
         }
 
-        options = x.options;
+        options = settings.options;
         if (tracks.length) {
           options.src = tracks[0];
         }
@@ -208,33 +210,47 @@ HTMLWidgets.widget({
               seek_slider.attr("max", sound.duration());
               seek_slider.attr("value", 0);
             }
-
             $(`.howler-current-track[data-howler="${el.id}"]`).html(track_names[current_track]);
-            Shiny.setInputValue(`${el.id}_track`, {name: track_names[current_track], id: current_track + 1});
-            Shiny.setInputValue(`${el.id}_seek`, this.seek());
-            Shiny.setInputValue(`${el.id}_duration`, this.duration());
-            Shiny.setInputValue(`${el.id}_playing`, false);
+
+            if (HTMLWidgets.shinyMode) {
+              Shiny.setInputValue(
+                `${el.id}_track`,
+                {name: track_names[current_track], id: current_track + 1}
+              );
+              Shiny.setInputValue(`${el.id}_seek`, this.seek());
+              Shiny.setInputValue(`${el.id}_duration`, this.duration());
+              Shiny.setInputValue(`${el.id}_playing`, false);
+            }
+
           };
         }
 
         if (!options.onpause) {
           options.onpause = function() {
             $(`.howler-play_pause-button[data-howler=${el.id}] i`).removeClass("fa-pause").addClass("fa-play");
-            Shiny.setInputValue(`${el.id}_playing`, false);
+            if (HTMLWidgets.shinyMode) {
+              Shiny.setInputValue(`${el.id}_playing`, false);
+            }
           };
         }
 
         if (!options.onstop) {
           options.onstop = function() {
             $(`.howler-play_pause-button[data-howler=${el.id}] i`).removeClass("fa-pause").addClass("fa-play");
-            Shiny.setInputValue(`${el.id}_playing`, false);
+
+            if (HTMLWidgets.shinyMode) {
+              Shiny.setInputValue(`${el.id}_playing`, false);
+            }
           };
         }
 
         if (!options.onplay) {
           options.onplay = function() {
             $(`.howler-play_pause-button[data-howler=${el.id}] i`).removeClass("fa-play").addClass("fa-pause");
-            Shiny.setInputValue(`${el.id}_playing`, true);
+
+            if (HTMLWidgets.shinyMode) {
+              Shiny.setInputValue(`${el.id}_playing`, true);
+            }
           };
         }
 
@@ -256,7 +272,7 @@ HTMLWidgets.widget({
           };
         }
 
-        if (!options.onseek) {
+        if (!options.onseek && HTMLWidgets.shinyMode) {
           options.onseek = function() {
             Shiny.setInputValue(`${el.id}_seek`, sound.seek());
           };
@@ -279,12 +295,12 @@ HTMLWidgets.widget({
           sound = new Howl(options);
         }
 
-        if (x.seek_ping_rate > 0) {
+        if (settings.seek_ping_rate > 0) {
           setInterval(() => {
-            if (tracks.length) {
+            if (tracks.length && HTMLWidgets.shinyMode) {
               Shiny.setInputValue(`${el.id}_seek`, Math.round(sound.seek() * 1000) / 1000);
             }
-          }, x.seek_ping_rate);
+          }, settings.seek_ping_rate);
         }
       },
 
