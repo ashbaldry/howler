@@ -68,14 +68,14 @@ server <- function(input, output, session) {
   observe({
     req(input$sound_seek)
     if (round(input$sound_seek) == 10) {
-      pauseHowl(session, "sound")
+      pauseHowl("sound")
     } else if (round(input$sound_seek) == 20) {
-      changeTrack(session, "sound", 2)
+      changeTrack("sound", 2)
     }
   })
 
   observeEvent(input$add_track, {
-    addTrack(session, "sound", audio_files[3], play_track = TRUE)
+    addTrack("sound", audio_files[3], play_track = TRUE)
   })
 }
 

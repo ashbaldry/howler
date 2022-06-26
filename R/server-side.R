@@ -41,7 +41,7 @@
 #' @name howlerServer
 #' @rdname howlerServer
 #' @export
-changeTrack <- function(session, id, track) {
+changeTrack <- function(id, track, session = getDefaultReactiveDomain()) {
   message_name <- paste0("changeHowlerTrack_", session$ns(id))
   session$sendCustomMessage(message_name, track)
 }
@@ -50,7 +50,7 @@ changeTrack <- function(session, id, track) {
 #'
 #' @rdname howlerServer
 #' @export
-addTrack <- function(session, id, track, play_track = FALSE) {
+addTrack <- function(id, track, play_track = FALSE, session = getDefaultReactiveDomain()) {
   if (is.null(names(track))) {
     track_name <- sub("\\.[^\\.]+$", "", basename(track[1]))
   } else {
@@ -63,21 +63,21 @@ addTrack <- function(session, id, track, play_track = FALSE) {
 
 #' @rdname howlerServer
 #' @export
-playHowl <- function(session, id) {
+playHowl <- function(id, session = getDefaultReactiveDomain()) {
   message_name <- paste0("playHowler_", session$ns(id))
   session$sendCustomMessage(message_name, id)
 }
 
 #' @rdname howlerServer
 #' @export
-pauseHowl <- function(session, id) {
+pauseHowl <- function(id, session = getDefaultReactiveDomain()) {
   message_name <- paste0("pauseHowler_", session$ns(id))
   session$sendCustomMessage(message_name, id)
 }
 
 #' @rdname howlerServer
 #' @export
-stopHowl <- function(session, id) {
+stopHowl <- function(id, session = getDefaultReactiveDomain()) {
   message_name <- paste0("stopHowler_", session$ns(id))
   session$sendCustomMessage(message_name, id)
 }
@@ -85,7 +85,7 @@ stopHowl <- function(session, id) {
 #' @param seek Time (in seconds) to set the position of the track
 #' @rdname howlerServer
 #' @export
-seekHowl <- function(session, id, seek) {
+seekHowl <- function(id, seek, session = getDefaultReactiveDomain()) {
   message_name <- paste0("seekHowler_", session$ns(id))
   session$sendCustomMessage(message_name, as.numeric(seek))
 }

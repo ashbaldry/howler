@@ -295,9 +295,9 @@ HTMLWidgets.widget({
           sound = new Howl(options);
         }
 
-        if (settings.seek_ping_rate > 0) {
+        if (settings.seek_ping_rate > 0 && HTMLWidgets.shinyMode) {
           setInterval(() => {
-            if (tracks.length && HTMLWidgets.shinyMode) {
+            if (tracks.length) {
               Shiny.setInputValue(`${el.id}_seek`, Math.round(sound.seek() * 1000) / 1000);
             }
           }, settings.seek_ping_rate);

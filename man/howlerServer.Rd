@@ -10,24 +10,24 @@
 \alias{seekHowl}
 \title{Update howler.js Server-Side}
 \usage{
-changeTrack(session, id, track)
+changeTrack(id, track, session = getDefaultReactiveDomain())
 
-addTrack(session, id, track, play_track = FALSE)
+addTrack(id, track, play_track = FALSE, session = getDefaultReactiveDomain())
 
-playHowl(session, id)
+playHowl(id, session = getDefaultReactiveDomain())
 
-pauseHowl(session, id)
+pauseHowl(id, session = getDefaultReactiveDomain())
 
-stopHowl(session, id)
+stopHowl(id, session = getDefaultReactiveDomain())
 
-seekHowl(session, id, seek)
+seekHowl(id, seek, session = getDefaultReactiveDomain())
 }
 \arguments{
-\item{session}{Shiny session}
-
 \item{id}{ID of the \code{howler} to update}
 
 \item{track}{Base name of the file to change to. If the file is not included in the player nothing will happen.}
+
+\item{session}{Shiny session}
 
 \item{play_track}{Logical, should the new track be played on addition?}
 
