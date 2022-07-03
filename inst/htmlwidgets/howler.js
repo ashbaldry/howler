@@ -156,6 +156,9 @@ HTMLWidgets.widget({
         sound.stop();
         if (isNaN(track)) {
           current_track = track_names.indexOf(track);
+          if (current_track === -1) {
+            current_track = track_names.replace(/.*(\/|\\)/, "").replace(/\.[^\.]+$/, "").indexOf(track);
+          }
         } else {
           current_track = Number(track) - 1;
         }
