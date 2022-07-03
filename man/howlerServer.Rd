@@ -25,7 +25,8 @@ seekHowl(id, seek, session = getDefaultReactiveDomain())
 \arguments{
 \item{id}{ID of the \code{howler} to update}
 
-\item{track}{Base name of the file to change to. If the file is not included in the player nothing will happen.}
+\item{track}{Either the track name of the file to change to, or the index of the file to play.
+If the file is not included in the player nothing will happen.}
 
 \item{session}{Shiny session}
 
@@ -41,8 +42,7 @@ Change the state of the howler player from the server.
 
 \code{playHowl}, \code{pauseHowl} and \code{stopHowl} will all be applied to the current track.
 
-\code{changeTrack} will update the track to the file specified. This file must be included when the player
-is initialised, otherwise it won't change the track.
+\code{changeTrack} will update the track to the file specified.
 
 \code{addTrack} will add a new track to the specified player.
 }
@@ -54,7 +54,6 @@ if (interactive()) {
 
   ui <- fluidPage(
     title = "howler.js Player",
-    useHowlerJS(),
     selectInput("track", "Select Track", basename(tracks)),
     howler(elementId = "howler", tracks),
     howlerPlayPauseButton("howler")
