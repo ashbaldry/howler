@@ -15,6 +15,8 @@ howlerDurationTime(id, ...)
 \arguments{
 \item{id}{ID given to the current track label. For it to work with the \code{\link{howler}}, the ID
 must match that of the \code{howler}.}
+
+\item{...}{Other attributes to give to the HTML tag.}
 }
 \value{
 A \code{div} tag that will be linked to the \code{\link{howler}} to show the current track.
