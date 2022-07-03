@@ -88,8 +88,8 @@ howlerSeekSlider <- function(id) {
     `data-howler` = id,
     type = "range",
     min = 0,
-    max = 1,
-    step = 0.01,
+    max = 100,
+    step = 1,
     value = 0
   )
 }

@@ -8,6 +8,7 @@ HTMLWidgets.widget({
     let auto_continue = false;
     let auto_loop = false;
     let not_changing_seek = true;
+    let focused_seek = false;
     const seek_slider = $(`.howler-seek-slider[data-howler=${el.id}]`);
 
     function selectPreviousTrack() {
@@ -128,16 +129,27 @@ HTMLWidgets.widget({
         not_changing_seek = false;
       });
 
+      seek_slider.on("focus", (el) => {
+        focused_seek = true;
+      });
+
+      seek_slider.on("blur", (el) => {
+        focused_seek = false;
+        sound.seek(seek_slider.val());
+      });
+
       seek_slider.on("mouseup", (el) => {
         not_changing_seek = true;
-        sound.seek(Number(el.target.value));
+        sound.seek(Math.floor(Number(el.target.value)));
       });
 
       setInterval(() => {
-        if (not_changing_seek) {
-          seek_slider.val(sound.seek());
+        if (not_changing_seek && sound.playing()) {
+          seek_slider.val(Math.floor(sound.seek()));
+        } else if (focused_seek && !sound.playing()) {
+          sound.seek(seek_slider.val());
         }
-      }, 10);
+      }, 100);
     }
 
     if (HTMLWidgets.shinyMode) {
@@ -221,7 +233,7 @@ HTMLWidgets.widget({
         if (!options.onload) {
           options.onload = function() {
             if (seek_slider.length) {
-              seek_slider.attr("max", sound.duration());
+              seek_slider.attr("max", Math.floor(sound.duration()));
               seek_slider.attr("value", 0);
             }
             $(`.howler-current-track[data-howler="${el.id}"]`).html(track_names[current_track]);
