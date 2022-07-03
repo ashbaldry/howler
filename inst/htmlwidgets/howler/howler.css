@@ -19,26 +19,6 @@ input[type=range].howler-seek-slider {
   cursor: pointer;
 }
 
-.howler-module-container input[type=range]::-webkit-slider-thumb{
-  transform: scale(0);
-  transition: 0.1s;
-}
-
-.howler-module-container input[type=range]:hover::-webkit-slider-thumb {
-  transform: scale(0.8);
-  transition: 0.1s;
-}
-
-.howler-module-container input[type=range]::-moz-slider-thumb {
-  transform: scale(0);
-  transition: 0.1s;
-}
-
-.howler-module-container input[type=range]:hover::-moz-slider-thumb {
-  transform: scale(0.8);
-  transition: 0.1s;
-}
-
 .howler-module-container input[type=range].howler-seek-slider {
   margin: 5px 0 12px 0;
 }
@@ -82,6 +62,7 @@ input[type=range].howler-seek-slider {
 
 .howler-module .howler-module-buttons .howler-button {
   padding: 0.4rem 0.6rem;
+  vertical-align: text-top;
 }
 
 .howler-module .howler-module-duration {
@@ -110,7 +91,8 @@ input[type=range].howler-seek-slider {
   width: 0;
 }
 
-.howler-basic-module .howler-module-volume:hover {
+.howler-basic-module .howler-module-volume:hover,
+.howler-basic-module .howler-module-volume:focus-within {
   background-color: #DDDDDD;
   border-radius: 1.5rem;
   padding: 0.2rem 0.2rem;
@@ -118,12 +100,37 @@ input[type=range].howler-seek-slider {
   z-index: 10;
 }
 
-.howler-basic-module .howler-module-volume:hover .howler-button {
+.howler-basic-module .howler-module-volume:hover .howler-button,
+.howler-basic-module .howler-module-volume:focus-within .howler-button {
   background-color: #DDDDDD;
 }
 
-.howler-basic-module .howler-module-volume:hover .howler-volume-slider {
+.howler-basic-module .howler-module-volume:hover .howler-volume-slider,
+.howler-basic-module .howler-module-volume:focus-within .howler-volume-slider {
   transform: scale(1);
   transition: 0.2s;
-  width: 7rem;
+  width: 6rem;
+  margin-left: 1rem;
+}
+
+.howler-module-container input[type=range]::-webkit-slider-thumb {
+  transform: scale(0);
+  transition: 0.1s;
+}
+
+.howler-module-container input[type=range]:hover::-webkit-slider-thumb,
+.howler-module-container input[type=range]:focus::-webkit-slider-thumb {
+  transform: scale(0.8);
+  transition: 0.1s;
+}
+
+.howler-module-container input[type=range]::-moz-slider-thumb {
+  transform: scale(0);
+  transition: 0.1s;
+}
+
+.howler-module-container input[type=range]:hover::-moz-slider-thumb,
+.howler-module-container input[type=range]:focus::-moz-slider-thumb{
+  transform: scale(0.8);
+  transition: 0.1s;
 }
