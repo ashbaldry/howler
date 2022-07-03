@@ -62,9 +62,9 @@ howlerModuleUI <- function(id, files, ..., include_current_track = TRUE, width =
         ),
         span(
           class = "howler-module-duration",
-          textOutput(ns("howler_seek"), inline = TRUE),
+          howlerSeekTime(howler_id),
           "/",
-          textOutput(ns("howler_duration"), inline = TRUE)
+          howlerDurationTime(howler_id)
         ),
         div(
           class = "howler-module-volume",
@@ -96,9 +96,9 @@ howlerBasicModuleUI <- function(id, files, ..., width = "300px") {
         ),
         span(
           class = "howler-module-duration",
-          textOutput(ns("howler_seek"), inline = TRUE),
+          howlerSeekTime(howler_id),
           "/",
-          textOutput(ns("howler_duration"), inline = TRUE)
+          howlerDurationTime(howler_id)
         ),
         div(
           class = "howler-module-seek",
@@ -120,16 +120,6 @@ howlerModuleServer <- function(id) {
   moduleServer(
     id,
     function(input, output, session) {
-      output$howler_seek <- renderText({
-        req(input$howler_seek)
-        sprintf("%02d:%02.0f", round(input$howler_seek) %/% 60, round(input$howler_seek) %% 60)
-      })
-
-      output$howler_duration <- renderText({
-        req(input$howler_duration)
-        sprintf("%02d:%02.0f", round(input$howler_duration) %/% 60, round(input$howler_duration) %% 60)
-      })
-
       return(
         list(
           playing = reactive(input$howler_playing),

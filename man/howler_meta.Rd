@@ -2,9 +2,15 @@
 % Please edit documentation in R/meta.R
 \name{howlerCurrentTrack}
 \alias{howlerCurrentTrack}
+\alias{howlerSeekTime}
+\alias{howlerDurationTime}
 \title{Current Track}
 \usage{
-howlerCurrentTrack(id)
+howlerCurrentTrack(id, ...)
+
+howlerSeekTime(id, ...)
+
+howlerDurationTime(id, ...)
 }
 \arguments{
 \item{id}{ID given to the current track label. For it to work with the \code{\link{howler}}, the ID
@@ -14,7 +20,7 @@ must match that of the \code{howler}.}
 A \code{div} tag that will be linked to the \code{\link{howler}} to show the current track.
 }
 \description{
-A way to display the current track in the UI without having to communicate with the server.
+A way to display track information in the UI without having to communicate with the server.
 }
 \examples{
 if (interactive()) {
@@ -24,6 +30,11 @@ if (interactive()) {
     title = "howler.js Player",
     howler(elementId = "sound", "audio/sound.mp3"),
     howlerCurrentTrack("sound"),
+    p(
+      howlerSeekTime("sound"),
+      "/",
+      howlerDurationTime("sound")
+    ),
     howlerPlayPauseButton("sound")
   )
 

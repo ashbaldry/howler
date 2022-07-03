@@ -49,6 +49,16 @@ HTMLWidgets.widget({
       }
     }
 
+    function getTimeInMinutes(secs) {
+      return Math.floor(secs / 60).toString() + ":" + Math.floor(secs % 60).toString().padStart(2, '0');
+    }
+
+    if ($(`.howler-seek[data-howler="${el.id}"]`).length > 0) {
+      setInterval(() => {
+        $(`.howler-seek[data-howler="${el.id}"]`).html(getTimeInMinutes(sound.seek()));
+      }, 100);
+    }
+
     // Events on button clicks
     $(`.howler-play-button[data-howler=${el.id}]`).on("click", (e) => {
       sound.play();
@@ -215,6 +225,7 @@ HTMLWidgets.widget({
               seek_slider.attr("value", 0);
             }
             $(`.howler-current-track[data-howler="${el.id}"]`).html(track_names[current_track]);
+            $(`.howler-duration[data-howler="${el.id}"]`).html(getTimeInMinutes(this.duration()));
 
             if (HTMLWidgets.shinyMode) {
               Shiny.setInputValue(
