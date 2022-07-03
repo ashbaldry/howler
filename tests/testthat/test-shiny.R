@@ -1,6 +1,4 @@
-testthat::context("Shiny Application Tests")
-
-testthat::test_that("howlerModule works", {
+test_that("howlerModule works", {
   # Don't run these tests on the CRAN build servers
   testthat::skip_on_cran()
 
