@@ -157,7 +157,8 @@ HTMLWidgets.widget({
         if (isNaN(track)) {
           current_track = track_names.indexOf(track);
           if (current_track === -1) {
-            current_track = track_names.replace(/.*(\/|\\)/, "").replace(/\.[^\.]+$/, "").indexOf(track);
+            track = track.replace(/.*(\/|\\)/, "").replace(/\.[^\.]+$/, "");
+            current_track = track_names.indexOf(track);
           }
         } else {
           current_track = Number(track) - 1;
