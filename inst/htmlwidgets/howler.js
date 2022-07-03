@@ -255,6 +255,10 @@ HTMLWidgets.widget({
         if (!options.onpause) {
           options.onpause = function() {
             $(`.howler-play_pause-button[data-howler=${el.id}] i`).removeClass("fa-pause").addClass("fa-play");
+            $(`.howler-play_pause-button[data-howler=${el.id}]`).attr("title", "play");
+            $(`.howler-play_pause-button[data-howler=${el.id}]`).attr("aria-label", "play");
+            $(`.howler-play_pause-button[data-howler=${el.id}] i`).attr("aria-label", "play icon");
+
             if (HTMLWidgets.shinyMode) {
               Shiny.setInputValue(`${el.id}_playing`, false);
             }
@@ -264,6 +268,9 @@ HTMLWidgets.widget({
         if (!options.onstop) {
           options.onstop = function() {
             $(`.howler-play_pause-button[data-howler=${el.id}] i`).removeClass("fa-pause").addClass("fa-play");
+            $(`.howler-play_pause-button[data-howler=${el.id}]`).attr("title", "play");
+            $(`.howler-play_pause-button[data-howler=${el.id}]`).attr("aria-label", "play");
+            $(`.howler-play_pause-button[data-howler=${el.id}] i`).attr("aria-label", "play icon");
 
             if (HTMLWidgets.shinyMode) {
               Shiny.setInputValue(`${el.id}_playing`, false);
@@ -274,6 +281,9 @@ HTMLWidgets.widget({
         if (!options.onplay) {
           options.onplay = function() {
             $(`.howler-play_pause-button[data-howler=${el.id}] i`).removeClass("fa-play").addClass("fa-pause");
+            $(`.howler-play_pause-button[data-howler=${el.id}]`).attr("title", "pause");
+            $(`.howler-play_pause-button[data-howler=${el.id}]`).attr("aria-label", "pause");
+            $(`.howler-play_pause-button[data-howler=${el.id}] i`).attr("aria-label", "pause icon");
 
             if (HTMLWidgets.shinyMode) {
               Shiny.setInputValue(`${el.id}_playing`, true);

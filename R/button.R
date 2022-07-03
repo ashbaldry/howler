@@ -98,7 +98,10 @@ howlerPauseButton <- function(howler_id) {
 #' @rdname howlerButton
 #' @export
 howlerPlayPauseButton <- function(howler_id) {
-  howlerButton(howler_id, "play_pause", shiny::icon("play"))
+  btn <- howlerButton(howler_id, "play_pause", shiny::icon("play"))
+  btn$attribs$`aria-label` <- "play"
+  btn$attribs$title <- "play"
+  btn
 }
 
 #' @rdname howlerButton
