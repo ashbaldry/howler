@@ -31,8 +31,8 @@
 #' \describe{
 #' \item{\code{\{id\}_playing}}{A logical value as to whether or not the \code{howler} is playing audio}
 #' \item{\code{\{id\}_track}}{Basename of the file currently loaded}
-#' \item{\code{\{id\}_seek}}{(If \code{seek_ping_rate > 0}) the current time of the track loaded}
-#' \item{\code{\{id\}_duration}}{The duration of the track loaded}
+#' \item{\code{\{id\}_seek}}{(If \code{seek_ping_rate > 0}) the current time (in seconds) of the track loaded}
+#' \item{\code{\{id\}_duration}}{The duration (in seconds) of the track loaded}
 #' }
 #'
 #' @examples
