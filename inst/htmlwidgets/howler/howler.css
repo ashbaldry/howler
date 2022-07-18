@@ -124,13 +124,25 @@ input[type=range].howler-seek-slider {
   transition: 0.1s;
 }
 
-.howler-module-container input[type=range]::-moz-slider-thumb {
-  transform: scale(0);
-  transition: 0.1s;
+.howler-module-container input[type=range]::-moz-range-track {
+  background-color: #F1F3F4;
+  border: #888888 1px solid;
+  border-radius: 2px;
 }
 
-.howler-module-container input[type=range]:hover::-moz-slider-thumb,
-.howler-module-container input[type=range]:focus::-moz-slider-thumb{
+.howler-module-container input[type=range]::-moz-range-progress {
+  background-color: #888888;
+}
+
+.howler-module-container input[type=range]::-moz-range-thumb {
+  transform: scale(0);
+  transition: 0.1s;
+  padding: 0;
+  background-color: #888888;
+}
+
+.howler-module-container input[type=range]:hover::-moz-range-thumb,
+.howler-module-container input[type=range]:focus::-moz-range-thumb {
   transform: scale(0.8);
   transition: 0.1s;
 }
