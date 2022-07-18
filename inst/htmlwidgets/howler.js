@@ -46,7 +46,7 @@ HTMLWidgets.widget({
       options.volume = volume;
       sound.volume(volume);
       if (update_slider) {
-        $(`.howler-volume-slider[data-howler=${el.id}]`).val(volume);
+        $(`.howler-volume-slider[data-howler=${el.id}]`).val(volume).trigger("change");
       }
     }
 
@@ -103,10 +103,10 @@ HTMLWidgets.widget({
 
       if (muted) {
         $(`.howler-volumetoggle-button[data-howler=${el.id}] i`).removeClass("fa-volume-mute").addClass("fa-volume-up");
-        $(`.howler-volume-slider[data-howler=${el.id}]`).val(sound.volume());
+        $(`.howler-volume-slider[data-howler=${el.id}]`).val(sound.volume()).trigger("change");
       } else {
         $(`.howler-volumetoggle-button[data-howler=${el.id}] i`).removeClass("fa-volume-up").addClass("fa-volume-mute");
-        $(`.howler-volume-slider[data-howler=${el.id}]`).val(0);
+        $(`.howler-volume-slider[data-howler=${el.id}]`).val(0).trigger("change");
       }
     });
 
@@ -145,7 +145,7 @@ HTMLWidgets.widget({
 
       setInterval(() => {
         if (not_changing_seek && sound.playing()) {
-          seek_slider.val(Math.floor(sound.seek()));
+          seek_slider.val(Math.floor(sound.seek())).trigger("change");;
         } else if (focused_seek && !sound.playing()) {
           sound.seek(seek_slider.val());
         }
@@ -320,7 +320,7 @@ HTMLWidgets.widget({
         }
 
         if (options.volume) {
-          $(`.howler-volume-slider[data-howler=${el.id}]`).val(options.volume);
+          $(`.howler-volume-slider[data-howler=${el.id}]`).val(options.volume).trigger("change");
         } else {
           var slider_volume = $(`.howler-volume-slider[data-howler=${el.id}]`).val();
           if (slider_volume) {
@@ -344,4 +344,17 @@ HTMLWidgets.widget({
       resize: function(width, height) {}
     };
   }
+});
+
+function updateVolume() {
+  const percent = this.value / this.max * 100;
+  $(this).css(
+    "background",
+    "linear-gradient(to right, #888 0%, #888 " + percent + "%, #F1F3F4 " + percent + "%, #F1F3F4 100%)"
+  );
+}
+
+$(function() {
+  $(".howler-module-container input[type=range]").each(updateVolume);
+  $(".howler-module-container input[type=range]").on("input change", updateVolume);
 });

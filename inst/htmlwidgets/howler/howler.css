@@ -114,13 +114,31 @@ input[type=range].howler-seek-slider {
   margin-left: 1rem;
 }
 
+.howler-module-container input[type=range] {
+  -webkit-appearance: none;
+  border: solid 1px #888;
+  border-radius: 14px;
+  height: 5px;
+}
+
+.howler-module-container input[type=range]::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+}
+
 .howler-module-container input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
   transform: scale(0);
   transition: 0.1s;
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background-color: #888888;
+  margin-top: -1px;
 }
 
 .howler-module-container input[type=range]:hover::-webkit-slider-thumb,
-.howler-module-container input[type=range]:focus::-webkit-slider-thumb {
+.howler-module-container input[type=range]:active::-webkit-slider-thumb {
   transform: scale(0.8);
   transition: 0.1s;
 }
@@ -128,7 +146,7 @@ input[type=range].howler-seek-slider {
 .howler-module-container input[type=range]::-moz-range-track {
   background-color: #F1F3F4;
   border: #888888 1px solid;
-  border-radius: 2px;
+  border-radius: 3px;
 }
 
 .howler-module-container input[type=range]::-moz-range-progress {
@@ -143,7 +161,7 @@ input[type=range].howler-seek-slider {
 }
 
 .howler-module-container input[type=range]:hover::-moz-range-thumb,
-.howler-module-container input[type=range]:focus::-moz-range-thumb {
+.howler-module-container input[type=range]:active::-moz-range-thumb {
   transform: scale(0.8);
   transition: 0.1s;
 }
