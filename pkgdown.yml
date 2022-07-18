@@ -1,9 +1,9 @@
 pandoc: 2.7.3
-pkgdown: 2.0.5
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   howler: howler.html
-last_built: 2022-07-03T17:33Z
+last_built: 2022-07-18T19:04Z
 urls:
   reference: https://github.com/ashbaldry/howler/reference
   article: https://github.com/ashbaldry/howler/articles
