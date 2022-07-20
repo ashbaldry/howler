@@ -26,7 +26,7 @@ The HTML way to include an audio file in any shiny application/web page is to us
 tags$audio(src = "audio/sound.mp3", type = "audio/mp3", autoplay = NA, controls = NA)
 ```
 
-howler.js uses the [Web Audio API](http://webaudio.github.io/web-audio-api/), and with this we are able to create an audio player that can solve both of the above issues and more:
+howler.js uses the [Web Audio API](https://webaudio.github.io/web-audio-api/), and with this we are able to create an audio player that can solve both of the above issues and more:
 
 ```r
 library(shiny)
