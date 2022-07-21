@@ -6,7 +6,9 @@ Authors@R: c(
     person("Ashley", "Baldry", email = "arbaldry91@gmail.com", role = c("aut", "cre")),
     person("James", "Simpson", role = "aut", comment = "Creator of howler.js")
     )
-Description: Audio interactivity within 'shiny' applications using 'howler.js'.
+Description: Audio interactivity within 'shiny' applications using 'howler.js'. Enables the
+    status of the audio player to be sent from the UI to the server, and events such as
+    playing and pausing the audio can be triggered from the server.
 License: MIT + file LICENSE
 URL: https://github.com/ashbaldry/howler, https://github.com/goldfire/howler.js
 BugReports: https://github.com/ashbaldry/howler/issues
