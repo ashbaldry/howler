@@ -123,8 +123,10 @@ howler <- function(tracks, options = list(), track_formats = NULL,
 #' @param quoted Is \code{expr} a quoted expression (with \code{quote()})? This
 #'   is useful if you want to save an expression in a variable.
 #'
-#' @name howler-shiny
+#' @return
+#' An output or render function that enables the use of the widget within Shiny applications.
 #'
+#' @name howler-shiny
 #' @export
 howlerOutput <- function(outputId) {
   htmlwidgets::shinyWidgetOutput(outputId, 'howler', package = 'howler')

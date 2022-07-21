@@ -20,6 +20,9 @@ renderHowler(expr, env = parent.frame(), quoted = FALSE)
 \item{quoted}{Is \code{expr} a quoted expression (with \code{quote()})? This
 is useful if you want to save an expression in a variable.}
 }
+\value{
+An output or render function that enables the use of the widget within Shiny applications.
+}
 \description{
 Output and render functions for using howler within Shiny
 applications and interactive Rmd documents.
