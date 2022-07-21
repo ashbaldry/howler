@@ -11,6 +11,9 @@
 #' code behind the example.
 #' @param ... Optional arguments to send to \code{shiny::runApp}
 #'
+#' @return
+#' This function does not return a value; interrupt R to stop the application (usually by pressing Ctrl+C or Esc).
+#'
 #' @examples
 #' availableHowlerExamples()
 #'

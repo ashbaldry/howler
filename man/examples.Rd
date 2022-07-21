@@ -23,6 +23,9 @@ code behind the example.}
 
 \item{...}{Optional arguments to send to \code{shiny::runApp}}
 }
+\value{
+This function does not return a value; interrupt R to stop the application (usually by pressing Ctrl+C or Esc).
+}
 \description{
 Run \code{\{howler\}} Example Applications
 }
