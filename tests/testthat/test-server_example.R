@@ -14,5 +14,5 @@ test_that("Server-side example works", {
 
   app$click(selector = "#add_track")
   Sys.sleep(1)
-  testthat::expect_equal(app$get_value(input = "sound_track")$name, "running_out")
+  testthat::expect_equal(app$get_value(input = "sound_track")$name, "running_out A")
 })
