@@ -190,14 +190,14 @@ HTMLWidgets.widget({
 
       Shiny.addCustomMessageHandler(`addHowlerTrack_${el.id}`, function(track_info) {
         const original_length = tracks.length;
-        tracks.push(track_info.track);
-        track_names.push(track_info.track_name);
+        tracks = tracks.concat(track_info.track);
+        track_names = track_names.concat(track_info.track_name);
 
         if (track_info.play) {
           if (original_length > 0) {
             sound.stop();
           }
-          current_track = tracks.length - 1;
+          current_track = original_length;
           startNewTrack();
         }
       });
