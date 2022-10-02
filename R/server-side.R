@@ -76,6 +76,13 @@ pauseHowl <- function(id, session = getDefaultReactiveDomain()) {
 
 #' @rdname howlerServer
 #' @export
+togglePlayHowl <- function(id, session = getDefaultReactiveDomain()) {
+  message_name <- paste0("togglePlayHowler_", session$ns(id))
+  session$sendCustomMessage(message_name, id)
+}
+
+#' @rdname howlerServer
+#' @export
 stopHowl <- function(id, session = getDefaultReactiveDomain()) {
   message_name <- paste0("stopHowler_", session$ns(id))
   session$sendCustomMessage(message_name, id)

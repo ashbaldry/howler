@@ -6,6 +6,7 @@
 \alias{addTrack}
 \alias{playHowl}
 \alias{pauseHowl}
+\alias{togglePlayHowl}
 \alias{stopHowl}
 \alias{seekHowl}
 \title{Update howler.js Server-Side}
@@ -17,6 +18,8 @@ addTrack(id, track, play_track = FALSE, session = getDefaultReactiveDomain())
 playHowl(id, session = getDefaultReactiveDomain())
 
 pauseHowl(id, session = getDefaultReactiveDomain())
+
+togglePlayHowl(id, session = getDefaultReactiveDomain())
 
 stopHowl(id, session = getDefaultReactiveDomain())
 
