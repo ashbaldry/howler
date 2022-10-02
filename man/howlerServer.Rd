@@ -6,6 +6,7 @@
 \alias{addTrack}
 \alias{playHowl}
 \alias{pauseHowl}
+\alias{togglePlayHowl}
 \alias{stopHowl}
 \alias{seekHowl}
 \title{Update howler.js Server-Side}
@@ -17,6 +18,8 @@ addTrack(id, track, play_track = FALSE, session = getDefaultReactiveDomain())
 playHowl(id, session = getDefaultReactiveDomain())
 
 pauseHowl(id, session = getDefaultReactiveDomain())
+
+togglePlayHowl(id, session = getDefaultReactiveDomain())
 
 stopHowl(id, session = getDefaultReactiveDomain())
 
@@ -40,7 +43,8 @@ Updates the the state of the specified \code{howler} in the shiny application.
 \description{
 Change the state of the howler player from the server.
 
-\code{playHowl}, \code{pauseHowl} and \code{stopHowl} will all be applied to the current track.
+\code{playHowl}, \code{pauseHowl}, \code{togglePlayHowl} and \code{stopHowl}
+will all be applied to the current track.
 
 \code{changeTrack} will update the track to the file specified.
 

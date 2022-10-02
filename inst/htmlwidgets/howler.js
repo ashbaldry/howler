@@ -166,6 +166,10 @@ HTMLWidgets.widget({
         sound.pause();
       });
 
+      Shiny.addCustomMessageHandler(`togglePlayHowler_${el.id}`, function(id) {
+        sound.playing() ? sound.pause() : sound.play();
+      });
+
       Shiny.addCustomMessageHandler(`stopHowler_${el.id}`, function(id) {
         sound.stop();
       });
