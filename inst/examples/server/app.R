@@ -75,7 +75,7 @@ server <- function(input, output, session) {
   })
 
   observeEvent(input$add_track, {
-    addTrack("sound", audio_files[3], play_track = TRUE)
+    addTrack("sound", setNames(rep(audio_files[3], 3), paste("running_out", LETTERS[1:3])), play_track = TRUE)
   })
 }
 

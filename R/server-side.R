@@ -51,13 +51,23 @@ changeTrack <- function(id, track, session = getDefaultReactiveDomain()) {
 #' @export
 addTrack <- function(id, track, play_track = FALSE, session = getDefaultReactiveDomain()) {
   if (is.null(names(track))) {
-    track_name <- sub("\\.[^\\.]+$", "", basename(track[1]))
+    track_name <- vapply(
+      tracks,
+      function(x) sub("\\.[^\\.]+$", "", basename(x[1])),
+      character(1),
+      USE.NAMES = FALSE
+    )
   } else {
     track_name <- names(track)
   }
 
   message_name <- paste0("addHowlerTrack_", session$ns(id))
-  session$sendCustomMessage(message_name, list(track = track, track_name = track_name, play = play_track))
+  track_info <- list(
+    track = as.list(unname(track)),
+    track_name = as.list(track_name),
+    play = play_track
+  )
+  session$sendCustomMessage(message_name, track_info)
 }
 
 #' @rdname howlerServer
