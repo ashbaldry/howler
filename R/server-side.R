@@ -3,7 +3,8 @@
 #' @description
 #' Change the state of the howler player from the server.
 #'
-#' \code{playHowl}, \code{pauseHowl} and \code{stopHowl} will all be applied to the current track.
+#' \code{playHowl}, \code{pauseHowl}, \code{togglePlayHowl} and \code{stopHowl}
+#' will all be applied to the current track.
 #'
 #' \code{changeTrack} will update the track to the file specified.
 #'
