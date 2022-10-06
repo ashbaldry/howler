@@ -53,7 +53,7 @@ changeTrack <- function(id, track, session = getDefaultReactiveDomain()) {
 addTrack <- function(id, track, play_track = FALSE, session = getDefaultReactiveDomain()) {
   if (is.null(names(track))) {
     track_name <- vapply(
-      tracks,
+      track,
       function(x) sub("\\.[^\\.]+$", "", basename(x[1])),
       character(1),
       USE.NAMES = FALSE
