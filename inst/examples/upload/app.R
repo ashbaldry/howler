@@ -16,7 +16,6 @@ ui <- fluidPage(
     howlerPreviousButton("sound"),
     howlerPlayPauseButton("sound"),
     howlerNextButton("sound"),
-    numericInput("sound_rate", "Rate", 1L, 0.5, 4, 0.25),
     howlerVolumeSlider("sound")
   ),
   tags$br(),
@@ -38,7 +37,7 @@ ui <- fluidPage(
     textOutput("sound_duration", container = tags$b, inline = TRUE)
   ),
 
-  actionButton("add_track", "Add New Track")
+  fileInput("add_track", "Add New Track")
 )
 
 server <- function(input, output, session) {
@@ -75,12 +74,17 @@ server <- function(input, output, session) {
     }
   })
 
-  observe({
-    changeHowlSpeed("sound", input$sound_rate)
-  })
+  tmp_audio_dir <- tempdir()
+  addResourcePath("custom_audio", tmp_audio_dir)
 
   observeEvent(input$add_track, {
-    addTrack("sound", setNames(rep(audio_files[3], 3), paste("running_out", LETTERS[1:3])), play_track = TRUE)
+    saved_track <- file.path(tmp_audio_dir, input$add_track$name)
+    file.copy(input$add_track$datapath, saved_track)
+    upload_track <- setNames(
+      file.path("custom_audio", input$add_track$name),
+      sub("\\.mp3", "", input$add_track$name)
+    )
+    addTrack("sound", upload_track, play_track = TRUE)
   })
 }
 

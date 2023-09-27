@@ -178,6 +178,10 @@ HTMLWidgets.widget({
         sound.seek(time);
       });
 
+      Shiny.addCustomMessageHandler(`rateHowler_${el.id}`, function(rate) {
+        sound.rate(rate);
+      });
+
       Shiny.addCustomMessageHandler(`changeHowlerTrack_${el.id}`, function(track) {
         sound.stop();
         if (isNaN(track)) {

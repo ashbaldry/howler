@@ -106,3 +106,11 @@ seekHowl <- function(id, seek, session = getDefaultReactiveDomain()) {
   message_name <- paste0("seekHowler_", session$ns(id))
   session$sendCustomMessage(message_name, as.numeric(seek))
 }
+
+#' @param rate Rate (from 0.5 to 4.0) of the audio playback speed
+#' @rdname howlerServer
+#' @export
+changeHowlSpeed <- function(id, rate = 1, session = getDefaultReactiveDomain()) {
+  message_name <- paste0("rateHowler_", session$ns(id))
+  session$sendCustomMessage(message_name, as.numeric(rate))
+}
