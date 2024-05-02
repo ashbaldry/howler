@@ -5,6 +5,8 @@
 #'
 #' @param track Either a URL, file path or Base 64 character string of the
 #' sound to play
+#' @param options A named list of options to add to the sound. For a full list of options see
+#' \url{https://github.com/goldfire/howler.js}
 #' @param session Shiny session
 #'
 #' @examplesIf interactive()
@@ -26,11 +28,15 @@
 #' shinyApp(ui, server)
 #'
 #' @export
-playSound <- function(track, ..., session = getDefaultReactiveDomain()) {
-  sound_settings <- list(
-    src = track,
-    autoplay = TRUE,
-    ...
+playSound <- function(track, options = NULL, session = getDefaultReactiveDomain()) {
+  if ("autoplay" %in% names(options)) {
+    warning("autoplay is not required for `playSound` as the sound will automatically play")
+    options <- options[-match("autoplay", names(options))]
+  }
+
+  sound_settings <- append(
+    list(src = track, autoplay = TRUE),
+    options
   )
 
   if (is.null(session$userData$.howler_added) || !session$userData$.howler_added) {

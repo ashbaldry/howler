@@ -4,11 +4,14 @@
 \alias{playSound}
 \title{Play Sound}
 \usage{
-playSound(track, ..., session = getDefaultReactiveDomain())
+playSound(track, options = NULL, session = getDefaultReactiveDomain())
 }
 \arguments{
 \item{track}{Either a URL, file path or Base 64 character string of the
 sound to play}
+
+\item{options}{A named list of options to add to the sound. For a full list of options see
+\url{https://github.com/goldfire/howler.js}}
 
 \item{session}{Shiny session}
 }
