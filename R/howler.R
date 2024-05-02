@@ -7,7 +7,7 @@
 #' @param tracks A named vector of file paths to sounds. If multiple file extensions are included, then use a named
 #' list instead, with each list item containing each extension of the sound.
 #' @param options A named list of options to add to the player. For a full list of options see
-#' \url{https://github.com/goldfire/howler.js}
+#' \url{https://github.com/goldfire/howler.js?tab=readme-ov-file#options}
 #' @param track_formats An optional list of formats of the sounds. By default 'howler' will guess the format to
 #' play in. Must be the same length as tracks
 #' @param auto_continue If there are multiple files, would you like to auto play the next file after the current

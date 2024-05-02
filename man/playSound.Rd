@@ -11,12 +11,17 @@ playSound(track, options = NULL, session = getDefaultReactiveDomain())
 sound to play}
 
 \item{options}{A named list of options to add to the sound. For a full list of options see
-\url{https://github.com/goldfire/howler.js}}
+\url{https://github.com/goldfire/howler.js?tab=readme-ov-file#options}}
 
 \item{session}{Shiny session}
 }
 \description{
 Using howler.js, play a sound within a shiny application.
+}
+\details{
+The `src` and `autoplay` options are pre-determined by `playSound` and are not required
+in `options`. If they are included, a warning will be printed and they will be ignored
+from the list.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
