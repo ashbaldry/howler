@@ -69,7 +69,7 @@ if (interactive()) {
   server <- function(input, output) {
   }
 
-  runShiny(ui, server)
+  shinyApp(ui, server)
 }
 
 \dontrun{
