@@ -48,7 +48,7 @@
 #'   server <- function(input, output) {
 #'   }
 #'
-#'   runShiny(ui, server)
+#'   shinyApp(ui, server)
 #' }
 #'
 #' \dontrun{
@@ -126,10 +126,33 @@ howler <- function(tracks, options = list(), track_formats = NULL,
 #' @return
 #' An output or render function that enables the use of the widget within Shiny applications.
 #'
+#' @examples
+#' if (interactive()) {
+#'   library(shiny)
+#'
+#'   ui <- fluidPage(
+#'     title = "howler.js Player",
+#'     howlerOutput("howler"),
+#'     howlerPlayPauseButton("howler")
+#'   )
+#'
+#'   server <- function(input, output) {
+#'     output$howler <- renderHowler(howler(c(sound = "audio/sound.mp3")))
+#'   }
+#'
+#'   shinyApp(ui, server)
+#' }
+#'
 #' @name howler-shiny
 #' @export
 howlerOutput <- function(outputId) {
-  htmlwidgets::shinyWidgetOutput(outputId, 'howler', package = 'howler')
+  htmlwidgets::shinyWidgetOutput(
+    outputId = outputId,
+    name = "howler",
+    width = "0",
+    height = "0",
+    package = "howler"
+  )
 }
 
 #' @rdname howler-shiny
@@ -137,13 +160,4 @@ howlerOutput <- function(outputId) {
 renderHowler <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(expr) } # force quoted
   htmlwidgets::shinyRenderWidget(expr, howlerOutput, env, quoted = TRUE)
-}
-
-widget_html.howler <- function(id, style, class, ...) {
-  tags$audio(
-    id = id,
-    style = style,
-    class = class,
-    ...
-  )
 }
