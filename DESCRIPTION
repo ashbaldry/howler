@@ -1,7 +1,7 @@
 Package: howler
 Type: Package
 Title: 'Shiny' Extension of 'howler.js'
-Version: 0.2.1
+Version: 0.3.0
 Authors@R: c(
     person("Ashley", "Baldry", email = "arbaldry91@gmail.com", role = c("aut", "cre")),
     person("James", "Simpson", role = "aut", comment = "Creator of howler.js")
@@ -16,5 +16,5 @@ Encoding: UTF-8
 Imports: shiny, htmlwidgets
 Suggests: rmarkdown, knitr, shinytest2, globals, testthat (>= 3.0.0)
 Language: en-GB
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 VignetteBuilder: knitr
