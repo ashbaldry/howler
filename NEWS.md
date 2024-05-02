@@ -1,5 +1,9 @@
 # howler
 
+## 0.2.2
+
+- Fixed issue where `renderHowler` wouldn't play a sound if no `howler` object existed in UI (#20)
+
 ## 0.2.1
 
 - Fixed issue where adding tracks with names failed (#12)
