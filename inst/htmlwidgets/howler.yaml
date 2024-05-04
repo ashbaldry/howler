@@ -4,5 +4,4 @@ dependencies:
     src: htmlwidgets/howler
     script:
     - howler.min.js
-    - play_sound.js
     stylesheet: howler.css

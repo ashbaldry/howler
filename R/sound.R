@@ -65,10 +65,19 @@ playSound <- function(track, options = NULL, session = getDefaultReactiveDomain(
   )
 }
 
-HowlerDependency <- htmltools::htmlDependency(
-  "howler",
-  version = "2.2.3",
-  package = "howler",
-  src = "htmlwidgets/howler",
-  script = c("howler.min.js", "play_sound.js")
+HowlerDependency <- list(
+  htmltools::htmlDependency(
+    "howler",
+    version = "2.2.3",
+    package = "howler",
+    src = "htmlwidgets/howler",
+    script = "howler.min.js"
+  ),
+  htmltools::htmlDependency(
+    "howler-bindings",
+    version = packageVersion("howler"),
+    package = "howler",
+    src = "htmlwidgets/howler-bindings",
+    script = "howler-bindings.js"
+  )
 )
