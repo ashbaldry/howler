@@ -16,7 +16,7 @@ ui <- fluidPage(
     howlerPreviousButton("sound"),
     howlerPlayPauseButton("sound"),
     howlerNextButton("sound"),
-    numericInput("sound_rate", "Rate", 1L, 0.5, 4, 0.25),
+    numericInput("sound_rate", "Rate", 1L, 0.5, 4L, 0.25),
     howlerVolumeSlider("sound")
   ),
   tags$br(),
