@@ -34,9 +34,9 @@
 #' }
 #'
 #' @export
-howlerVolumeSlider <- function(id, volume = 1, button = TRUE) {
-  if (volume < 0 || volume > 1) {
-    stop("Volume must be between 0 and 1")
+howlerVolumeSlider <- function(id, volume = 1.0, button = TRUE) {
+  if (volume < 0.0 || volume > 1.0) {
+    stop("Volume must be between 0 and 1", call. = FALSE)
   }
 
   tagList(
@@ -45,8 +45,8 @@ howlerVolumeSlider <- function(id, volume = 1, button = TRUE) {
       class = "howler-volume-slider",
       `data-howler` = id,
       type = "range",
-      min = 0,
-      max = 1,
+      min = 0.0,
+      max = 1.0,
       step = 0.01,
       value = volume
     )
@@ -87,9 +87,9 @@ howlerSeekSlider <- function(id) {
     class = "howler-seek-slider",
     `data-howler` = id,
     type = "range",
-    min = 0,
-    max = 100,
-    step = 1,
-    value = 0
+    min = 0L,
+    max = 100L,
+    step = 1L,
+    value = 0L
   )
 }

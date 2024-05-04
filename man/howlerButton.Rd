@@ -25,9 +25,9 @@ howlerPlayPauseButton(howler_id)
 
 howlerStopButton(howler_id)
 
-howlerBackButton(howler_id, seek_change = 10)
+howlerBackButton(howler_id, seek_change = 10L)
 
-howlerForwardButton(howler_id, seek_change = 10)
+howlerForwardButton(howler_id, seek_change = 10L)
 
 howlerPreviousButton(howler_id)
 

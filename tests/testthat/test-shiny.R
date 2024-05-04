@@ -1,8 +1,8 @@
 test_that("howlerModule works", {
   # Don't run these tests on the CRAN build servers
-  testthat::skip_on_cran()
+  skip_on_cran()
 
-  audio_files_dir <- system.file("examples/_audio", package = "howler")
+  audio_files_dir <- system.file("examples", "_audio", package = "howler")
   addResourcePath("sample_audio", audio_files_dir)
   audio_files <- file.path("sample_audio", list.files(audio_files_dir, ".mp3$"))
 
@@ -17,17 +17,17 @@ test_that("howlerModule works", {
   app <- shinytest2::AppDriver$new(shinyApp(ui, server), name = "howler_app")
   on.exit(app$stop())
 
-  Sys.sleep(1)
+  Sys.sleep(1L)
 
-  testthat::expect_false(app$get_value(input = "howler_playing"))
-  testthat::expect_equal(app$get_value(input = "howler_seek"), 0)
-  testthat::expect_gte(app$get_value(input = "howler_duration"), 0)
+  expect_false(app$get_value(input = "howler_playing"))
+  expect_identical(app$get_value(input = "howler_seek"), 0L)
+  expect_gte(app$get_value(input = "howler_duration"), 0L)
 
-  first_track <- list(name = sub(".mp3", "", basename(audio_files[1])), id = 1)
-  testthat::expect_equal(app$get_value(input = "howler_track"), first_track)
+  first_track <- list(name = sub(".mp3", "", basename(audio_files[1L])), id = 1L)
+  expect_identical(app$get_value(input = "howler_track"), first_track)
 
   app$click(selector = ".howler-next-button")
-  Sys.sleep(1)
-  second_track <- list(name = sub(".mp3", "", basename(audio_files[2])), id = 2)
-  testthat::expect_equal(app$get_value(input = "howler_track"), second_track)
+  Sys.sleep(1L)
+  second_track <- list(name = sub(".mp3", "", basename(audio_files[2L])), id = 2L)
+  expect_identical(app$get_value(input = "howler_track"), second_track)
 })

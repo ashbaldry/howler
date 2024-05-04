@@ -54,8 +54,8 @@ addTrack <- function(id, track, play_track = FALSE, session = getDefaultReactive
   if (is.null(names(track))) {
     track_name <- vapply(
       track,
-      function(x) sub("\\.[^\\.]+$", "", basename(x[1])),
-      character(1),
+      function(x) sub("\\.[^\\.]+$", "", basename(x[1L])),
+      character(1L),
       USE.NAMES = FALSE
     )
   } else {
