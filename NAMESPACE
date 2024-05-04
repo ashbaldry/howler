@@ -2,6 +2,7 @@
 
 export(addTrack)
 export(availableHowlerExamples)
+export(changeHowlSpeed)
 export(changeTrack)
 export(deleteTrack)
 export(howler)
