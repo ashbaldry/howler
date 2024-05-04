@@ -178,7 +178,7 @@ HTMLWidgets.widget({
         sound.seek(time);
       });
 
-      Shiny.addCustomMessageHandler(`rateHowler_${el.id}`, function(rate) {
+      Shiny.addCustomMessageHandler(`changeHowlerRate_${el.id}`, function(rate) {
         sound.rate(rate);
       });
 
