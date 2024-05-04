@@ -1,7 +1,7 @@
 library(shiny)
 library(howler)
 
-audio_files_dir <- system.file( "examples/_audio", package = "howler")
+audio_files_dir <- system.file("examples", "_audio", package = "howler")
 addResourcePath("sample_audio", audio_files_dir)
 audio_files <- file.path("sample_audio", list.files(audio_files_dir, ".mp3$"))
 
@@ -42,16 +42,16 @@ server <- function(input, output, session) {
   output$sound_duration <- renderText({
     sprintf(
       "%02d:%02.0f",
-      input$sound_duration %/% 60,
-      input$sound_duration %% 60
+      input$sound_duration %/% 60L,
+      input$sound_duration %% 60L
     )
   })
 
   output$sound_seek <- renderText({
     sprintf(
       "%02d:%02.0f",
-      input$sound_seek %/% 60,
-      input$sound_seek %% 60
+      input$sound_seek %/% 60L,
+      input$sound_seek %% 60L
     )
   })
 
