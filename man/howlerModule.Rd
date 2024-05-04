@@ -49,7 +49,7 @@ if (interactive()) {
   )
 
   server <- function(input, output, session) {
-    moduleServer("howl", howlerModuleServer)
+    howlerModuleServer("howl")
   }
 
   shinyApp(ui, server)
