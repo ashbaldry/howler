@@ -36,7 +36,7 @@
 #' @export
 howlerVolumeSlider <- function(id, volume = 1.0, button = TRUE) {
   if (volume < 0.0 || volume > 1.0) {
-    stop("Volume must be between 0 and 1")
+    stop("Volume must be between 0 and 1", call. = FALSE)
   }
 
   tagList(

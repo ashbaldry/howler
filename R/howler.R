@@ -69,11 +69,11 @@ howler <- function(tracks, options = list(), track_formats = NULL,
                    auto_continue = FALSE, auto_loop = FALSE, seek_ping_rate = 1000L, elementId = NULL) {
 
   if (!(is.null(track_formats) || length(tracks) == length(track_formats))) {
-    stop("Track formats must be the same length as tracks")
+    stop("Track formats must be the same length as tracks", call. = FALSE)
   }
 
   if (seek_ping_rate < 0L) {
-    stop("Seek ping rate cannot be negative")
+    stop("Seek ping rate cannot be negative", call. = FALSE)
   }
 
   if (is.null(names(tracks))) {

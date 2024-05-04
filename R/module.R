@@ -78,7 +78,7 @@ howlerModuleUI <- function(id, files, ..., include_current_track = TRUE, width =
 #' @rdname howlerModule
 #' @export
 howlerBasicModuleUI <- function(id, files, ..., width = "300px") {
-  if (length(files) > 1L) stop("Only one file can be included in the basic module")
+  if (length(files) > 1L) stop("Only one file can be included in the basic module", call. = FALSE)
   ns <- NS(id)
   howler_id <- ns("howler")
 
@@ -120,13 +120,11 @@ howlerModuleServer <- function(id) {
   moduleServer(
     id,
     function(input, output, session) {
-      return(
-        list(
-          playing = reactive(input$howler_playing),
-          track = reactive(input$howler_track),
-          duration = reactive(input$howler_duration),
-          seek = reactive(input$howler_seek)
-        )
+      list(
+        playing = reactive(input$howler_playing),
+        track = reactive(input$howler_track),
+        duration = reactive(input$howler_duration),
+        seek = reactive(input$howler_seek)
       )
     }
   )

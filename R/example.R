@@ -29,7 +29,11 @@
 runHowlerExample <- function(example = "basic", display.mode = "showcase", ...) { # nolint object_name_linter
   available_examples <- findHowlerExamples()
   if (!example %in% available_examples) {
-    stop("Example not available. Choose from: '", paste(available_examples, collapse = "', '"), "'")
+    stop(
+      "Example not available. Choose from: ",
+      toString(paste0("'", available_examples, "'")),
+      call. = FALSE
+    )
   }
 
   shiny::runApp(

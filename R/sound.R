@@ -70,14 +70,14 @@ HOWLER_DEPENDENCIES <- list(
     "howler",
     version = "2.2.3",
     package = "howler",
-    src = "htmlwidgets/howler",
+    src = file.path("htmlwidgets", "howler"),
     script = "howler.min.js"
   ),
   htmltools::htmlDependency(
     "howler-bindings",
     version = packageVersion("howler"),
     package = "howler",
-    src = "htmlwidgets/howler-bindings",
+    src = file.path("htmlwidgets", "howler-bindings"),
     script = "howler-bindings.js"
   )
 )
