@@ -4,6 +4,7 @@
 \alias{howlerServer}
 \alias{changeTrack}
 \alias{addTrack}
+\alias{deleteTrack}
 \alias{playHowl}
 \alias{pauseHowl}
 \alias{togglePlayHowl}
@@ -15,6 +16,8 @@
 changeTrack(id, track, session = getDefaultReactiveDomain())
 
 addTrack(id, track, play_track = FALSE, session = getDefaultReactiveDomain())
+
+deleteTrack(id, track, session = getDefaultReactiveDomain())
 
 playHowl(id, session = getDefaultReactiveDomain())
 
@@ -54,6 +57,10 @@ will all be applied to the current track.
 \code{changeTrack} will update the track to the file specified.
 
 \code{addTrack} will add a new track to the specified player.
+}
+\details{
+For `deleteTrack`, make sure that the name is used of the track
+rather than the file name.
 }
 \examples{
 if (interactive()) {
