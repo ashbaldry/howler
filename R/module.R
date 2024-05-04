@@ -56,9 +56,9 @@ howlerModuleUI <- function(id, files, ..., include_current_track = TRUE, width =
         class = "howler-module-settings",
         div(
           class = "howler-module-buttons",
-          if (length(files) > 1) howlerPreviousButton(howler_id),
+          if (length(files) > 1L) howlerPreviousButton(howler_id),
           howlerPlayPauseButton(howler_id),
-          if (length(files) > 1) howlerNextButton(howler_id)
+          if (length(files) > 1L) howlerNextButton(howler_id)
         ),
         span(
           class = "howler-module-duration",
@@ -78,7 +78,7 @@ howlerModuleUI <- function(id, files, ..., include_current_track = TRUE, width =
 #' @rdname howlerModule
 #' @export
 howlerBasicModuleUI <- function(id, files, ..., width = "300px") {
-  if (length(files) > 1) stop("Only one file can be included in the basic module")
+  if (length(files) > 1L) stop("Only one file can be included in the basic module")
   ns <- NS(id)
   howler_id <- ns("howler")
 
@@ -92,7 +92,7 @@ howlerBasicModuleUI <- function(id, files, ..., width = "300px") {
         class = "howler-module-settings",
         div(
           class = "howler-module-buttons",
-          howlerPlayPauseButton(howler_id),
+          howlerPlayPauseButton(howler_id)
         ),
         span(
           class = "howler-module-duration",

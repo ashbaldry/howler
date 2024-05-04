@@ -1,0 +1,7 @@
+linters: all_linters(
+    extraction_operator_linter = NULL,
+    line_length_linter = line_length_linter(120L),
+    object_name_linter = object_name_linter(c("snake_case", "SNAKE_CASE", "camelCase", "symbols")),
+    undesirable_function_linter = NULL,
+    unused_import_linter = NULL
+  )

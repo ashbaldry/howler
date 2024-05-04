@@ -11,11 +11,11 @@ test_that("howlerModuleUI passes with 1 file", {
 })
 
 test_that("howlerModuleUI passes with multiple files", {
-  testthat::expect_error(howlerModuleUI("test", rep("test.mp3", 3)), NA)
+  testthat::expect_error(howlerModuleUI("test", rep("test.mp3", 3L)), NA)
 })
 
 test_that("howlerModuleUI errors when seek rate is negative", {
-  testthat::expect_error(howlerModuleUI("test", "test.mp3", seek_ping_rate = -1))
+  testthat::expect_error(howlerModuleUI("test", "test.mp3", seek_ping_rate = -1L))
 })
 
 test_that("howlerBasicModuleUI fails with no `id`", {
@@ -31,11 +31,11 @@ test_that("howlerBasicModuleUI passes with 1 file", {
 })
 
 test_that("howlerBasicModuleUI errors with multiple files", {
-  testthat::expect_error(howlerBasicModuleUI("test", rep("test.mp3", 3)))
+  testthat::expect_error(howlerBasicModuleUI("test", rep("test.mp3", 3L)))
 })
 
 test_that("howlerBasicModuleUI errors when seek rate is negative", {
-  testthat::expect_error(howlerBasicModuleUI("test", "test.mp3", seek_ping_rate = -1))
+  testthat::expect_error(howlerBasicModuleUI("test", "test.mp3", seek_ping_rate = -1L))
 })
 
 test_that("howlerModuleServer fails with no `id`", {

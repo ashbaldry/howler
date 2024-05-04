@@ -54,7 +54,7 @@ playSound <- function(track, options = NULL, session = getDefaultReactiveDomain(
       "head",
       "beforeEnd",
       immediate = TRUE,
-      ui = HowlerDependency
+      ui = HOWLER_DEPENDENCIES
     )
     session$userData$.howler_added <- TRUE
   }
@@ -65,7 +65,7 @@ playSound <- function(track, options = NULL, session = getDefaultReactiveDomain(
   )
 }
 
-HowlerDependency <- list(
+HOWLER_DEPENDENCIES <- list(
   htmltools::htmlDependency(
     "howler",
     version = "2.2.3",

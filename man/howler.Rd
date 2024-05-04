@@ -10,7 +10,7 @@ howler(
   track_formats = NULL,
   auto_continue = FALSE,
   auto_loop = FALSE,
-  seek_ping_rate = 1000,
+  seek_ping_rate = 1000L,
   elementId = NULL
 )
 }
@@ -36,7 +36,8 @@ set to 1000. If set to 0, then `input$\{id\}_seek` will not exist.}
 \item{elementId}{HTML id tag to be given to the howler player element}
 }
 \value{
-A shiny.tag containing all of the required options for a \code{Howl} JS object to be initialised in a shiny application.
+A shiny.tag containing all of the required options for a \code{Howl} JavaScript
+object to be initialised in a shiny application.
 
 On the server side there will be up to four additional objects available as inputs:
 \describe{
@@ -57,22 +58,20 @@ that the buttons are linked to the player.
 i.e. If \code{howler(id = "howler")}, then \code{howlerPlayButton(id = "howler")}
 }
 \examples{
-if (interactive()) {
-  library(shiny)
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+library(shiny)
 
-  ui <- fluidPage(
-    title = "howler.js Player",
-    howler(elementId = "howler", c(sound = "audio/sound.mp3")),
-    howlerPlayPauseButton("howler")
-  )
+ui <- fluidPage(
+  title = "howler.js Player",
+  howler(elementId = "howler", c(sound = "audio/sound.mp3")),
+  howlerPlayPauseButton("howler")
+)
 
-  server <- function(input, output) {
-  }
-
-  shinyApp(ui, server)
+server <- function(input, output) {
 }
 
-\dontrun{
+shinyApp(ui, server)
+
 # Multiple file formats
 howler(
   elementId = "howler",
@@ -81,8 +80,7 @@ howler(
     track_2 = c("audio/sound2.webm", "audio/sound2.mp3"),
   )
 )
-}
-
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link{howlerButton}}, \code{\link{howlerServer}}

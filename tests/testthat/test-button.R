@@ -10,7 +10,7 @@ test_that("Basic howlerButton creates 'button' shiny.tag", {
   button <- howlerButton("test")
 
   testthat::expect_is(button, "shiny.tag")
-  testthat::expect_equal(button$name, "button")
+  testthat::expect_identical(button$name, "button")
   testthat::expect_match(button$attribs$class, "\\baction-button\\b")
   testthat::expect_match(button$attribs$class, "\\bhowler-")
 })
@@ -32,13 +32,13 @@ test_that("All specific buttons produce a valid howlerButton with icon", {
     button <- get(button_function)("test")
 
     testthat::expect_is(button, "shiny.tag")
-    testthat::expect_equal(button$name, "button")
+    testthat::expect_identical(button$name, "button")
     testthat::expect_match(button$attribs$class, "\\baction-button\\b")
     testthat::expect_match(button$attribs$class, "\\bhowler-")
 
-    testthat::expect_is(button$children[[1]], "shiny.tag")
-    testthat::expect_equal(button$children[[1]]$name, "i")
-    testthat::expect_match(button$children[[1]]$attribs$class, "\\bfa\\b")
+    testthat::expect_is(button$children[[1L]], "shiny.tag")
+    testthat::expect_identical(button$children[[1L]]$name, "i")
+    testthat::expect_match(button$children[[1L]]$attribs$class, "\\bfa\\b")
   }
 })
 

@@ -25,7 +25,8 @@
 #' i.e. If \code{howler(id = "howler")}, then \code{howlerPlayButton(id = "howler")}
 #'
 #' @return
-#' A shiny.tag containing all of the required options for a \code{Howl} JS object to be initialised in a shiny application.
+#' A shiny.tag containing all of the required options for a \code{Howl} JavaScript
+#' object to be initialised in a shiny application.
 #'
 #' On the server side there will be up to four additional objects available as inputs:
 #' \describe{
@@ -35,23 +36,20 @@
 #' \item{\code{\{id\}_duration}}{The duration (in seconds) of the track loaded}
 #' }
 #'
-#' @examples
-#' if (interactive()) {
-#'   library(shiny)
+#' @examplesIf interactive()
+#' library(shiny)
 #'
-#'   ui <- fluidPage(
-#'     title = "howler.js Player",
-#'     howler(elementId = "howler", c(sound = "audio/sound.mp3")),
-#'     howlerPlayPauseButton("howler")
-#'   )
+#' ui <- fluidPage(
+#'   title = "howler.js Player",
+#'   howler(elementId = "howler", c(sound = "audio/sound.mp3")),
+#'   howlerPlayPauseButton("howler")
+#' )
 #'
-#'   server <- function(input, output) {
-#'   }
-#'
-#'   shinyApp(ui, server)
+#' server <- function(input, output) {
 #' }
 #'
-#' \dontrun{
+#' shinyApp(ui, server)
+#'
 #' # Multiple file formats
 #' howler(
 #'   elementId = "howler",
@@ -60,7 +58,6 @@
 #'     track_2 = c("audio/sound2.webm", "audio/sound2.mp3"),
 #'   )
 #' )
-#' }
 #'
 #' @seealso \code{\link{howlerButton}}, \code{\link{howlerServer}}
 #'
@@ -69,21 +66,21 @@
 #'
 #' @export
 howler <- function(tracks, options = list(), track_formats = NULL,
-                   auto_continue = FALSE, auto_loop = FALSE, seek_ping_rate = 1000, elementId = NULL) {
+                   auto_continue = FALSE, auto_loop = FALSE, seek_ping_rate = 1000L, elementId = NULL) {
 
   if (!(is.null(track_formats) || length(tracks) == length(track_formats))) {
     stop("Track formats must be the same length as tracks")
   }
 
-  if (seek_ping_rate < 0) {
+  if (seek_ping_rate < 0L) {
     stop("Seek ping rate cannot be negative")
   }
 
   if (is.null(names(tracks))) {
     track_names <- vapply(
       tracks,
-      function(x) sub("\\.[^\\.]+$", "", basename(x[1])),
-      character(1),
+      function(x) sub("\\.[^\\.]+$", "", basename(x[1L])),
+      character(1L),
       USE.NAMES = FALSE
     )
   } else {
@@ -100,7 +97,7 @@ howler <- function(tracks, options = list(), track_formats = NULL,
     options = options
   )
 
-  settings <- settings[!vapply(settings, is.null, logical(1))]
+  settings <- settings[!vapply(settings, is.null, logical(1L))]
 
   htmlwidgets::createWidget(
     name = "howler",
@@ -158,6 +155,6 @@ howlerOutput <- function(outputId) {
 #' @rdname howler-shiny
 #' @export
 renderHowler <- function(expr, env = parent.frame(), quoted = FALSE) {
-  if (!quoted) { expr <- substitute(expr) } # force quoted
+  if (!quoted) expr <- substitute(expr)
   htmlwidgets::shinyRenderWidget(expr, howlerOutput, env, quoted = TRUE)
 }

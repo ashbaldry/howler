@@ -1,7 +1,7 @@
 library(shiny)
 library(howler)
 
-audio_files_dir <- system.file("examples/_audio", package = "howler")
+audio_files_dir <- system.file("examples", "_audio", package = "howler")
 addResourcePath("sample_audio", audio_files_dir)
 audio_files <- file.path("sample_audio", list.files(audio_files_dir, ".mp3$"))
 
@@ -12,7 +12,7 @@ ui <- fluidPage(
   p("After 10 seconds, the sound will automatically pause. After 20 seconds, it will play the second track"),
 
   tags$section(
-    howler(audio_files[1:2], auto_continue = TRUE, elementId = "sound"),
+    howler(audio_files[1L:2L], auto_continue = TRUE, elementId = "sound"),
     howlerPreviousButton("sound"),
     howlerPlayPauseButton("sound"),
     howlerNextButton("sound"),
@@ -48,16 +48,16 @@ server <- function(input, output, session) {
   output$sound_duration <- renderText({
     sprintf(
       "%02d:%02.0f",
-      input$sound_duration %/% 60,
-      input$sound_duration %% 60
+      input$sound_duration %/% 60L,
+      input$sound_duration %% 60L
     )
   })
 
   output$sound_seek <- renderText({
     sprintf(
       "%02d:%02.0f",
-      input$sound_seek %/% 60,
-      input$sound_seek %% 60
+      input$sound_seek %/% 60L,
+      input$sound_seek %% 60L
     )
   })
 
@@ -67,15 +67,19 @@ server <- function(input, output, session) {
 
   observe({
     req(input$sound_seek)
-    if (round(input$sound_seek) == 10) {
+    if (round(input$sound_seek) == 10L) {
       pauseHowl("sound")
-    } else if (round(input$sound_seek) == 20) {
-      changeTrack("sound", 2)
+    } else if (round(input$sound_seek) == 20L) {
+      changeTrack("sound", 2L)
     }
   })
 
   observeEvent(input$add_track, {
-    addTrack("sound", setNames(rep(audio_files[3], 3), paste("running_out", LETTERS[1:3])), play_track = TRUE)
+    addTrack(
+      "sound",
+      setNames(rep(audio_files[3L], 3L), paste("running_out", LETTERS[1L:3L])),
+      play_track = TRUE
+    )
   })
 }
 

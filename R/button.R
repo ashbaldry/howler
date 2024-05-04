@@ -114,13 +114,13 @@ howlerStopButton <- function(howler_id) {
 #'
 #' @rdname howlerButton
 #' @export
-howlerBackButton <- function(howler_id, seek_change = 10) {
+howlerBackButton <- function(howler_id, seek_change = 10L) {
   howlerButton(howler_id, "back", shiny::icon("backward"), `data-seek-change` = -abs(seek_change))
 }
 
 #' @rdname howlerButton
 #' @export
-howlerForwardButton <- function(howler_id, seek_change = 10) {
+howlerForwardButton <- function(howler_id, seek_change = 10L) {
   howlerButton(howler_id, "forward", shiny::icon("forward"), `data-seek-change` = seek_change)
 }
 
