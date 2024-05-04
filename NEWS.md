@@ -3,6 +3,7 @@
 ## 0.3.0
 
 - Added `playSound`, enabling sounds to be played without UI element (#19)
+- Added `changeHowlSpeed` to allow server-side control of the rate of the track
 - Fixed issue where `renderHowler` wouldn't play a sound if no `howler` object existed in UI (#20)
 
 ## 0.2.1
