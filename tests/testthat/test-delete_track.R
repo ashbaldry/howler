@@ -22,13 +22,13 @@ test_that("Delete track works as expected", {
   app$wait_for_idle()
   current_track <- app$get_value(input = "sound_track")
   app$click("delete_track")
-  app$wait_for_idle(duration = 1000)
+  app$wait_for_idle(duration = 1000L)
   new_track <- app$get_value(input = "sound_track")
 
   expect_false(identical(new_track$name, current_track$name))
 
   app$click("delete_track")
-  app$wait_for_idle(duration = 1000)
+  app$wait_for_idle(duration = 1000L)
   expect_null(app$get_value(input = "sound_track")$name)
 })
 
