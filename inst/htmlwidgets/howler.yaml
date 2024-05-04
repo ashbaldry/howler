@@ -2,6 +2,5 @@ dependencies:
   - name: howler
     version: 2.2.3
     src: htmlwidgets/howler
-    script:
-    - howler.min.js
+    script: howler.min.js
     stylesheet: howler.css
