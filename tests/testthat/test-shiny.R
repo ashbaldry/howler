@@ -1,6 +1,6 @@
 test_that("howlerModule works", {
   # Don't run these tests on the CRAN build servers
-  testthat::skip_on_cran()
+  skip_on_cran()
 
   audio_files_dir <- system.file("examples", "_audio", package = "howler")
   addResourcePath("sample_audio", audio_files_dir)
@@ -19,15 +19,15 @@ test_that("howlerModule works", {
 
   Sys.sleep(1L)
 
-  testthat::expect_false(app$get_value(input = "howler_playing"))
-  testthat::expect_identical(app$get_value(input = "howler_seek"), 0L)
-  testthat::expect_gte(app$get_value(input = "howler_duration"), 0L)
+  expect_false(app$get_value(input = "howler_playing"))
+  expect_identical(app$get_value(input = "howler_seek"), 0L)
+  expect_gte(app$get_value(input = "howler_duration"), 0L)
 
   first_track <- list(name = sub(".mp3", "", basename(audio_files[1L])), id = 1L)
-  testthat::expect_identical(app$get_value(input = "howler_track"), first_track)
+  expect_identical(app$get_value(input = "howler_track"), first_track)
 
   app$click(selector = ".howler-next-button")
   Sys.sleep(1L)
   second_track <- list(name = sub(".mp3", "", basename(audio_files[2L])), id = 2L)
-  testthat::expect_identical(app$get_value(input = "howler_track"), second_track)
+  expect_identical(app$get_value(input = "howler_track"), second_track)
 })

@@ -1,6 +1,6 @@
-testthat::test_that("Sound can be play in shiny app", {
+test_that("Sound can be play in shiny app", {
   # Don't run these tests on the CRAN build servers
-  testthat::skip_on_cran()
+  skip_on_cran()
 
   audio_file <- system.file("examples", "_audio", "80s_vibe.mp3", package = "howler")
 
