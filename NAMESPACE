@@ -3,6 +3,7 @@
 export(addTrack)
 export(availableHowlerExamples)
 export(changeTrack)
+export(deleteTrack)
 export(howler)
 export(howlerBackButton)
 export(howlerBasicModuleUI)

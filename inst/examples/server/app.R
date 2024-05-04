@@ -37,7 +37,8 @@ ui <- fluidPage(
     textOutput("sound_duration", container = tags$b, inline = TRUE)
   ),
 
-  actionButton("add_track", "Add New Track")
+  actionButton("add_track", "Add New Track"),
+  actionButton("delete_track", "Delete Selected Track")
 )
 
 server <- function(input, output, session) {
@@ -79,6 +80,13 @@ server <- function(input, output, session) {
       "sound",
       setNames(rep(audio_files[3L], 3L), paste("running_out", LETTERS[1L:3L])),
       play_track = TRUE
+    )
+  })
+
+  observeEvent(input$delete_track, {
+    deleteTrack(
+      "sound",
+      input$sound_track$name
     )
   })
 }

@@ -28,6 +28,14 @@ HTMLWidgets.widget({
     }
 
     function startNewTrack(play_track = true) {
+      if (tracks.length == 0 && HTMLWidgets.shinyMode) {
+        Shiny.setInputValue(`${el.id}_track`, {name: null, id: 0});
+        Shiny.setInputValue(`${el.id}_tracks`, null);
+        Shiny.setInputValue(`${el.id}_seek`, null);
+        Shiny.setInputValue(`${el.id}_duration`, null);
+        Shiny.setInputValue(`${el.id}_playing`, false);
+      }
+
       options.src = tracks[current_track];
       if (track_formats) {
         options.format = track_formats[current_track];
@@ -196,6 +204,7 @@ HTMLWidgets.widget({
         const original_length = tracks.length;
         tracks = tracks.concat(track_info.track);
         track_names = track_names.concat(track_info.track_name);
+        Shiny.setInputValue(`${el.id}_tracks`, track_names);
 
         if (track_info.play) {
           if (original_length > 0) {
@@ -203,6 +212,19 @@ HTMLWidgets.widget({
           }
           current_track = original_length;
           startNewTrack();
+        }
+      });
+
+      Shiny.addCustomMessageHandler(`deleteHowlerTrack_${el.id}`, function(track) {
+        const index = track_names.indexOf(track);
+
+        tracks.splice(index, 1);
+        track_names.splice(track_names, 1);
+        Shiny.setInputValue(`${el.id}_tracks`, track_names);
+
+        if (current_track === index) {
+          sound.stop();
+          startNewTrack(false);
         }
       });
     }
@@ -248,6 +270,7 @@ HTMLWidgets.widget({
                 `${el.id}_track`,
                 {name: track_names[current_track], id: current_track + 1}
               );
+              Shiny.setInputValue(`${el.id}_tracks`, track_names);
               Shiny.setInputValue(`${el.id}_seek`, this.seek());
               Shiny.setInputValue(`${el.id}_duration`, this.duration());
               Shiny.setInputValue(`${el.id}_playing`, false);

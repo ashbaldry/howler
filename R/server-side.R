@@ -71,6 +71,22 @@ addTrack <- function(id, track, play_track = FALSE, session = getDefaultReactive
   session$sendCustomMessage(message_name, track_info)
 }
 
+#' @details
+#' For `deleteTrack`, make sure that the name is used of the track
+#' rather than the file name.
+#'
+#' @rdname howlerServer
+#' @export
+deleteTrack <- function(id, track, session = getDefaultReactiveDomain()) {
+  tracks <- session$input[[paste0(session$ns(id), "_tracks")]]
+  if (!track %in% tracks) {
+    warning(track, " not available for ", id, call. = FALSE)
+    return(invisible())
+  }
+
+  session$sendCustomMessage(paste0("deleteHowlerTrack_", session$ns(id)), track)
+}
+
 #' @rdname howlerServer
 #' @export
 playHowl <- function(id, session = getDefaultReactiveDomain()) {
