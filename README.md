@@ -1,6 +1,6 @@
 
 <!-- badges: start -->
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Codecov test coverage](https://codecov.io/gh/ashbaldry/howler/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ashbaldry/howler?branch=main)
 [![R-CMD-check](https://github.com/ashbaldry/howler/workflows/R-CMD-check/badge.svg)](https://github.com/ashbaldry/howler/actions)
 <!-- badges: end -->
