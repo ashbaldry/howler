@@ -73,7 +73,7 @@
 
       
 
-      </header><script src="howler_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Adding Audio with howler.js</h1>
@@ -89,13 +89,16 @@
 <!-- badges: start -->
 <p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a> <a href="https://app.codecov.io/gh/ashbaldry/howler?branch=main" class="external-link"><img src="https://codecov.io/gh/ashbaldry/howler/branch/main/graph/badge.svg" alt="Codecov test coverage"></a> <a href="https://github.com/ashbaldry/howler/actions"><img src="https://github.com/ashbaldry/howler/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a> <!-- badges: end --></p>
 <div class="section level2">
-<h2 id="howler---interactive-audio-player">{howler} - Interactive Audio Player <img src="https://raw.githubusercontent.com/ashbaldry/howler/master/man/figures/logo.png" align="right" width="120"><a class="anchor" aria-label="anchor" href="#howler---interactive-audio-player"></a>
+<h2 id="howler---interactive-audio-player">{howler} - Interactive Audio Player
+<img src="https://raw.githubusercontent.com/ashbaldry/howler/master/man/figures/logo.png" align="right" width="120"><a class="anchor" aria-label="anchor" href="#howler---interactive-audio-player"></a>
 </h2>
-<p><a href="https://github.com/ashbaldry/howler">howler</a> is a package that utilises the <a href="https://github.com/goldfire/howler.js" class="external-link">howler.js</a> library to play audio on the modern web.</p>
+<p><a href="https://github.com/ashbaldry/howler">howler</a> is a package that utilises the <a href="https://github.com/goldfire/howler.js" class="external-link">howler.js</a> library to
+play audio on the modern web.</p>
 <div class="section level3">
 <h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h3>
-<p>This package is not yet available on CRAN. To install the latest version:</p>
+<p>This package is not yet available on CRAN. To install the latest
+version:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ashbaldry/howler"</span><span class="op">)</span></span></code></pre></div>
@@ -103,10 +106,15 @@
 <div class="section level3">
 <h3 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h3>
-<p>The HTML way to include an audio file in any shiny application/web page is to use the <code>&lt;audio&gt;</code> tag. This can generally only handle one audio file, and cannot (easily) be manipulated from the server side.</p>
+<p>The HTML way to include an audio file in any shiny application/web
+page is to use the <code>&lt;audio&gt;</code> tag. This can generally
+only handle one audio file, and cannot (easily) be manipulated from the
+server side.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tags</span><span class="op">$</span><span class="fu">audio</span><span class="op">(</span>src <span class="op">=</span> <span class="st">"audio/sound.mp3"</span>, type <span class="op">=</span> <span class="st">"audio/mp3"</span>, autoplay <span class="op">=</span> <span class="cn">NA</span>, controls <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div>
-<p>howler.js uses the <a href="https://webaudio.github.io/web-audio-api/" class="external-link">Web Audio API</a>, and with this we are able to create an audio player that can solve both of the above issues and more:</p>
+<p>howler.js uses the <a href="https://webaudio.github.io/web-audio-api/" class="external-link">Web Audio API</a>, and
+with this we are able to create an audio player that can solve both of
+the above issues and more:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ashbaldry/howler">howler</a></span><span class="op">)</span></span>
@@ -140,21 +148,30 @@
 <div class="section level4">
 <h4 id="module">Module<a class="anchor" aria-label="anchor" href="#module"></a>
 </h4>
-<p>The <a href="https://github.com/ashbaldry/howler">howler</a> package also includes a lightweight module <code>howlerModuleUI</code> and <code>howlerModuleServer</code> that adds a bit of styling to replicate the style of a standard <code>&lt;audio&gt;</code> HTML player.</p>
-<div class="figure">
-<img src="../reference/figures/howler_module.png" alt=""><p class="caption">Howler module UI</p>
+<p>The <a href="https://github.com/ashbaldry/howler">howler</a> package also includes a lightweight module
+<code>howlerModuleUI</code> and <code>howlerModuleServer</code> that
+adds a bit of styling to replicate the style of a standard
+<code>&lt;audio&gt;</code> HTML player.</p>
+<div class="float">
+<img src="../reference/figures/howler_module.png" alt="Howler module UI"><div class="figcaption">Howler module UI</div>
 </div>
 </div>
 </div>
 <div class="section level3">
 <h3 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
 </h3>
-<p>All examples are available in the <a href="https://github.com/ashbaldry/howler/tree/main/inst/examples">Examples</a> directory and can be run locally by installing the <a href="https://github.com/ashbaldry/howler">howler</a> package:</p>
+<p>All examples are available in the <a href="https://github.com/ashbaldry/howler/tree/main/inst/examples">Examples</a>
+directory and can be run locally by installing the <a href="https://github.com/ashbaldry/howler">howler</a>
+package:</p>
 <ul>
-<li><a href="https://github.com/ashbaldry/howler/tree/main/inst/examples/basic">Basic Player</a></li>
-<li><a href="https://github.com/ashbaldry/howler/tree/main/inst/examples/full">Full Controls</a></li>
-<li><a href="https://github.com/ashbaldry/howler/tree/main/inst/examples/module">Module Player</a></li>
-<li><a href="https://github.com/ashbaldry/howler/tree/main/inst/examples/server">Server-Side Controls</a></li>
+<li><a href="https://github.com/ashbaldry/howler/tree/main/inst/examples/basic">Basic
+Player</a></li>
+<li><a href="https://github.com/ashbaldry/howler/tree/main/inst/examples/full">Full
+Controls</a></li>
+<li><a href="https://github.com/ashbaldry/howler/tree/main/inst/examples/module">Module
+Player</a></li>
+<li><a href="https://github.com/ashbaldry/howler/tree/main/inst/examples/server">Server-Side
+Controls</a></li>
 </ul>
 </div>
 </div>

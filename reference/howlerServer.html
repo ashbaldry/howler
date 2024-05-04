@@ -68,6 +68,8 @@ will all be applied to the current track.</p>
 <span></span>
 <span><span class="fu">addTrack</span><span class="op">(</span><span class="va">id</span>, <span class="va">track</span>, play_track <span class="op">=</span> <span class="cn">FALSE</span>, session <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
+<span><span class="fu">deleteTrack</span><span class="op">(</span><span class="va">id</span>, <span class="va">track</span>, session <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
 <span><span class="fu">playHowl</span><span class="op">(</span><span class="va">id</span>, session <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">pauseHowl</span><span class="op">(</span><span class="va">id</span>, session <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
@@ -76,7 +78,9 @@ will all be applied to the current track.</p>
 <span></span>
 <span><span class="fu">stopHowl</span><span class="op">(</span><span class="va">id</span>, session <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">seekHowl</span><span class="op">(</span><span class="va">id</span>, <span class="va">seek</span>, session <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">seekHowl</span><span class="op">(</span><span class="va">id</span>, <span class="va">seek</span>, session <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">changeHowlSpeed</span><span class="op">(</span><span class="va">id</span>, rate <span class="op">=</span> <span class="fl">1</span>, session <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -101,12 +105,21 @@ If the file is not included in the player nothing will happen.</p></dd>
 <dt>seek</dt>
 <dd><p>Time (in seconds) to set the position of the track</p></dd>
 
+
+<dt>rate</dt>
+<dd><p>Rate (from 0.5 to 4.0) of the audio playback speed</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
     
 
 <p>Updates the the state of the specified <code>howler</code> in the shiny application.</p>
+    </div>
+    <div id="details">
+    <h2>Details</h2>
+    <p>For `deleteTrack`, make sure that the name is used of the track
+rather than the file name.</p>
     </div>
 
     <div id="ref-examples">
