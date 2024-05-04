@@ -27,3 +27,21 @@ An output or render function that enables the use of the widget within Shiny app
 Output and render functions for using howler within Shiny
 applications and interactive Rmd documents.
 }
+\examples{
+if (interactive()) {
+  library(shiny)
+
+  ui <- fluidPage(
+    title = "howler.js Player",
+    howlerOutput("howler"),
+    howlerPlayPauseButton("howler")
+  )
+
+  server <- function(input, output) {
+    output$howler <- renderHowler(howler(c(sound = "audio/sound.mp3")))
+  }
+
+  shinyApp(ui, server)
+}
+
+}

@@ -7,7 +7,7 @@
 #' @param tracks A named vector of file paths to sounds. If multiple file extensions are included, then use a named
 #' list instead, with each list item containing each extension of the sound.
 #' @param options A named list of options to add to the player. For a full list of options see
-#' \url{https://github.com/goldfire/howler.js}
+#' \url{https://github.com/goldfire/howler.js?tab=readme-ov-file#options}
 #' @param track_formats An optional list of formats of the sounds. By default 'howler' will guess the format to
 #' play in. Must be the same length as tracks
 #' @param auto_continue If there are multiple files, would you like to auto play the next file after the current
@@ -48,7 +48,7 @@
 #'   server <- function(input, output) {
 #'   }
 #'
-#'   runShiny(ui, server)
+#'   shinyApp(ui, server)
 #' }
 #'
 #' \dontrun{
@@ -126,10 +126,33 @@ howler <- function(tracks, options = list(), track_formats = NULL,
 #' @return
 #' An output or render function that enables the use of the widget within Shiny applications.
 #'
+#' @examples
+#' if (interactive()) {
+#'   library(shiny)
+#'
+#'   ui <- fluidPage(
+#'     title = "howler.js Player",
+#'     howlerOutput("howler"),
+#'     howlerPlayPauseButton("howler")
+#'   )
+#'
+#'   server <- function(input, output) {
+#'     output$howler <- renderHowler(howler(c(sound = "audio/sound.mp3")))
+#'   }
+#'
+#'   shinyApp(ui, server)
+#' }
+#'
 #' @name howler-shiny
 #' @export
 howlerOutput <- function(outputId) {
-  htmlwidgets::shinyWidgetOutput(outputId, 'howler', package = 'howler')
+  htmlwidgets::shinyWidgetOutput(
+    outputId = outputId,
+    name = "howler",
+    width = "0",
+    height = "0",
+    package = "howler"
+  )
 }
 
 #' @rdname howler-shiny
@@ -137,13 +160,4 @@ howlerOutput <- function(outputId) {
 renderHowler <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(expr) } # force quoted
   htmlwidgets::shinyRenderWidget(expr, howlerOutput, env, quoted = TRUE)
-}
-
-widget_html.howler <- function(id, style, class, ...) {
-  tags$audio(
-    id = id,
-    style = style,
-    class = class,
-    ...
-  )
 }

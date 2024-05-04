@@ -19,7 +19,7 @@ howler(
 list instead, with each list item containing each extension of the sound.}
 
 \item{options}{A named list of options to add to the player. For a full list of options see
-\url{https://github.com/goldfire/howler.js}}
+\url{https://github.com/goldfire/howler.js?tab=readme-ov-file#options}}
 
 \item{track_formats}{An optional list of formats of the sounds. By default 'howler' will guess the format to
 play in. Must be the same length as tracks}
@@ -69,7 +69,7 @@ if (interactive()) {
   server <- function(input, output) {
   }
 
-  runShiny(ui, server)
+  shinyApp(ui, server)
 }
 
 \dontrun{
