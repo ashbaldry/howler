@@ -2,7 +2,7 @@
 <!-- badges: start -->
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Codecov test coverage](https://codecov.io/gh/ashbaldry/howler/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ashbaldry/howler?branch=main)
-[![R-CMD-check](https://github.com/ashbaldry/howler/workflows/R-CMD-check/badge.svg)](https://github.com/ashbaldry/howler/actions)
+[![R-CMD-check](https://github.com/ashbaldry/howler/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ashbaldry/howler/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 # {howler}  - Interactive Audio Player <img src="https://raw.githubusercontent.com/ashbaldry/howler/master/man/figures/logo.png" align="right" width="120"/>
