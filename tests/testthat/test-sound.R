@@ -1,6 +1,7 @@
 test_that("Sound can be play in shiny app", {
   # Don't run these tests on the CRAN build servers
   skip_on_cran()
+  skip_if(is.null(chromote::find_chrome()))
 
   audio_file <- system.file("examples", "_audio", "80s_vibe.mp3", package = "howler")
 
