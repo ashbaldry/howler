@@ -11,7 +11,7 @@
 
 ## Installation
 
-This package is not yet available on CRAN. To install the latest version: 
+This package is available on CRAN and r-universe. To install the latest version: 
 
 ```r
 install.packages("devtools")
