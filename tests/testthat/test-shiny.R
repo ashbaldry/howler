@@ -1,6 +1,7 @@
 test_that("howlerModule works", {
   # Don't run these tests on the CRAN build servers
   skip_on_cran()
+  skip_if(is.null(chromote::find_chrome()))
 
   audio_files_dir <- system.file("examples", "_audio", package = "howler")
   addResourcePath("sample_audio", audio_files_dir)

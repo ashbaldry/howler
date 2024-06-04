@@ -1,5 +1,6 @@
 test_that("Delete track works as expected", {
   skip_on_cran()
+  skip_if(is.null(chromote::find_chrome()))
 
   audio_files_dir <- system.file("examples", "_audio", package = "howler")
   addResourcePath("sample_audio", audio_files_dir)
@@ -34,6 +35,7 @@ test_that("Delete track works as expected", {
 
 test_that("Delete track produces warning when track not present", {
   skip_on_cran()
+  skip_if(is.null(chromote::find_chrome()))
 
   audio_files_dir <- system.file("examples", "_audio", package = "howler")
   addResourcePath("sample_audio", audio_files_dir)

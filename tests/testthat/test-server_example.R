@@ -1,6 +1,7 @@
 test_that("Server-side example works", {
   # Don't run these tests on the CRAN build servers
   skip_on_cran()
+  skip_if(is.null(chromote::find_chrome()))
 
   example_dir <- system.file("examples", "server", package = "howler")
   app <- shinytest2::AppDriver$new(example_dir, name = "howler_app")
