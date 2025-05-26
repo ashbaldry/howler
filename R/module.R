@@ -108,6 +108,10 @@ howlerBasicModuleUI <- function(id, files, ..., width = "300px") {
           class = "howler-module-volume",
           howlerVolumeSlider(howler_id, button = FALSE),
           howlerVolumeToggleButton(howler_id)
+        ),
+        div(
+          class = "howler-module-options",
+          howlerOptionsButton(howler_id)
         )
       )
     )

@@ -156,7 +156,24 @@ howlerVolumeToggleButton <- function(howler_id) {
   howlerButton(howler_id, "volumetoggle", shiny::icon("volume-up"))
 }
 
+#' @rdname howlerButton
+#' @export
+howlerOptionsButton <- function(howler_id) {
+  div(
+    class = "dropdown",
+    howlerButton(howler_id, "options", shiny::icon("ellipsis-vertical")),
+    div(
+      class = "dropdown-menu",
+      tags$a(
+        class = "dropdown-item",
+
+      )
+    )
+  )
+}
+
 HOWLER_BUTTON_TYPES <- c(
   "play_pause", "play", "pause", "stop", "previous", "next",
-  "volumeup", "volumedown", "volumetoggle", "forward", "back"
+  "volumeup", "volumedown", "volumetoggle", "forward", "back",
+  "options"
 )
